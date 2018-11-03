@@ -1,0 +1,71 @@
+<script>
+var amount = 0;
+var autoClick = 0;
+
+function update()
+{
+  document.getElementById('amountText').value = amount;
+  document.title = amount;
+  document.getElementById('amountAutoText').value = autoclick;
+}
+
+function timer()
+{
+  amount += autoClick;
+  update();
+}
+setInterval(timer, 1000);
+
+var autoClickers = [
+["name", "initialPrice", "currentPrice","qty"],
+["name1", "initialPrice", "currentPrice","qty"],
+["name2", "initialPrice", "currentPrice","qty"],
+["name3", "initialPrice", "currentPrice","qty"],
+["name4", "initialPrice", "currentPrice","qty"],
+["name5", "initialPrice", "currentPrice","qty"],
+
+
+
+
+]
+
+
+}
+</script>
+<html>
+<main>
+  <input type="button" id="incrementor" name="incrementor" onclick="Increment()" value="moar" />
+  <input type="button" id="save" onclick="save()" value="save" />
+  <input type="button" id="load" onclick="load()" value="load" />
+  <input type="button" id="load" onclick="buyAutoClicker()" value="buy autoclicker" />
+
+    <label>amount of cookies: </label><input type="number" disabled id="amountText"/>
+    <label>amount of auto clickers: </label><input type="number" disabled id="amountAutoText"/>
+
+  <script>
+  function Increment() {
+    amount++;
+
+  }
+
+  function save() {
+    localStorage.setItem("amount", amount);
+  }
+
+  function load() {
+    amount = localStorage.getItem("amount");
+  }
+
+  function buyAutoClicker()
+  {
+    if (amount >= 12)
+    {
+      amount = amount - 12;
+      autoClick += 1;
+      update();
+    }
+  }
+
+  </script>
+</main>
+</html>
