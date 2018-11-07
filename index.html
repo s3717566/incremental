@@ -1,70 +1,90 @@
-<script>
-var amount = 0;
-var autoClick = 0;
-
-function update()
-{
-  document.getElementById('amountText').value = amount;
-  document.title = amount;
-  document.getElementById('amountAutoText').value = autoclick;
-}
-
-function timer()
-{
-  amount += autoClick;
-  update();
-}
-setInterval(timer, 1000);
-
-var autoClickers = [
-["name", "initialPrice", "currentPrice","qty"],
-["name1", "initialPrice", "currentPrice","qty"],
-["name2", "initialPrice", "currentPrice","qty"],
-["name3", "initialPrice", "currentPrice","qty"],
-["name4", "initialPrice", "currentPrice","qty"],
-["name5", "initialPrice", "currentPrice","qty"],
-
-
-
-
-]
-
-
-}
-</script>
+<!DOCTYPE html>
 <html>
+<script>
+  var amount = 0;
+  var autoClick = 0;
+
+  function update()
+  {
+    document.getElementById('amountText').value = amount;
+    document.title = amount;
+    document.getElementById('amountAutoText').value = autoclick;
+  }
+
+  function timer()
+  {
+    amount += autoClick;
+    update();
+  }
+  setInterval(timer, 1000);
+
+  var autoClickers = [
+  ["name", "initialPrice", "currentPrice","qty"],
+  ["first", 12, 12,0],
+  ["name2", "initialPrice", "currentPrice","qty"],
+  ["name3", "initialPrice", "currentPrice","qty"],
+  ["name4", "initialPrice", "currentPrice","qty"],
+  ["name5", "initialPrice", "currentPrice","qty"]
+  ]
+</script>
+
 <main>
-  <input type="button" id="incrementor" name="incrementor" onclick="Increment()" value="moar" />
+  <input type="button" id="incrementor" name="incrementor" onclick="Increment()" value="get a cookie" />
   <input type="button" id="save" onclick="save()" value="save" />
   <input type="button" id="load" onclick="load()" value="load" />
-  <input type="button" id="load" onclick="buyAutoClicker()" value="buy autoclicker" />
+  <input type="button" id="buyAutoClicker" onclick="buyAutoClicker1()" value="buy autoclicker 1" />
 
-    <label>amount of cookies: </label><input type="number" disabled id="amountText"/>
-    <label>amount of auto clickers: </label><input type="number" disabled id="amountAutoText"/>
+  <label>amount of cookies: </label><input type="number" disabled id="amountText"/>
+  <label>amount of auto clickers: </label><input type="number" disabled id="amountAutoText"/>
+
+  <p id='debug1'>
+    test1
+    </p>
+
+    <p id='debug2'>
+      test2
+      </p>
+
+        <p id='debug3'>
+          test3
+          </p>
 
   <script>
-  function Increment() {
-    amount++;
-
-  }
-
-  function save() {
-    localStorage.setItem("amount", amount);
-  }
-
-  function load() {
-    amount = localStorage.getItem("amount");
-  }
-
-  function buyAutoClicker()
-  {
-    if (amount >= 12)
-    {
-      amount = amount - 12;
-      autoClick += 1;
+    function Increment() {
+      amount++;
       update();
     }
-  }
+
+    function save() {
+      localStorage.setItem("amount", amount);
+    }
+
+    function load() {
+      amount = localStorage.getItem("amount");
+    }
+
+    function buyAutoClicker1()
+    {
+      document.getElementById("debug1").innerHTML = autoClickers[1][2];
+
+      if (amount >= autoClickers[1][2])
+      {
+        amount = amount - autoClickers[1][2];
+        autoClickers[1][3] += 1;
+        autoClickers[1][2] + 2;
+        update();
+      }
+    }
+
+    function buyAutoClicker()
+    {
+      if (amount >= 12)
+      {
+        amount = amount - 12;
+        autoClick += 1;
+        update();
+      }
+    }
 
   </script>
 </main>
