@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="stylesheet.css">
 <script>
   var amount = 0;
   var autoClick = 0;
@@ -28,15 +29,37 @@
   ]
 </script>
 
-<main>
-  <input type="button" id="incrementor" name="incrementor" onclick="Increment()" value="get a cookie" />
+<main onload="welcomeBack()">
+  <div id="enter">
+  <img id="incrementor" src="media/watchanimebutton.png" onclick="Increment()"></img>
+<!-- <input type="button" id="incrementor" name="incrementor" onclick="Increment()" value="watch an anime!" /> -->
+  <div id="filemenu">
   <input type="button" id="save" onclick="save()" value="save" />
   <input type="button" id="load" onclick="load()" value="load" />
+</div>
+
+<div>
+
+
+  <label>amount of animes seen: </label><input type="number" disabled id="amountText"/>
+  <br />
+  <label>amount of auto clickers: </label><input type="number" disabled id="amountAutoText"/>
+  </div>
+  </div>
+<div class='upgrades center'>
+
+
+<li>
+<ul id='upgrade1'>
+  <p i='upgrade1name'>
+
+  </p>
   <input type="button" id="buyAutoClicker" onclick="buyAutoClicker1()" value="buy autoclicker 1" />
 
-  <label>amount of cookies: </label><input type="number" disabled id="amountText"/>
-  <label>amount of auto clickers: </label><input type="number" disabled id="amountAutoText"/>
+</ul >
 
+</li>
+</div>
   <p id='debug1'>
     test1
     </p>
@@ -61,6 +84,8 @@
 
     function load() {
       amount = localStorage.getItem("amount");
+      amount = parseInt(amount);
+      update();
     }
 
     function buyAutoClicker1()
@@ -84,6 +109,11 @@
         autoClick += 1;
         update();
       }
+    }
+
+    function welcomeBack()
+    {
+      alert("welcome back!");
     }
 
   </script>
