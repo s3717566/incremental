@@ -1,0 +1,52 @@
+weeaboo simulator
+
+watch anime
+- illegal site
+- legal site
+
+buying tiers: (not in order)
+- keychain
+- poster
+- body pillow
+- life sized figure
+- figure
+- cosplay
+- t-shirt
+- bluray series
+- onahole
+- boob mousepad
+
+
+upgrades: 
+- neckbeard: your facial hair grows at an alarming rate
+- window blinds: keep out the sun for that better contrasting screen
+
+achievements:
+- your first anime
+- 
+
+import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class Main 
+{
+	int currentvalue = 0;
+	Timer timer = new Timer();
+	TimerTask task = new TimerTask()
+	{
+		public void run()
+		{
+			currentvalue++;
+			System.out.println(currentvalue);
+		}
+	};
+	
+	public void start()
+	{
+		timer.scheduleAtFixedRate(task, 1000, 1000);
+	}
+}
+
+
+

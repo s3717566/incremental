@@ -1,0 +1,25 @@
+main {
+
+}
+
+.center  {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: center;
+}
+
+#filemenu {
+  float: right;
+  display: inline;
+}
+
+#incrementor {
+  max-width: 20%;
+  max-height: 15%;
+}
+
+#enter {
+  width: 100%;
+}

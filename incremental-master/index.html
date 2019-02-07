@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="stylesheet.css">
+<script src='script.js'></script>
+
+<main onload="welcomeBack()">
+    <div id="enter">
+        <img id="incrementor" src="media/watchanimebutton.png" onclick="Increment()">
+        <img id="motivation" src="media/watchinganimegif.gif">
+        <!-- <input type="button" id="incrementor" name="incrementor" onclick="Increment()" value="watch an anime!" /> -->
+        <div id="filemenu">
+            <input type="button" id="save" onclick="save()" value="save" />
+            <input type="button" id="load" onclick="load()" value="load" />
+        </div>
+
+        <div>
+            <label>Amount of Animes seen: </label><input type="number" readonly id="amountText" />
+            <br />
+            <label>Amount of AutoClicker1's: </label><input type="number" readonly id="amountAutoText" />
+        </div>
+    </div>
+
+    <div class='upgrades center'>
+        <ul>
+            <ul id='upgrade1'>
+                <p id='upgrade1name'>
+
+                </p>
+                <input type="button" id="buyAutoClicker" onclick="buyAutoClicker1()" value="buy autoclicker 1" />
+            </ul>
+        </ul>
+    </div>
+    
+    <p id='debug1'>
+        Current Price of AutoClicker1: 12
+    </p>
+    <p id='debug2'>
+        test2
+    </p>
+    <p id='debug3'>
+        test3
+    </p>
+
+</main>
+
+</html>
