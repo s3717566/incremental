@@ -2,119 +2,169 @@
 <html>
 <link rel="stylesheet" href="stylesheet.css">
 <script>
-  var amount = 0;
-  var autoClick = 0;
+var amount = 0;
+var autoClick = 0;
 
-  function update()
-  {
-    document.getElementById('amountText').value = amount;
-    document.title = amount;
-    document.getElementById('amountAutoText').value = autoclick;
-  }
+function update()
+{
+  document.getElementById('amountText').value = amount;
+  document.title = amount;
+  document.getElementById('amountAutoText').value = autoclick;
+}
 
-  function timer()
-  {
-    amount += autoClick;
-    update();
-  }
-  setInterval(timer, 1000);
+function timer()
+{
+  amount += autoClick;
+  update();
+}
+setInterval(timer, 1000);
 
-  var autoClickers = [
-  ["name", "initialPrice", "currentPrice","qty"],
-  ["first", 12, 12,0],
-  ["name2", "initialPrice", "currentPrice","qty"],
-  ["name3", "initialPrice", "currentPrice","qty"],
-  ["name4", "initialPrice", "currentPrice","qty"],
-  ["name5", "initialPrice", "currentPrice","qty"]
-  ]
+var autoClickers = [
+  ["name", "initialPrice", "currentPrice","qty","unlocked?"],
+  ["first", 12, 12,0, false],
+  ["second", 24, 24,0,false],
+  ["name3", "initialPrice", "currentPrice","qty",false],
+  ["name4", "initialPrice", "currentPrice","qty",false],
+  ["name5", "initialPrice", "currentPrice","qty",false]
+]
 </script>
 
 <main onload="welcomeBack()">
   <div id="enter">
-  <img id="incrementor" src="media/watchanimebutton.png" onclick="Increment()"></img>
-<!-- <input type="button" id="incrementor" name="incrementor" onclick="Increment()" value="watch an anime!" /> -->
-  <div id="filemenu">
-  <input type="button" id="save" onclick="save()" value="save" />
-  <input type="button" id="load" onclick="load()" value="load" />
-</div>
+    <img id="incrementor" src="media/watchanimebutton.png" onclick="Increment()"></img>
+    <!-- <input type="button" id="incrementor" name="incrementor" onclick="Increment()" value="watch an anime!" /> -->
+    <div id="filemenu">
+      <input type="button" id="save" onclick="save()" value="save" />
+      <input type="button" id="load" onclick="load()" value="load" />
+    </div>
 
-<div>
+    <div>
 
 
-  <label>amount of animes seen: </label><input type="number" disabled id="amountText"/>
-  <br />
-  <label>amount of auto clickers: </label><input type="number" disabled id="amountAutoText"/>
+      <label>amount of animes seen: </label><input type="number" disabled id="amountText"/>
+      <br />
+      <label>amount of auto clickers: </label><input type="number" disabled id="amountAutoText"/>
+    </div>
   </div>
+
+
+  <div class='upgrades'>
+    <table>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Current Price
+        </th>
+        <th>
+          Quantity
+        </th>
+        <th>
+          Buy
+        </th>
+      </tr>
+
+      <tr>
+        <td>
+          Upgrade 1
+        </td>
+        <td>
+          <span id="currentPrice1"></span>
+        </td>
+        <td>
+          <span id="quantity1"></span>
+        </td>
+        <td>
+          <input type="button" id="buyAutoClicker" onclick="buyAutoClicker1()" value="buy autoclicker 1" />
+        </td>
+      </tr>
+      <tr>
+
+        <td>
+          Upgrade 2
+        </td>
+        <td>
+          <span id="currentPrice2"></span>
+        </td>
+        <td>
+          <span id="quantity2"></span>
+        </td>
+        <td>
+          <input type="button" id="buyAutoClicker" onclick="buyAutoClicker2()" value="buy autoclicker 2" />
+        </td>
+      </tr>
+
+    </table>
   </div>
-<div class='upgrades center'>
-
-
-<li>
-<ul id='upgrade1'>
-  <p i='upgrade1name'>
-
-  </p>
-  <input type="button" id="buyAutoClicker" onclick="buyAutoClicker1()" value="buy autoclicker 1" />
-
-</ul >
-
-</li>
-</div>
   <p id='debug1'>
     test1
-    </p>
+  </p>
 
-    <p id='debug2'>
-      test2
-      </p>
+  <p id='debug2'>
+    test2
+  </p>
 
-        <p id='debug3'>
-          test3
-          </p>
+  <p id='debug3'>
+    test3
+  </p>
 
   <script>
-    function Increment() {
-      amount++;
+  function Increment() {
+    amount++;
+    update();
+  }
+
+  function save() {
+    localStorage.setItem("amount", amount);
+  }
+
+  function load() {
+    amount = localStorage.getItem("amount");
+    amount = parseInt(amount);
+    update();
+  }
+
+  function buyAutoClicker1()
+  {
+    document.getElementById("debug1").innerHTML = autoClickers[1][2];
+
+    if (amount >= autoClickers[1][2])
+    {
+      amount = amount - autoClickers[1][2];
+      autoClickers[1][3] += 1;
+      autoClickers[1][2] + 2;
       update();
     }
+  }
 
-    function save() {
-      localStorage.setItem("amount", amount);
-    }
+  function buyAutoClicker2()
+  {
+    document.getElementById("debug2").innerHTML = autoClickers[2][2];
 
-    function load() {
-      amount = localStorage.getItem("amount");
-      amount = parseInt(amount);
+    if (amount >= autoClickers[2][2])
+    {
+      amount = amount - autoClickers[2][2];
+      autoClickers[2][3] += 1;
+      autoClickers[2][2] + 2;
       update();
     }
-
-    function buyAutoClicker1()
+  }
+  <!-- weiner -->
+  function buyAutoClicker()
+  {
+    if (amount >= 12)
     {
-      document.getElementById("debug1").innerHTML = autoClickers[1][2];
-
-      if (amount >= autoClickers[1][2])
-      {
-        amount = amount - autoClickers[1][2];
-        autoClickers[1][3] += 1;
-        autoClickers[1][2] + 2;
-        update();
-      }
+      amount = amount - 12;
+      autoClick += 1;
+      update();
     }
+  }
 
-    function buyAutoClicker()
-    {
-      if (amount >= 12)
-      {
-        amount = amount - 12;
-        autoClick += 1;
-        update();
-      }
-    }
-
-    function welcomeBack()
-    {
-      alert("welcome back!");
-    }
+  function welcomeBack()
+  {
+    alert("welcome back!");
+  }
 
   </script>
 </main>
