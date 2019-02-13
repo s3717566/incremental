@@ -3,7 +3,8 @@
 <link rel="stylesheet" href="stylesheet.css">
 <script src='script.js'></script>
 
-<main onload="welcomeBack()">
+<body>
+<main>
     <div id="enter">
         <img id="incrementor" src="media/watchanimebutton.png" onclick="Increment()">
         <img id="motivation" src="media/watchinganimegif.gif">
@@ -14,9 +15,13 @@
         </div>
 
         <div>
-            <label>Amount of Animes seen TESTBRANCH 3: </label><input type="number" readonly id="amountText" />
-            <br />
-            <label>Amount of AutoClicker1's: </label><input type="number" readonly id="amountAutoText" />
+            <label>Amount of Animes seen: </label><input type="number" readonly id="amountText" />
+            <br/>
+            <label>Amount of AutoClicker1's: </label><input type="number" readonly id="amountAutoClicker1Text" />
+            <br/>
+            <label>Amount of AutoClicker2's: </label><input type="number" readonly id="amountAutoClicker2Text" />
+            <br/>
+            <label>Amount of AutoClicker3's: </label><input type="number" readonly id="amountAutoClicker3Text" />
         </div>
     </div>
 
@@ -24,9 +29,10 @@
         <ul>
             <ul id='upgrade1'>
                 <p id='upgrade1name'>
-
                 </p>
-                <input type="button" id="buyAutoClicker" onclick="buyAutoClicker1()" value="buy autoclicker 1" />
+                <input type="button" id="buyAutoClicker1" onclick="buyAutoClicker1()" value="Buy AutoClicker 1!" />
+                <input type="button" id="buyAutoClicker2" onclick="buyAutoClicker2()" value="Buy AutoClicker 2!" />
+                <input type="button" id="buyAutoClicker3" onclick="buyAutoClicker3()" value="Buy AutoClicker 3!" />
             </ul>
         </ul>
     </div>
@@ -35,12 +41,13 @@
         Current Price of AutoClicker1: 12
     </p>
     <p id='debug2'>
-        test2
+        Current Price of AutoClicker2: 84
     </p>
     <p id='debug3'>
-        test3
+        Current Price of AutoClicker3: 166
     </p>
 
 </main>
+</body>
 
 </html>
