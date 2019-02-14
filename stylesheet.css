@@ -2,12 +2,38 @@ main {
 
 }
 
+.divstyle {
+  border-radius: 30px;
+  background-color: #FAC05E;
+  border: 3px solid #1E3888;
+}
+
+.upgrades_center {
+  margin-top: 50px;
+  flex: 1 0 auto;
+}
+
 .center  {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
   text-align: center;
+}
+
+#buttonsDiv {
+  float: right;
+  margin-right: 500px;
+}
+
+.WaifuButtons {
+  height: 130px;
+  width: 130px;
+}
+
+#pricesDiv {
+  float: left;
+  width: 500px;
 }
 
 #filemenu {
