@@ -2,12 +2,6 @@ main {
 
 }
 
-.divstyle {
-  border-radius: 30px;
-  background-color: #FAC05E;
-  border: 3px solid #1E3888;
-}
-
 .upgrades_center {
   margin-top: 50px;
   flex: 1 0 auto;
@@ -29,6 +23,8 @@ main {
 .WaifuButtons {
   height: 130px;
   width: 130px;
+  border-radius: 30px;
+  border: 3px solid #e20f92;
 }
 
 #pricesDiv {

@@ -108,3 +108,8 @@ function welcomeBack() {
 }
 
 window.onload = welcomeBack();
+
+$(window).load(function()
+{
+    $('#myModal').modal('show');
+});
