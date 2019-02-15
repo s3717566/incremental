@@ -8,31 +8,52 @@
 
     <body>
         <main>
-            <div class='upgrades_center'>
-                    <div id='buttonsDiv'>
-                    <ul>
-                        <ul id='upgrade1'>
-                            <p id='upgrade1name'>
-                            </p>
-                            <input type="image" class="WaifuButtons" onclick="buyAutoClicker1()" value="Buy AutoClicker 1!" src="media/futaba.PNG"/>
-                            <input type="image" class="WaifuButtons" onclick="buyAutoClicker2()" value="Buy AutoClicker 2!" src="media/anna.png"/>
-                            <input type="image" class="WaifuButtons" onclick="buyAutoClicker3()" value="Buy AutoClicker 3!" src="media/milim.jpg"/>
-                        </ul>
-                    </ul>
+            <div id="enter">
+                <img id="incrementor" src="media/watchanimebutton.png" onclick="Increment()">
+                <img id="motivation" src="media/watchinganimegif.gif">
+                <!-- <input type="button" id="incrementor" name="incrementor" onclick="Increment()" value="watch an anime!" /> -->
+                <div id="filemenu">
+                    <input type="button" id="save" onclick="save()" value="save" />
+                    <input type="button" id="load" onclick="load()" value="load" />
                 </div>
-
-                <div id='pricesDiv'>
-                    <p id='debug1'>
-                    Current Price of AutoClicker1: 12
-                    </p>
-                    <p id='debug2'>
-                    Current Price of AutoClicker2: 84
-                    </p>
-                    <p id='debug3'>
-                    Current Price of AutoClicker3: 166
-                    </p>
+                <div>
+                    <label>Amount of Animes seen: </label><input type="number" readonly id="amountText" />
+                    <br/>
+                    <label>Amount of AutoClicker1's: </label><input type="number" readonly id="amountAutoClicker1Text" />
+                    <br/>
+                    <label>Amount of AutoClicker2's: </label><input type="number" readonly id="amountAutoClicker2Text" />
+                    <br/>
+                    <label>Amount of AutoClicker3's: </label><input type="number" readonly id="amountAutoClicker3Text" />
                 </div>
             </div>
+
+     <div class='upgrades_center'>
+        <div id='buttonsDiv'>
+            <ul>
+                <ul id='upgrade1'>
+                    <p id='upgrade1name'>
+                    </p>
+                    <input type="image" class="WaifuButtons" onclick="buyAutoClicker1()" value="Buy AutoClicker 1!" src="media/futaba.PNG"/>
+                    <input type="image" class="WaifuButtons" onclick="buyAutoClicker2()" value="Buy AutoClicker 2!" src="media/anna.png"/>
+                    <input type="image" class="WaifuButtons" onclick="buyAutoClicker3()" value="Buy AutoClicker 3!" src="media/milim.jpg"/>
+                </ul>
+            </ul>
+        </div>
+    
+        <div id='pricesDiv'>
+            <p id='debug1'>
+            Current Price of AutoClicker1: 12
+            </p>
+            <p id='debug2'>
+            Current Price of AutoClicker2: 84
+            </p>
+            <p id='debug3'>
+            Current Price of AutoClicker3: 166
+            </p>
+        </div>
+     </div>
+
         </main>
     </body>
+
 </html>
