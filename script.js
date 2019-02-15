@@ -1,105 +1,105 @@
-var amount = 0;
-var autoclicker1= 0;
-var autoclicker2 = 0;
-var autoclicker3 = 0;
+var AnimeAmount = 0;
+var AnimeAutoClicker1= 0;
+var AnimeAutoClicker2 = 0;
+var AnimeAutoClicker3 = 0;
 
 function update() {
-    document.getElementById('amountText').value = Math.trunc(amount);   //updates number in input box, title of website, and
-    document.title = "Weaboo Simulator: " + Math.trunc(amount) + " Animes";
-    document.getElementById('amountAutoClicker1Text').value = autoclicker1;
-    document.getElementById('amountAutoClicker2Text').value = autoclicker2;
-    document.getElementById('amountAutoClicker3Text').value = autoclicker3;
+    document.getElementById('AnimeAmountText').value = Math.trunc(AnimeAmount);   //updates number in input box, title of website, and
+    document.title = "Weeaboo Simulator: " + Math.trunc(AnimeAmount) + " Animes";
+    document.getElementById('AnimeAutoClicker1Text').value = AnimeAutoClicker1;
+    document.getElementById('AnimeAutoClicker2Text').value = AnimeAutoClicker2;
+    document.getElementById('AnimeAutoClicker3Text').value = AnimeAutoClicker3;
 }
 
 function timer() {
-    amount += (autoclicker1 * 0.003);
-    amount += (autoclicker2 * 0.006);
-    amount += (autoclicker3 * 0.009);
+    AnimeAmount += (AnimeAutoClicker1 * 0.003);
+    AnimeAmount += (AnimeAutoClicker2 * 0.006);
+    AnimeAmount += (AnimeAutoClicker3 * 0.009);
     update();
 }
 setInterval(timer, 10);
 
-var autoClickers = [    //first array accesses which autoclicker , second array accesses properties of that autoclicker (e.g. qty, current price, initial price)
+var animeAutoClickers = [    //first array accesses which autoclicker , second array accesses properties of that autoclicker (e.g. qty, current price, initial price)
 ["name", "initialPrice", "currentPrice", "qty"],
-["AutoClicker1", 12, 12, 0],
-["AutoClicker2", 84, 84, 0],
-["AutoClicker3", 166, 166, 0],
+["AnimeAutoClicker1", 12, 12, 0],
+["AnimeAutoClicker2", 84, 84, 0],
+["AnimeAutoClicker3", 166, 166, 0],
 ["name4", "initialPrice", "currentPrice", "qty"],
 ["name5", "initialPrice", "currentPrice", "qty"]
 ]
 
 function Increment() {
-    amount++;
+    AnimeAmount++;
     update();
 }
 
 function save() {
-    localStorage.setItem("Amount of Animes", amount);
-    localStorage.setItem("Amount of AutoClicker1's", autoclicker1);
-    localStorage.setItem("Amount of AutoClicker2's", autoclicker2);
-    localStorage.setItem("Amount of AutoClicker3's", autoclicker3);
+    localStorage.setItem("AnimeAmount of Animes", AnimeAmount);
+    localStorage.setItem("AnimeAmount of AnimeAutoClicker1's", AnimeAutoClicker1);
+    localStorage.setItem("AnimeAmount of AnimeAutoClicker2's", AnimeAutoClicker2);
+    localStorage.setItem("AnimeAmount of AnimeAutoClicker3's", AnimeAutoClicker3);
 }
 
 function load() {
-    amount = localStorage.getItem("Amount of Animes");
-    amount = parseInt(amount);
+    AnimeAmount = localStorage.getItem("AnimeAmount of Animes");
+    AnimeAmount = parseInt(AnimeAmount);
 
-    autoclicker1 = localStorage.getItem("Amount of AutoClicker1's");
-    autoclicker1 = parseInt(autoclicker1);
-    autoclicker2 = localStorage.getItem("Amount of AutoClicker2's");
-    autoclicker2 = parseInt(autoclicker2);
-    autoclicker3 = localStorage.getItem("Amount of AutoClicker3's");
-    autoclicker3 = parseInt(autoclicker3);
+    AnimeAutoClicker1 = localStorage.getItem("AnimeAmount of AnimeAutoClicker1's");
+    AnimeAutoClicker1 = parseInt(AnimeAutoClicker1);
+    AnimeAutoClicker2 = localStorage.getItem("AnimeAmount of AnimeAutoClicker2's");
+    AnimeAutoClicker2 = parseInt(AnimeAutoClicker2);
+    AnimeAutoClicker3 = localStorage.getItem("AnimeAmount of AnimeAutoClicker3's");
+    AnimeAutoClicker3 = parseInt(AnimeAutoClicker3);
 
     update();
     changePricesOnLoad();
 }
 
 function changePricesOnLoad() {
-    autoClickers[1][2] = 12 + (autoclicker1 * 2);
-    autoClickers[2][2] = 84 + (autoclicker2 * 10);
-    autoClickers[3][2] = 166 + (autoclicker3 * 40)
+    animeAutoClickers[1][2] = 12 + (AnimeAutoClicker1 * 2);
+    animeAutoClickers[2][2] = 84 + (AnimeAutoClicker2 * 10);
+    animeAutoClickers[3][2] = 166 + (AnimeAutoClicker3 * 40)
 
-    document.getElementById("debug1").innerHTML = "Current Price of AutoClicker1: " + autoClickers[1][2];
-    document.getElementById("debug2").innerHTML = "Current Price of AutoClicker2: " + autoClickers[2][2];
-    document.getElementById("debug3").innerHTML = "Current Price of AutoClicker3: " + autoClickers[3][2];
+    document.getElementById("debug1").innerHTML = "Current Price of AnimeAutoClicker1: " + animeAutoClickers[1][2];
+    document.getElementById("debug2").innerHTML = "Current Price of AnimeAutoClicker2: " + animeAutoClickers[2][2];
+    document.getElementById("debug3").innerHTML = "Current Price of AnimeAutoClicker3: " + animeAutoClickers[3][2];
 }
 
-function buyAutoClicker1() {
-    if (amount >= autoClickers[1][2]) {         //if you have more animes than the current price needed, u can buy it
-        amount = amount - autoClickers[1][2];
-        autoClickers[1][3] += 1;                //changes qty of autoclicker1's
-        autoClickers[1][2] += 2;                 //changes currentprice of autoclicker1's
-        autoclicker1 += 1;
+function buyAnimeAutoClicker1() {
+    if (AnimeAmount >= animeAutoClickers[1][2]) {         //if you have more animes than the current price needed, u can buy it
+        AnimeAmount = AnimeAmount - animeAutoClickers[1][2];
+        animeAutoClickers[1][3] += 1;                //changes qty of AnimeAutoClicker1's
+        animeAutoClickers[1][2] += 2;                 //changes currentprice of AnimeAutoClicker1's
+        AnimeAutoClicker1 += 1;
         update();
-        document.getElementById("debug1").innerHTML = "Current Price of AutoClicker1: " + autoClickers[1][2];
+        document.getElementById("debug1").innerHTML = "Current Price of AnimeAutoClicker1: " + animeAutoClickers[1][2];
     }
 }
 
-function buyAutoClicker2() {
-    if (amount >= autoClickers[2][2]) {
-        amount = amount - autoClickers[2][2];
-        autoClickers[2][3] += 1;
-        autoClickers[2][2] += 10;
-        autoclicker2 += 1;
+function buyAnimeAutoClicker2() {
+    if (AnimeAmount >= animeAutoClickers[2][2]) {
+        AnimeAmount = AnimeAmount - animeAutoClickers[2][2];
+        animeAutoClickers[2][3] += 1;
+        animeAutoClickers[2][2] += 10;
+        AnimeAutoClicker2 += 1;
         update();
-        document.getElementById("debug2").innerHTML = "Current Price of AutoClicker2: " + autoClickers[2][2];
+        document.getElementById("debug2").innerHTML = "Current Price of AnimeAutoClicker2: " + animeAutoClickers[2][2];
     }
 }
 
-function buyAutoClicker3() {
-    if (amount >= autoClickers[3][2]) {
-        amount = amount - autoClickers[3][2];
-        autoClickers[3][3] += 1;
-        autoClickers[3][2] += 40;
-        autoclicker3 += 1;
+function buyAnimeAutoClicker3() {
+    if (AnimeAmount >= animeAutoClickers[3][2]) {
+        AnimeAmount = AnimeAmount - animeAutoClickers[3][2];
+        animeAutoClickers[3][3] += 1;
+        animeAutoClickers[3][2] += 40;
+        AnimeAutoClicker3 += 1;
         update();
-        document.getElementById("debug3").innerHTML = "Current Price of AutoClicker3: " + autoClickers[3][2];
+        document.getElementById("debug3").innerHTML = "Current Price of AnimeAutoClicker3: " + animeAutoClickers[3][2];
     }
 }
 
 function welcomeBack() {
-    if (localStorage.getItem("Amount of Animes") === null) {
+    if (localStorage.getItem("AnimeAmount of Animes") === null) {
         window.alert("Welcome to Matt's Waifu Clicker! owo");
     }
     else {
