@@ -30,7 +30,7 @@ body {
   min-width: 25vw;
 }
 
-.center  {
+.center {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -92,17 +92,18 @@ body {
   font-size: 20px;
 }
 
-input[type=number]  {
+input[type=number] {
   background-color: transparent;
   border: 0px solid;
   font-family: Rubik;
   font-size: 40px;
   max-width: 160px;
   outline-width: 0px;
-  text-align: center; /*  when content-editable is a thing, the width will only be as big as the number, and if it overflows to next line, it looks nicer centered rather than starting on the left. */
+  text-align: center;
+  /*  when content-editable is a thing, the width will only be as big as the number, and if it overflows to next line, it looks nicer centered rather than starting on the left. */
 }
 
-input[type=button]  {
+input[type=button] {
   outline-width: 0px;
   background-color: transparent;
   border: 2px solid black;
@@ -142,14 +143,17 @@ input[type=button]  {
   color: #4c9366;
   height: 49.99%;
   font-weight: bold;
-  width: 60%; //this is what puts it on the second line but float left wont work
 }
 
 .jobQty {
-float: right;
-height: 100%;
-max-width: 8vh;
-margin-right: 10px;
-margin-top: 0px;
+  float: right;
+  height: 100%;
+  max-width: 8vh;
+  margin-right: 10px;
 
+}
+
+.jobQtyNumber {
+  position: relative;
+  bottom: 20px;
 }
