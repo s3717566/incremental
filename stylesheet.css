@@ -59,8 +59,8 @@ body {
   float: right;
   margin-top: -13px;
   position: absolute;
-  top: 0px;
-  right: 7.5px;
+  top: 5px;
+  right: 3px;
 }
 
 #incrementor {
@@ -90,4 +90,23 @@ body {
   height: 45vh;
   min-width: 25vw;
   font-size: 20px;
+}
+
+input[type=number]  {
+  background-color: transparent;
+  border: 0px solid;
+  font-family: Rubik;
+  font-size: 40px;
+  max-width: 160px;
+  outline-width: 0px;
+  text-align: center; /*  when content-editable is a thing, the width will only be as big as the number, and if it overflows to next line, it looks nicer centered rather than starting on the left. */
+}
+
+input[type=button]  {
+  outline-width: 0px;
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 12px;
+  font-family: Rubik;
+  font-size: 25px;
 }
