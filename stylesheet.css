@@ -132,28 +132,37 @@ input[type=button] {
 .jobTitle {
   float: left;
   font-size: 70%;
-  margin-left: 10px;
+  margin: 2px;
   height: 49.99%;
 }
 
 .jobReq {
-  float: left;
+  margin: 0px;
   font-size: 50%;
-  margin-left: 10px;
   color: #4c9366;
   height: 49.99%;
   font-weight: bold;
+  max-width: 200px;
 }
 
 .jobQty {
   float: right;
-  height: 100%;
-  max-width: 8vh;
-  margin-right: 10px;
-
 }
 
-.jobQtyNumber {
+#jobQty1 {
   position: relative;
-  bottom: 20px;
+  bottom: 55px;
+  right: 8px;
+}
+
+#jobQty2 {
+  position: relative;
+  bottom: 55px;
+  right: 8px;
+}
+
+#jobQty3 {
+  position: relative;
+  bottom: 55px;
+  right: 8px;
 }

@@ -6,9 +6,9 @@ var AnimeAutoClicker3 = 0;
 function update() {
     document.getElementById('AnimeAmountText').value = Math.trunc(AnimeAmount);   //updates number in input box, title of website, and
     document.title = "Weeaboo Simulator: " + Math.trunc(AnimeAmount) + " Animes";
-    document.getElementById('AnimeAutoClicker1Text').innerHTML = AnimeAutoClicker1;
-    document.getElementById('AnimeAutoClicker2Text').innerHTML = AnimeAutoClicker2;
-    document.getElementById('AnimeAutoClicker3Text').innerHTML = AnimeAutoClicker3;
+    document.getElementById('jobQty1').innerHTML = AnimeAutoClicker1;
+    document.getElementById('jobQty2').innerHTML = AnimeAutoClicker2;
+    document.getElementById('jobQty3').innerHTML = AnimeAutoClicker3;
 }
 
 function timer() {
