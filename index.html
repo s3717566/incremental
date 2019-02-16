@@ -1,59 +1,96 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="stylesheet.css">
-        <script src='script.js'></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    </head>
+  <head>
+    <link rel="stylesheet" href="stylesheet.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Rubik"
+      rel="stylesheet"
+    />
+    <script src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
 
-    <body>
-        <main>
-            <div id="enter">
-                <img id="incrementor" src="media/watchanimebutton.png" onclick="Increment()">
-                <img id="motivation" src="media/watchinganimegif.gif">
-                <!-- <input type="button" id="incrementor" name="incrementor" onclick="Increment()" value="watch an anime!" /> -->
-                <div id="filemenu">
-                    <input type="button" id="save" onclick="save()" value="save" />
-                    <input type="button" id="load" onclick="load()" value="load" />
-                </div>
-                <div>
-                    <label>Amount of Animes seen: </label><input type="number" readonly id="amountText" />
-                    <br/>
-                    <label>Amount of AutoClicker1's: </label><input type="number" readonly id="amountAutoClicker1Text" />
-                    <br/>
-                    <label>Amount of AutoClicker2's: </label><input type="number" readonly id="amountAutoClicker2Text" />
-                    <br/>
-                    <label>Amount of AutoClicker3's: </label><input type="number" readonly id="amountAutoClicker3Text" />
-                </div>
-            </div>
-
-     <div class='upgrades_center'>
-        <div id='buttonsDiv'>
-            <ul>
-                <ul id='upgrade1'>
-                    <p id='upgrade1name'>
-                    </p>
-                    <input type="image" class="WaifuButtons" onclick="buyAutoClicker1()" value="Buy AutoClicker 1!" src="media/futaba.PNG"/>
-                    <input type="image" class="WaifuButtons" onclick="buyAutoClicker2()" value="Buy AutoClicker 2!" src="media/anna.png"/>
-                    <input type="image" class="WaifuButtons" onclick="buyAutoClicker3()" value="Buy AutoClicker 3!" src="media/milim.jpg"/>
-                </ul>
-            </ul>
+  <body class="textstyle smalltext">
+    <main>
+      <div id="page_container">
+        <!-- purpose is to be flex (left to right) and hold left container, middle container, and right container. -->
+        <div class="side_containers" id="left_container">
+          <div id="jobs">
+            JOBS
+          </div>
+          <div id="merch">
+            MERCH
+          </div>
         </div>
-    
-        <div id='pricesDiv'>
-            <p id='debug1'>
-            Current Price of AutoClicker1: 12
-            </p>
-            <p id='debug2'>
-            Current Price of AutoClicker2: 84
-            </p>
-            <p id='debug3'>
-            Current Price of AutoClicker3: 166
-            </p>
+
+        <div id="middle_container">
+          <img
+            id="incrementor"
+            src="media/watchanimebutton.png"
+            onclick="Increment()"
+          />
+          <div>
+            <label>Amount of Animes seen: </label
+            ><input type="number" readonly id="amountText" />
+            <br />
+            <label>Amount of AutoClicker1's: </label
+            ><input type="number" readonly id="amountAutoClicker1Text" />
+            <br />
+            <label>Amount of AutoClicker2's: </label
+            ><input type="number" readonly id="amountAutoClicker2Text" />
+            <br />
+            <label>Amount of AutoClicker3's: </label
+            ><input type="number" readonly id="amountAutoClicker3Text" />
+          </div>
         </div>
-     </div>
 
-        </main>
-    </body>
+        <div class="side_containers" id="right_container">
+          <div id="skills">
+            SKILLS
+            <span>
+              <div id="filemenu">
+                <input type="button" id="save" onclick="save()" value="save" />
+                <input type="button" id="load" onclick="load()" value="load" />
+              </div>
+            </span>
+          </div>
 
+          <div id="waifus">
+              <p style="font-size: 40px;">WAIFUS</p>
+            <input
+              type="image"
+              class="WaifuButtons"
+              onclick="buyAutoClicker1()"
+              value="Buy AutoClicker 1!"
+              src="media/futaba.PNG"
+            />
+            <input
+              type="image"
+              class="WaifuButtons"
+              onclick="buyAutoClicker2()"
+              value="Buy AutoClicker 2!"
+              src="media/anna.png"
+            />
+            <input
+              type="image"
+              class="WaifuButtons"
+              onclick="buyAutoClicker3()"
+              value="Buy AutoClicker 3!"
+              src="media/milim.jpg"
+            />
+
+            <p id="debug1">
+              Current Price of Futaba: 12
+            </p>
+            <p id="debug2">
+              Current Price of Anna: 84
+            </p>
+            <p id="debug3">
+              Current Price of Milim: 166
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>

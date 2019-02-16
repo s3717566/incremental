@@ -1,10 +1,33 @@
-main {
-
+body {
+  background-color: #ffd3f1;
 }
 
-.upgrades_center {
-  margin-top: 50px;
-  flex: 1 0 auto;
+.textstyle {
+  font-family: Rubik;
+  text-align: center;
+}
+
+.smalltext {
+  font-size: 40px;
+}
+
+#page_container {
+  display: flex;
+}
+
+.side_containers {
+  display: flex;
+  flex-direction: column;
+}
+
+#jobs {
+  height: 49.1vh;
+  min-width: 25vw;
+}
+
+#merch {
+  height: 49.1vh;
+  min-width: 25vw;
 }
 
 .center  {
@@ -34,14 +57,37 @@ main {
 
 #filemenu {
   float: right;
-  display: inline;
+  margin-top: -13px;
+  position: absolute;
+  top: 0px;
+  right: 7.5px;
 }
 
 #incrementor {
-  max-width: 20%;
-  max-height: 15%;
+  max-width: 400px;
+  max-height: 200px;
 }
 
-#enter {
-  width: 100%;
+#left_container {
+  border-right: 5px solid black;
+}
+
+#right_container {
+  border-left: 5px solid black;
+}
+
+#middle_container {
+  width: 50vw;
+  
+}
+
+#skills {
+  height: 45vh;
+  min-width: 25vw;
+}
+
+#waifus {
+  height: 45vh;
+  min-width: 25vw;
+  font-size: 20px;
 }
