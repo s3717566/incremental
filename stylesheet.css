@@ -127,3 +127,29 @@ input[type=button]  {
 .divHeading {
   font-size: 50px;
 }
+
+.jobTitle {
+  float: left;
+  font-size: 70%;
+  margin-left: 10px;
+  height: 49.99%;
+}
+
+.jobReq {
+  float: left;
+  font-size: 50%;
+  margin-left: 10px;
+  color: #4c9366;
+  height: 49.99%;
+  font-weight: bold;
+  width: 60%; //this is what puts it on the second line but float left wont work
+}
+
+.jobQty {
+float: right;
+height: 100%;
+max-width: 8vh;
+margin-right: 10px;
+margin-top: 0px;
+
+}

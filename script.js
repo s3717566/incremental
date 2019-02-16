@@ -6,9 +6,9 @@ var AnimeAutoClicker3 = 0;
 function update() {
     document.getElementById('AnimeAmountText').value = Math.trunc(AnimeAmount);   //updates number in input box, title of website, and
     document.title = "Weeaboo Simulator: " + Math.trunc(AnimeAmount) + " Animes";
-    document.getElementById('AnimeAutoClicker1Text').value = AnimeAutoClicker1;
-    document.getElementById('AnimeAutoClicker2Text').value = AnimeAutoClicker2;
-    document.getElementById('AnimeAutoClicker3Text').value = AnimeAutoClicker3;
+    document.getElementById('AnimeAutoClicker1Text').innerHTML = AnimeAutoClicker1;
+    document.getElementById('AnimeAutoClicker2Text').innerHTML = AnimeAutoClicker2;
+    document.getElementById('AnimeAutoClicker3Text').innerHTML = AnimeAutoClicker3;
 }
 
 function timer() {
@@ -72,7 +72,7 @@ function buyAnimeAutoClicker1() {
         animeAutoClickers[1][2] += 2;                 //changes currentprice of AnimeAutoClicker1's
         AnimeAutoClicker1 += 1;
         update();
-        document.getElementById("debug1").innerHTML = "Current Price of AnimeAutoClicker1: " + animeAutoClickers[1][2];
+        document.getElementById("debug1").innerHTML = animeAutoClickers[1][2];
     }
 }
 
@@ -83,7 +83,7 @@ function buyAnimeAutoClicker2() {
         animeAutoClickers[2][2] += 10;
         AnimeAutoClicker2 += 1;
         update();
-        document.getElementById("debug2").innerHTML = "Current Price of AnimeAutoClicker2: " + animeAutoClickers[2][2];
+        document.getElementById("debug2").innerHTML = animeAutoClickers[2][2];
     }
 }
 
@@ -94,7 +94,7 @@ function buyAnimeAutoClicker3() {
         animeAutoClickers[3][2] += 40;
         AnimeAutoClicker3 += 1;
         update();
-        document.getElementById("debug3").innerHTML = "Current Price of AnimeAutoClicker3: " + animeAutoClickers[3][2];
+        document.getElementById("debug3").innerHTML = animeAutoClickers[3][2];
     }
 }
 
