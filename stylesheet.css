@@ -80,7 +80,14 @@ body {
 
 #middle_container {
   width: 50vw;
+}
 
+#CurrentWaifu {
+  border-radius: 50%;
+  border: 3px solid #e20f92;
+  height: 400px;
+  width: 400px;
+  margin: auto;
 }
 
 #skills {
@@ -121,6 +128,9 @@ input[type=button] {
   margin-left: 10px;
   margin-bottom: 10px;
   cursor: pointer;
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
 }
 
 .imgJobSmall {
