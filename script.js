@@ -57,7 +57,7 @@ setInterval(timer, 100);
 function unlockSkill(i) {
     if (skillArray[i][1] <= AnimeAmount) {
         skillArray[i][2] = true;
-        AnimeAmount -= skillArray[i][2];
+        // AnimeAmount -= skillArray[i][2]; skills dont cost anime
         document.getElementById("Skill" + i + "Req").innerHTML = "UNLOCKED";
         document.getElementById("Skill" + i + "Div").style.pointerEvents = 'none';
         //          <div class="innerJobDiv" id="Skill1Div" onclick="unlockSkill()">
