@@ -1,31 +1,31 @@
 var AnimeAmount = 999;
 var MoneyAmount = 0;
 
-var jobArray = [    //first array accesses which job. [1]=Initial$, [2]=Current$, [3]=Job Qty, [4]=Amount job increments by per tick
-["name", "initialPrice", "currentPrice", "upgrade", "effect", "desc", "1$$2"], //skills use $$ as breaks
-["Degenerate", 12, 0, 0, 0.003, "meme", "1$$2$$4"],
-["Tendies chef", 84, 0, 0, 0.006, "meme2"],
-["Chronic masterbaiter", 166, 0, 0, 0.009, "meme3"],
-["Hentai reviewer", 300, 0, 0, 0.015, "meme4"],
-["Body pillow stuffer", 600, 0, 0, 0.040, "meme5"],
+var jobArray = [ //first array accesses which job. [1]=Initial$, [2]=Current$, [3]=Job Qty, [4]=Amount job increments by per tick
+    ["name", "initialPrice", "currentPrice", "upgrade", "effect", "desc", "1$$2"], //skills use $$ as breaks
+    ["Degenerate", 12, 0, 0, 0.003, "meme", "1$$2$$4"],
+    ["Tendies chef", 84, 0, 0, 0.006, "meme2"],
+    ["Chronic masterbaiter", 166, 0, 0, 0.009, "meme3"],
+    ["Hentai reviewer", 300, 0, 0, 0.015, "meme4"],
+    ["Body pillow stuffer", 600, 0, 0, 0.040, "meme5"],
 ]
 
-var skillArray = [    //jobs have skill requirements which will be checked per tick
-["name", "animeReq", "unlocked?", "desc"],
-["Ninja", 10, false, "meme"],
-["Japanese literacy", 20, false, "meme2"],
-["Chronic masterbaiter", 30, false, "meme3"],
-["Hentai reviewer", 40, false, "meme4"],
-["Body pillow stuffer", 50, false, "meme5"],
+var skillArray = [ //jobs have skill requirements which will be checked per tick
+    ["name", "animeReq", "unlocked?", "desc"],
+    ["Ninja", 10, false, "meme"],
+    ["Japanese literacy", 20, false, "meme2"],
+    ["Chronic masterbaiter", 30, false, "meme3"],
+    ["Hentai reviewer", 40, false, "meme4"],
+    ["Body pillow stuffer", 50, false, "meme5"],
 ]
 
-var merchArray = [    //first array accesses which job. [1]=Initial, [2]=CurrentPrice, [3]=Job Qty, [4]=Amount job increments by per tick
-["name", "initialPrice", "currentPrice", "upgrade", "effect", "desc"], //todo: add skill requirements
-["Degenerate", 12, 0, 0, 0.003, "meme"],
-["Tendies chef", 84, 0, 0, 0.006, "meme2"],
-["Chronic masterbaiter", 166, 0, 0, 0.009, "meme3"],
-["Hentai reviewer", 300, 0, 0, 0.015, "meme4"],
-["Body pillow stuffer", 600, 0, 0, 0.040, "meme5"],
+var merchArray = [ //first array accesses which job. [1]=Initial, [2]=CurrentPrice, [3]=Job Qty, [4]=Amount job increments by per tick
+    ["name", "initialPrice", "currentPrice", "upgrade", "effect", "desc"], //todo: add skill requirements
+    ["Degenerate", 12, 0, 0, 0.003, "meme"],
+    ["Tendies chef", 84, 0, 0, 0.006, "meme2"],
+    ["Chronic masterbaiter", 166, 0, 0, 0.009, "meme3"],
+    ["Hentai reviewer", 300, 0, 0, 0.015, "meme4"],
+    ["Body pillow stuffer", 600, 0, 0, 0.040, "meme5"],
 ]
 
 function update() {
@@ -34,7 +34,7 @@ function update() {
     document.getElementById('job3Title').innerHTML = jobArray[3][0];
 
     updatePrices();
-    document.getElementById('AnimeAmountText').value = AnimeAmount + " Animes";   //updates the actual number in input box (number next to Amount of Animes seen:)
+    document.getElementById('AnimeAmountText').value = AnimeAmount + " Animes"; //updates the actual number in input box (number next to Amount of Animes seen:)
     document.getElementById('MoneyAmountText').value = "$" + MoneyAmount.toFixed(2);
     // document.title = "Weeaboo Simulator: " + Math.trunc(AnimeAmount) + " Animes"; a bit obsolete since we use both animes and money, might as well keep the page title as just 'Weaboo Simulator'
     document.getElementById('jobQty1').innerHTML = jobArray[1][3];
@@ -47,20 +47,21 @@ function timer() {
     MoneyAmount += (jobArray[2][3] * 0.006);
     MoneyAmount += (jobArray[3][3] * 0.009);
     update();
-    unlockSkill();
 }
 setInterval(timer, 100);
 
 
 
-function unlockSkill() {
-  for (i = 1; i < skillArray.length; i++)
-  { //the forloop works
+function unlockSkill(i) {
     if (skillArray[i][1] <= AnimeAmount) {
-      skillArray[i][2] = true;
-      // document.getElementById('debug1skill').innerHTML = "UNLOCKED"; DEBUG (although it would be a nice feature, TODO in future)
+        skillArray[i][2] = true;
+        AnimeAmount -= skillArray[i][2];
+        document.getElementById("Skill" + i + "Req").innerHTML = "UNLOCKED";
+        document.getElementById("Skill" + i + "Div").style.pointerEvents = 'none';
+        //          <div class="innerJobDiv" id="Skill1Div" onclick="unlockSkill()">
+        //document.getElementById('debug1skill').innerHTML = "UNLOCKED"; DEBUG (although it would be a nice feature, TODO in future)
     }
-  }
+
 }
 
 // function checkSkillReq() {
@@ -103,19 +104,19 @@ function load() {
 }
 
 function updatePrices() {
-  jobArray[1][2] = jobArray[1][1] + (jobArray[1][3] * 2);
-  jobArray[2][2] = jobArray[2][1] + (jobArray[2][3] * 10);
-  jobArray[3][2] = jobArray[3][1] + (jobArray[3][3] * 40);
+    jobArray[1][2] = jobArray[1][1] + (jobArray[1][3] * 2);
+    jobArray[2][2] = jobArray[2][1] + (jobArray[2][3] * 10);
+    jobArray[3][2] = jobArray[3][1] + (jobArray[3][3] * 40);
 
-  document.getElementById("debug1").innerHTML = jobArray[1][2];
-  document.getElementById("debug2").innerHTML = jobArray[2][2];
-  document.getElementById("debug3").innerHTML = jobArray[3][2];
+    document.getElementById("debug1").innerHTML = jobArray[1][2];
+    document.getElementById("debug2").innerHTML = jobArray[2][2];
+    document.getElementById("debug3").innerHTML = jobArray[3][2];
 }
 
 function buyJob1() {
-    if (AnimeAmount >= jobArray[1][2]) {         //if you have more animes than the current price needed, u can buy it
+    if (AnimeAmount >= jobArray[1][2]) { //if you have more animes than the current price needed, u can buy it
         AnimeAmount = AnimeAmount - jobArray[1][2];
-        jobArray[1][3] += 1;                //changes qty of jobArray[1][3]'s
+        jobArray[1][3] += 1; //changes qty of jobArray[1][3]'s
         update();
         document.getElementById("debug1").innerHTML = jobArray[1][2];
     }
@@ -139,11 +140,15 @@ function buyJob3() {
     }
 }
 
+function changeWaifu(Waifu) {
+    //<img id="CurrentWaifuImg" src="media/futaba.PNG">
+    document.getElementById("CurrentWaifuDiv").innerHTML = '<img src="media/' + Waifu + '"> <br/>' + Waifu.split('.')[0];
+}
+
 function welcomeBack() {
     if (localStorage.getItem("AnimeAmount of Animes") === null) {
         window.alert("Welcome to Matt's Waifu Clicker! owo");
-    }
-    else {
+    } else {
         window.alert("Welcome back Onii-Chan! uwu");
     }
 }

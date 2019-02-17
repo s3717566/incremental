@@ -81,8 +81,8 @@
           <br />
           CURRENT WAIFU
         </div>
-        <div id="CurrentWaifu">
-    
+        <div id="CurrentWaifuDiv">
+
         </div>
       </div>
 
@@ -96,25 +96,22 @@
             </div>
           </span>
 
-          <div class="innerJobDiv" onclick="">
+          <div class="innerJobDiv" id="Skill1Div" onclick="unlockSkill(1);">
             <img class="imgJobSmall" src="media/ph1.png" />
             <div class="jobTitle" id="skill1Title">Skill 1</div><br />
-            <div class="jobReq"> <span id="debug1">12</span> anime</div>
-            <div class="jobQty"> <span id="jobQty1">0</span></div>
+            <div class="jobReq" id="Skill1Req">12 anime</div>
 
           </div>
-          <div class="innerJobDiv" onclick="">
+          <div class="innerJobDiv" id="Skill2Div" onclick="unlockSkill(2);">
             <img class="imgJobSmall" src="media/ph2.png" />
             <div class="jobTitle" id="skill2Title">Skill 2</div><br />
-            <div class="jobReq"> <span id="debug2">84</span> anime</div>
-            <div class="jobQty"> <span id="jobQty2">0</span></div>
+            <div class="jobReq" id="Skill2Req">84 anime</div>
 
           </div>
-          <div class="innerJobDiv" onclick="">
+          <div class="innerJobDiv" id="Skill3Div" onclick="unlockSkill(3);">
             <img class="imgJobSmall" src="media/ph3.png" />
             <div class="jobTitle" id="skill3Title">Skill 3</div><br />
-            <div class="jobReq"> <span id="debug3">166</span> anime</div>
-            <div class="jobQty"> <span id="jobQty3">0</span></div>
+            <div class="jobReq" id="Skill3Req">166 anime</div>
 
           </div>
 
@@ -123,9 +120,9 @@
         <div id="waifus">
           <span class="divHeading">WAIFUS</span>
           <br>
-          <input type="image" class="WaifuButtons" src="media/futaba.PNG" />
-          <input type="image" class="WaifuButtons" src="media/anna.png" />
-          <input type="image" class="WaifuButtons" src="media/milim.jpg" />
+          <img class="WaifuButtons" src="media/FUTABA.PNG" onclick="changeWaifu('FUTABA.PNG')"/>
+          <img class="WaifuButtons" src="media/ANNA.png" onclick="changeWaifu('ANNA.png')"/>
+          <img class="WaifuButtons" src="media/MILIM.jpg" onclick="changeWaifu('MILIM.jpg')"/>
         </div>
       </div>
     </div>
