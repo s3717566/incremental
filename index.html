@@ -1,117 +1,84 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="stylesheet.css" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Rubik"
-      rel="stylesheet"
-    />
-    <script src="script.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  </head>
 
-  <body class="textstyle smalltext">
-    <main>
-      <div id="page_container">
-        <!-- purpose is to be flex (left to right) and hold left container, middle container, and right container. -->
-        <div class="side_containers" id="left_container">
+<head>
+  <link rel="stylesheet" href="stylesheet.css" />
+  <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet" />
+  <script src="script.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
 
-          <div id="jobs">
-            <span class="divHeading">JOBS</span>
-            <div class="innerJobDiv">
-              <img class="imgJobSmall" src="media/ph1.png" />
-              <div class="jobTitle">Chronic masterbaiter</div><br/>
-              <div class="jobReq"> <span id="debug1">12</span> anime</div>
-              <div class="jobQty"> <span id="jobQty1">0</span></div>
+<body class="textstyle smalltext">
+  <main>
+    <div id="page_container">
+      <!-- purpose is to be flex (left to right) and hold left container, middle container, and right container. -->
+      <div class="side_containers" id="left_container">
 
-            </div>
-            <div class="innerJobDiv">
-              <img class="imgJobSmall" src="media/ph2.png" />
-              <div class="jobTitle">Hentai reviewer </div><br/>
-              <div class="jobReq"> <span id="debug2">84</span> anime</div>
-              <div class="jobQty"> <span id="jobQty2">0</span></div>
+        <div id="jobs">
+          <span class="divHeading">JOBS</span>
+          <div class="innerJobDiv">
+            <img class="imgJobSmall" src="media/ph1.png" />
+            <div class="jobTitle">Chronic masterbaiter</div><br />
+            <div class="jobReq"> <span id="debug1">12</span> anime</div>
+            <div class="jobQty"> <span id="jobQty1">0</span></div>
 
-
-            </div>
-            <div class="innerJobDiv">
-              <img class="imgJobSmall" src="media/ph3.png" />
-              <div class="jobTitle">Autistic screecher </div><br/>
-              <div class="jobReq"> <span id="debug3">166</span> anime</div>
-              <div class="jobQty"> <span id="jobQty3">0</span></div>
-
-
-            </div>
           </div>
+          <div class="innerJobDiv">
+            <img class="imgJobSmall" src="media/ph2.png" />
+            <div class="jobTitle">Hentai reviewer </div><br />
+            <div class="jobReq"> <span id="debug2">84</span> anime</div>
+            <div class="jobQty"> <span id="jobQty2">0</span></div>
 
-          <div id="merch">
-  <span class="divHeading">MERCH</span>
+
+          </div>
+          <div class="innerJobDiv">
+            <img class="imgJobSmall" src="media/ph3.png" />
+            <div class="jobTitle">Autistic screecher </div><br />
+            <div class="jobReq"> <span id="debug3">166</span> anime</div>
+            <div class="jobQty"> <span id="jobQty3">0</span></div>
+
+
           </div>
         </div>
 
-        <div id="middle_container">
-          <img
-            id="incrementor"
-            src="media/watchanimebutton.png"
-            onclick="Increment()"
-          />
-          <div>
-            <label>Amount of Animes seen: </label
-            ><input type="number" readonly id="AnimeAmountText" />
-          </div>
-          <br />
-          <div>
-            <label>Amount of monies owned: </label
-            ><input type="number" readonly id="amountText" />
-            <br />
-            <label>Amount of monies AutoClicker1's: </label
-            ><input type="number" readonly id="amountAutoClicker1Text" />
-            <br />
-            <label>Amount of monies AutoClicker2's: </label
-            ><input type="number" readonly id="amountAutoClicker2Text" />
-            <br />
-            <label>Amount of monies AutoClicker3's: </label
-            ><input type="number" readonly id="amountAutoClicker3Text" />
-          </div>
-        </div>
-
-        <div class="side_containers" id="right_container">
-          <div id="skills">
-  <span class="divHeading">SKILLS</span>
-        <span>
-              <div id="filemenu">
-                <input type="button" id="save" onclick="save()" value="save" />
-                <input type="button" id="load" onclick="load()" value="load" />
-              </div>
-            </span>
-          </div>
-
-          <div id="waifus">
-  <span class="divHeading">WAIFUS</span>
-  <br>
-          <input
-              type="image"
-              class="WaifuButtons"
-              onclick="buyAnimeAutoClicker1()"
-              value="Buy AutoClicker 1!"
-              src="media/futaba.PNG"
-            />
-            <input
-              type="image"
-              class="WaifuButtons"
-              onclick="buyAnimeAutoClicker2()"
-              value="Buy AutoClicker 2!"
-              src="media/anna.png"
-            />
-            <input
-              type="image"
-              class="WaifuButtons"
-              onclick="buyAnimeAutoClicker3()"
-              value="Buy AutoClicker 3!"
-              src="media/milim.jpg"
-            />
-          </div>
+        <div id="merch">
+          <span class="divHeading">MERCH</span>
         </div>
       </div>
-    </main>
-  </body>
+
+      <div id="middle_container">
+        <img id="incrementor" src="media/watchanimebutton.png" onclick="Increment()" />
+        <div>
+          <label>Amount of Animes seen: </label><input type="number" readonly id="AnimeAmountText" />
+        </div>
+        <br />
+        <div>
+          <label>Amount of monies owned: </label><input type="number" readonly id="MoneyAmountText" />
+          <br />
+        </div>
+      </div>
+
+      <div class="side_containers" id="right_container">
+        <div id="skills">
+          <span class="divHeading">SKILLS</span>
+          <span>
+            <div id="filemenu">
+              <input type="button" id="save" onclick="save()" value="save" />
+              <input type="button" id="load" onclick="load()" value="load" />
+            </div>
+          </span>
+        </div>
+
+        <div id="waifus">
+          <span class="divHeading">WAIFUS</span>
+          <br>
+          <input type="image" class="WaifuButtons" onclick="buyJob1()" value="Buy AutoClicker 1!" src="media/futaba.PNG" />
+          <input type="image" class="WaifuButtons" onclick="buyJob2()" value="Buy AutoClicker 2!" src="media/anna.png" />
+          <input type="image" class="WaifuButtons" onclick="buyJob3()" value="Buy AutoClicker 3!" src="media/milim.jpg" />
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
 </html>

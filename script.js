@@ -1,8 +1,10 @@
-var AnimeAmount = 0;
+var AnimeAmount = 999;
+var MoneyAmount = 0;
 
 function update() {
     updatePrices();
-    document.getElementById('AnimeAmountText').value = Math.trunc(AnimeAmount);   //updates number in input box, title of website, and
+    document.getElementById('AnimeAmountText').value = AnimeAmount;   //updates the actual number in input box (number next to Amount of Animes seen:)
+    document.getElementById('MoneyAmountText').value = Math.trunc(MoneyAmount);
     document.title = "Weeaboo Simulator: " + Math.trunc(AnimeAmount) + " Animes";
     document.getElementById('jobQty1').innerHTML = jobArray[1][3];
     document.getElementById('jobQty2').innerHTML = jobArray[2][3];
@@ -10,14 +12,14 @@ function update() {
 }
 
 function timer() {
-    AnimeAmount += (jobArray[1][3] * 0.003);
-    AnimeAmount += (jobArray[2][3] * 0.006);
-    AnimeAmount += (jobArray[3][3] * 0.009);
+    MoneyAmount += (jobArray[1][3] * 0.003);
+    MoneyAmount += (jobArray[2][3] * 0.006);
+    MoneyAmount += (jobArray[3][3] * 0.009);
     update();
 }
 setInterval(timer, 10);
 
-var jobArray = [    //first array accesses which autoclicker , second array accesses properties of that autoclicker (e.g. qty, current price, initial price)
+var jobArray = [    //first array accesses which job. [1]=Initial, [2]=CurrentPrice, [3]=Job Qty, [4]=Amount job increments by per tick
 ["name", "initialPrice", "currentPrice", "upgrade", "effect", "desc"], //todo: add skill requirements
 ["Degenerate", 12, 0, 0, 0.003, "meme"],
 ["Tendies chef", 84, 0, 0, 0.006, "meme2"],
@@ -65,7 +67,7 @@ function updatePrices() {
   document.getElementById("debug3").innerHTML = jobArray[3][2];
 }
 
-function buyAnimeAutoClicker1() {
+function buyJob1() {
     if (AnimeAmount >= jobArray[1][2]) {         //if you have more animes than the current price needed, u can buy it
         AnimeAmount = AnimeAmount - jobArray[1][2];
         jobArray[1][3] += 1;                //changes qty of jobArray[1][3]'s
@@ -74,7 +76,7 @@ function buyAnimeAutoClicker1() {
     }
 }
 
-function buyAnimeAutoClicker2() {
+function buyJob2() {
     if (AnimeAmount >= jobArray[2][2]) {
         AnimeAmount = AnimeAmount - jobArray[2][2];
         jobArray[2][3] += 1;
@@ -83,7 +85,7 @@ function buyAnimeAutoClicker2() {
     }
 }
 
-function buyAnimeAutoClicker3() {
+function buyJob3() {
     if (AnimeAmount >= jobArray[3][2]) {
         AnimeAmount = AnimeAmount - jobArray[3][2];
         jobArray[3][3] += 1;
@@ -102,8 +104,3 @@ function welcomeBack() {
 }
 
 window.onload = welcomeBack();
-
-$(window).load(function()
-{
-    $('#myModal').modal('show');
-});
