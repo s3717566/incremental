@@ -28,11 +28,13 @@ var merchArray = [ //first array accesses which job. [1]=Initial, [2]=CurrentPri
     ["Body pillow stuffer", 600, 0, 0, 0.040, "meme5"],
 ]
 
-function update() {
+function loadNames() {
     document.getElementById('job1Title').innerHTML = jobArray[1][0];
     document.getElementById('job2Title').innerHTML = jobArray[2][0];
     document.getElementById('job3Title').innerHTML = jobArray[3][0];
+}
 
+function update() {
     updatePrices();
     document.getElementById('AnimeAmountText').value = AnimeAmount + " Animes"; //updates the actual number in input box (number next to Amount of Animes seen:)
     document.getElementById('MoneyAmountText').value = "$" + MoneyAmount.toFixed(2);
