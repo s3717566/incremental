@@ -94,12 +94,12 @@ body {
   font-size: 20px;
 }
 
-input[type=number] {
+input[type=text] {
   background-color: transparent;
   border: 0px solid;
   font-family: Rubik;
   font-size: 40px;
-  max-width: 160px;
+  max-width: 250px;
   outline-width: 0px;
   text-align: center;
   /*  when content-editable is a thing, the width will only be as big as the number, and if it overflows to next line, it looks nicer centered rather than starting on the left. */

@@ -8,8 +8,8 @@ function update() {
     document.getElementById('job3Title').innerHTML = jobArray[3][0];
 
     updatePrices();
-    document.getElementById('AnimeAmountText').value = AnimeAmount;   //updates the actual number in input box (number next to Amount of Animes seen:)
-    document.getElementById('MoneyAmountText').value = Math.trunc(MoneyAmount);
+    document.getElementById('AnimeAmountText').value = AnimeAmount + " Animes";   //updates the actual number in input box (number next to Amount of Animes seen:)
+    document.getElementById('MoneyAmountText').value = "$" + MoneyAmount.toFixed(2);
     // document.title = "Weeaboo Simulator: " + Math.trunc(AnimeAmount) + " Animes"; a bit obsolete since we use both animes and money, might as well keep the page title as just 'Weaboo Simulator'
     document.getElementById('jobQty1').innerHTML = jobArray[1][3];
     document.getElementById('jobQty2').innerHTML = jobArray[2][3];
@@ -22,7 +22,7 @@ function timer() {
     MoneyAmount += (jobArray[3][3] * 0.009);
     update();
 }
-setInterval(timer, 10);
+setInterval(timer, 100);
 
 var jobArray = [    //first array accesses which job. [1]=Initial, [2]=CurrentPrice, [3]=Job Qty, [4]=Amount job increments by per tick
 ["name", "initialPrice", "currentPrice", "upgrade", "effect", "desc"], //todo: add skill requirements
