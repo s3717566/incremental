@@ -150,12 +150,13 @@ input[type=button] {
 
 .jobQty {
   float: right;
+  position: relative;
+  bottom: 70px;
+  right: 8px;
 }
 
-#jobQty1 {
-  position: relative;
-  bottom: 55px;
-  right: 8px;
+/* #jobQty1 {
+
 }
 
 #jobQty2 {
@@ -168,4 +169,4 @@ input[type=button] {
   position: relative;
   bottom: 55px;
   right: 8px;
-}
+} */
