@@ -19,7 +19,7 @@ function timer() {
 }
 setInterval(timer, 10);
 
-var animeAutoClickers = [    //first array accesses which autoclicker , second array accesses properties of that autoclicker (e.g. qty, current price, initial price)
+var jobArray = [    //first array accesses which autoclicker , second array accesses properties of that autoclicker (e.g. qty, current price, initial price)
 ["name", "initialPrice", "currentPrice", "qty"],
 ["AnimeAutoClicker1", 12, 12, 0],
 ["AnimeAutoClicker2", 84, 84, 0],
@@ -56,45 +56,45 @@ function load() {
 }
 
 function changePricesOnLoad() {
-    animeAutoClickers[1][2] = 12 + (AnimeAutoClicker1 * 2);
-    animeAutoClickers[2][2] = 84 + (AnimeAutoClicker2 * 10);
-    animeAutoClickers[3][2] = 166 + (AnimeAutoClicker3 * 40)
+    jobArray[1][2] = 12 + (AnimeAutoClicker1 * 2);
+    jobArray[2][2] = 84 + (AnimeAutoClicker2 * 10);
+    jobArray[3][2] = 166 + (AnimeAutoClicker3 * 40)
 
-    document.getElementById("debug1").innerHTML = "Current Price of AnimeAutoClicker1: " + animeAutoClickers[1][2];
-    document.getElementById("debug2").innerHTML = "Current Price of AnimeAutoClicker2: " + animeAutoClickers[2][2];
-    document.getElementById("debug3").innerHTML = "Current Price of AnimeAutoClicker3: " + animeAutoClickers[3][2];
+    document.getElementById("debug1").innerHTML = "Current Price of AnimeAutoClicker1: " + jobArray[1][2];
+    document.getElementById("debug2").innerHTML = "Current Price of AnimeAutoClicker2: " + jobArray[2][2];
+    document.getElementById("debug3").innerHTML = "Current Price of AnimeAutoClicker3: " + jobArray[3][2];
 }
 
 function buyAnimeAutoClicker1() {
-    if (AnimeAmount >= animeAutoClickers[1][2]) {         //if you have more animes than the current price needed, u can buy it
-        AnimeAmount = AnimeAmount - animeAutoClickers[1][2];
-        animeAutoClickers[1][3] += 1;                //changes qty of AnimeAutoClicker1's
-        animeAutoClickers[1][2] += 2;                 //changes currentprice of AnimeAutoClicker1's
+    if (AnimeAmount >= jobArray[1][2]) {         //if you have more animes than the current price needed, u can buy it
+        AnimeAmount = AnimeAmount - jobArray[1][2];
+        jobArray[1][3] += 1;                //changes qty of AnimeAutoClicker1's
+        jobArray[1][2] += 2;                 //changes currentprice of AnimeAutoClicker1's
         AnimeAutoClicker1 += 1;
         update();
-        document.getElementById("debug1").innerHTML = animeAutoClickers[1][2];
+        document.getElementById("debug1").innerHTML = jobArray[1][2];
     }
 }
 
 function buyAnimeAutoClicker2() {
-    if (AnimeAmount >= animeAutoClickers[2][2]) {
-        AnimeAmount = AnimeAmount - animeAutoClickers[2][2];
-        animeAutoClickers[2][3] += 1;
-        animeAutoClickers[2][2] += 10;
+    if (AnimeAmount >= jobArray[2][2]) {
+        AnimeAmount = AnimeAmount - jobArray[2][2];
+        jobArray[2][3] += 1;
+        jobArray[2][2] += 10;
         AnimeAutoClicker2 += 1;
         update();
-        document.getElementById("debug2").innerHTML = animeAutoClickers[2][2];
+        document.getElementById("debug2").innerHTML = jobArray[2][2];
     }
 }
 
 function buyAnimeAutoClicker3() {
-    if (AnimeAmount >= animeAutoClickers[3][2]) {
-        AnimeAmount = AnimeAmount - animeAutoClickers[3][2];
-        animeAutoClickers[3][3] += 1;
-        animeAutoClickers[3][2] += 40;
+    if (AnimeAmount >= jobArray[3][2]) {
+        AnimeAmount = AnimeAmount - jobArray[3][2];
+        jobArray[3][3] += 1;
+        jobArray[3][2] += 40;
         AnimeAutoClicker3 += 1;
         update();
-        document.getElementById("debug3").innerHTML = animeAutoClickers[3][2];
+        document.getElementById("debug3").innerHTML = jobArray[3][2];
     }
 }
 
