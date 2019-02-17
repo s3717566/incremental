@@ -1,11 +1,16 @@
 var AnimeAmount = 999;
 var MoneyAmount = 0;
 
+
 function update() {
+    document.getElementById('job1Title').innerHTML = jobArray[1][0];
+    document.getElementById('job2Title').innerHTML = jobArray[2][0];
+    document.getElementById('job3Title').innerHTML = jobArray[3][0];
+
     updatePrices();
     document.getElementById('AnimeAmountText').value = AnimeAmount;   //updates the actual number in input box (number next to Amount of Animes seen:)
     document.getElementById('MoneyAmountText').value = Math.trunc(MoneyAmount);
-    document.title = "Weeaboo Simulator: " + Math.trunc(AnimeAmount) + " Animes";
+    // document.title = "Weeaboo Simulator: " + Math.trunc(AnimeAmount) + " Animes"; a bit obsolete since we use both animes and money, might as well keep the page title as just 'Weaboo Simulator'
     document.getElementById('jobQty1').innerHTML = jobArray[1][3];
     document.getElementById('jobQty2').innerHTML = jobArray[2][3];
     document.getElementById('jobQty3').innerHTML = jobArray[3][3];

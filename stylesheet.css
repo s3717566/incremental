@@ -23,6 +23,7 @@ body {
 #jobs {
   height: 49.1vh;
   min-width: 25vw;
+  overflow: auto;
 }
 
 #merch {
@@ -119,6 +120,7 @@ input[type=button] {
   background-color: #e0bed5;
   margin-left: 10px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .imgJobSmall {
