@@ -1,6 +1,32 @@
 var AnimeAmount = 999;
 var MoneyAmount = 0;
 
+var jobArray = [    //first array accesses which job. [1]=Initial$, [2]=Current$, [3]=Job Qty, [4]=Amount job increments by per tick
+["name", "initialPrice", "currentPrice", "upgrade", "effect", "desc", "1$$2"], //skills use $$ as breaks
+["Degenerate", 12, 0, 0, 0.003, "meme", "1$$2$$4"],
+["Tendies chef", 84, 0, 0, 0.006, "meme2"],
+["Chronic masterbaiter", 166, 0, 0, 0.009, "meme3"],
+["Hentai reviewer", 300, 0, 0, 0.015, "meme4"],
+["Body pillow stuffer", 600, 0, 0, 0.040, "meme5"],
+]
+
+var skillArray = [    //jobs have skill requirements which will be checked per tick
+["name", "animeReq", "unlocked?", "desc"],
+["Ninja", 10, false, "meme"],
+["Japanese literacy", 20, false, "meme2"],
+["Chronic masterbaiter", 30, false, "meme3"],
+["Hentai reviewer", 40, false, "meme4"],
+["Body pillow stuffer", 50, false, "meme5"],
+]
+
+var merchArray = [    //first array accesses which job. [1]=Initial, [2]=CurrentPrice, [3]=Job Qty, [4]=Amount job increments by per tick
+["name", "initialPrice", "currentPrice", "upgrade", "effect", "desc"], //todo: add skill requirements
+["Degenerate", 12, 0, 0, 0.003, "meme"],
+["Tendies chef", 84, 0, 0, 0.006, "meme2"],
+["Chronic masterbaiter", 166, 0, 0, 0.009, "meme3"],
+["Hentai reviewer", 300, 0, 0, 0.015, "meme4"],
+["Body pillow stuffer", 600, 0, 0, 0.040, "meme5"],
+]
 
 function update() {
     document.getElementById('job1Title').innerHTML = jobArray[1][0];
@@ -21,17 +47,31 @@ function timer() {
     MoneyAmount += (jobArray[2][3] * 0.006);
     MoneyAmount += (jobArray[3][3] * 0.009);
     update();
+    unlockSkill();
 }
 setInterval(timer, 100);
 
-var jobArray = [    //first array accesses which job. [1]=Initial, [2]=CurrentPrice, [3]=Job Qty, [4]=Amount job increments by per tick
-["name", "initialPrice", "currentPrice", "upgrade", "effect", "desc"], //todo: add skill requirements
-["Degenerate", 12, 0, 0, 0.003, "meme"],
-["Tendies chef", 84, 0, 0, 0.006, "meme2"],
-["Chronic masterbaiter", 166, 0, 0, 0.009, "meme3"],
-["Hentai reviewer", 300, 0, 0, 0.015, "meme4"],
-["Body pillow stuffer", 600, 0, 0, 0.040, "meme5"],
-]
+
+
+function unlockSkill() {
+  for (i = 1; i < skillArray.length; i++)
+  { //the forloop works
+    if (skillArray[i][1] <= AnimeAmount) {
+      skillArray[i][2] = true;
+      // document.getElementById('debug1skill').innerHTML = "UNLOCKED"; DEBUG (although it would be a nice feature, TODO in future)
+    }
+  }
+}
+
+// function checkSkillReq() {
+//   for (i = 1; i < skillArray.length; i++)
+//   {
+//   var skillCheck = skillArray[i][1];
+//   var textByLine = text.split("\n")
+//
+//
+// } }
+
 
 function Increment() {
     AnimeAmount++;
@@ -40,9 +80,9 @@ function Increment() {
 
 function save() {
     localStorage.setItem("AnimeAmount of Animes", AnimeAmount);
-    localStorage.setItem("AnimeAmount of jobArray[1][3]'s", jobArray[1][3]);
-    localStorage.setItem("AnimeAmount of jobArray[2][3]'s", jobArray[2][3]);
-    localStorage.setItem("AnimeAmount of jobArray[3][3]'s", jobArray[3][3]);
+    localStorage.setItem("job1qty", jobArray[1][3]);
+    localStorage.setItem("job2qty", jobArray[2][3]);
+    localStorage.setItem("job3qty", jobArray[3][3]);
 
 
     // localStorage.setItem("jobQtyStorage", ) TO BE DONE
@@ -52,11 +92,11 @@ function load() {
     AnimeAmount = localStorage.getItem("AnimeAmount of Animes");
     AnimeAmount = parseInt(AnimeAmount);
 
-    jobArray[1][3] = localStorage.getItem("AnimeAmount of jobArray[1][3]'s");
+    jobArray[1][3] = localStorage.getItem("job1qty");
     jobArray[1][3] = parseInt(jobArray[1][3]);
-    jobArray[2][3] = localStorage.getItem("AnimeAmount of jobArray[2][3]'s");
+    jobArray[2][3] = localStorage.getItem("job2qty");
     jobArray[2][3] = parseInt(jobArray[2][3]);
-    jobArray[3][3] = localStorage.getItem("AnimeAmount of jobArray[3][3]'s");
+    jobArray[3][3] = localStorage.getItem("job3qty");
     jobArray[3][3] = parseInt(jobArray[3][3]);
 
     update();
