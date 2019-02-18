@@ -1,5 +1,5 @@
-var AnimeAmount = 999;
-var MoneyAmount = 500;
+var AnimeAmount = 0;
+var MoneyAmount = 0;
 
 var jobArray = [ //first array accesses which job. [1]=Initial$, [2]=Current$, [3]=Job Qty, [4]=Amount job increments by per tick
     ["name", "initialPrice", "currentPrice", "upgrade", "effect", "desc", "1$$2"], //skills use $$ as breaks
@@ -27,6 +27,11 @@ var merchArray = [ //first array accesses which job. [1]=Initial, [2]=CurrentPri
     ["Love live onahole", 200, 0, 0, 0.015, "meme4"],
     ["1:1 scale shiro", 800, 0, 0, 0.040, "meme5"],
 ]
+
+function debug() {
+  AnimeAmount = 99999;
+  MoneyAmount = 99999;
+}
 
 function loadNames() {
     document.getElementById('job1Title').innerHTML = jobArray[1][0];
