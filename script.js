@@ -1,108 +1,169 @@
-var amount = 0;
-var autoclicker1= 0;
-var autoclicker2 = 0;
-var autoclicker3 = 0;
+var AnimeAmount = 0;
+var MoneyAmount = 0;
+
+var jobArray = [ //first array accesses which job. [1]=Initial$, [2]=Current$, [3]=Job Qty, [4]=Amount job increments by per tick
+    ["name", "initialPrice", "currentPrice", "upgrade", "effect", "desc", "1$$2"], //skills use $$ as breaks
+    ["Degenerate", 12, 0, 0, 0.003, "meme", "1$$2$$4"],
+    ["Tendies chef", 84, 0, 0, 0.006, "meme2"],
+    ["Chronic masterbaiter", 166, 0, 0, 0.009, "meme3"],
+    ["Hentai reviewer", 300, 0, 0, 0.015, "meme4"],
+    ["Body pillow stuffer", 600, 0, 0, 0.040, "meme5"],
+]
+
+var skillArray = [ //jobs have skill requirements which will be checked per tick
+    ["name", "animeReq", "unlocked?", "desc"],
+    ["Ninja", 10, false, "meme"],
+    ["Japanese literacy", 20, false, "meme2"],
+    ["Chronic masterbaiter", 30, false, "meme3"],
+    ["Hentai reviewer", 40, false, "meme4"],
+    ["Body pillow stuffer", 50, false, "meme5"],
+]
+
+var merchArray = [ //first array accesses which job. [1]=Initial, [2]=CurrentPrice, [3]=Job Qty, [4]=Amount job increments by per tick
+    ["name", "initialPrice", "currentPrice", "qty", "effect", "desc"], //todo: add skill requirements
+    ["Key Chain", 10, 0, 0, 0.003, "meme"],
+    ["Wall scroll", 25, 0, 0, 0.006, "meme2"],
+    ["Megumin figure", 60, 0, 0, 0.009, "meme3"],
+    ["Love live onahole", 200, 0, 0, 0.015, "meme4"],
+    ["1:1 scale shiro", 800, 0, 0, 0.040, "meme5"],
+]
+
+function debug() {
+  AnimeAmount = 99999;
+  MoneyAmount = 99999;
+}
+
+function loadNames() {
+    document.getElementById('job1Title').innerHTML = jobArray[1][0];
+    document.getElementById('job2Title').innerHTML = jobArray[2][0];
+    document.getElementById('job3Title').innerHTML = jobArray[3][0];
+
+    document.getElementById('merch1Title').innerHTML = merchArray[1][0];
+    document.getElementById('merch2Title').innerHTML = merchArray[2][0];
+    document.getElementById('merch3Title').innerHTML = merchArray[3][0];
+
+}
 
 function update() {
-    document.getElementById('amountText').value = Math.trunc(amount);   //updates number in input box, title of website, and
-    document.title = "Weaboo Simulator: " + Math.trunc(amount) + " Animes";
-    document.getElementById('amountAutoClicker1Text').value = autoclicker1;
-    document.getElementById('amountAutoClicker2Text').value = autoclicker2;
-    document.getElementById('amountAutoClicker3Text').value = autoclicker3;
+    updatePrices();
+    document.getElementById('AnimeAmountText').value = AnimeAmount.toFixed(0) + " Animes"; //updates the actual number in input box (number next to Amount of Animes seen:)
+    document.getElementById('MoneyAmountText').value = "$" + MoneyAmount.toFixed(2);
+    // document.title = "Weeaboo Simulator: " + Math.trunc(AnimeAmount) + " Animes"; a bit obsolete since we use both animes and money, might as well keep the page title as just 'Weaboo Simulator'
+    document.getElementById('jobQty1').innerHTML = jobArray[1][3];
+    document.getElementById('jobQty2').innerHTML = jobArray[2][3];
+    document.getElementById('jobQty3').innerHTML = jobArray[3][3];
+
+    document.getElementById('merchQty1').innerHTML = merchArray[1][3];
+    document.getElementById('merchQty2').innerHTML = merchArray[2][3];
+    document.getElementById('merchQty3').innerHTML = merchArray[3][3];
 }
 
 function timer() {
-    amount += (autoclicker1 * 0.003);
-    amount += (autoclicker2 * 0.006);
-    amount += (autoclicker3 * 0.009);
+    MoneyAmount += (jobArray[1][3] * 0.003);
+    MoneyAmount += (jobArray[2][3] * 0.006);
+    MoneyAmount += (jobArray[3][3] * 0.009);
+
+    AnimeAmount += (merchArray[1][3] * 0.009);
+    AnimeAmount += (merchArray[2][3] * 0.030);
+    AnimeAmount += (merchArray[3][3] * 0.100);
     update();
 }
-setInterval(timer, 10);
+setInterval(timer, 100);
 
-var autoClickers = [    //first array accesses which autoclicker , second array accesses properties of that autoclicker (e.g. qty, current price, initial price)
-["name", "initialPrice", "currentPrice", "qty"],
-["AutoClicker1", 12, 12, 0],
-["AutoClicker2", 84, 84, 0],
-["AutoClicker3", 166, 166, 0],
-["name4", "initialPrice", "currentPrice", "qty"],
-["name5", "initialPrice", "currentPrice", "qty"]
-]
+function unlockSkill(i) {
+    if (skillArray[i][1] <= AnimeAmount) {
+        skillArray[i][2] = true;
+        // AnimeAmount -= skillArray[i][2]; skills dont cost anime
+        document.getElementById("Skill" + i + "Req").innerHTML = "UNLOCKED";
+        document.getElementById("Skill" + i + "Div").style.pointerEvents = 'none';
+        //          <div class="innerJobDiv" id="Skill1Div" onclick="unlockSkill()">
+        //document.getElementById('debug1skill').innerHTML = "UNLOCKED"; DEBUG (although it would be a nice feature, TODO in future)
+    }
+
+}
+
+// function checkSkillReq() {
+//   for (i = 1; i < skillArray.length; i++)
+//   {
+//   var skillCheck = skillArray[i][1];
+//   var textByLine = text.split("\n")
+//
+//
+// } }
+
 
 function Increment() {
-    amount++;
+    AnimeAmount++;
     update();
 }
 
 function save() {
-    localStorage.setItem("Amount of Animes", amount);
-    localStorage.setItem("Amount of AutoClicker1's", autoclicker1);
-    localStorage.setItem("Amount of AutoClicker2's", autoclicker2);
-    localStorage.setItem("Amount of AutoClicker3's", autoclicker3);
+    localStorage.setItem("AnimeAmount of Animes", AnimeAmount);
+    localStorage.setItem("job1qty", jobArray[1][3]);
+    localStorage.setItem("job2qty", jobArray[2][3]);
+    localStorage.setItem("job3qty", jobArray[3][3]);
+
+
+    // localStorage.setItem("jobQtyStorage", ) TO BE DONE
 }
 
 function load() {
-    amount = localStorage.getItem("Amount of Animes");
-    amount = parseInt(amount);
+    AnimeAmount = localStorage.getItem("AnimeAmount of Animes");
+    AnimeAmount = parseInt(AnimeAmount);
 
-    autoclicker1 = localStorage.getItem("Amount of AutoClicker1's");
-    autoclicker1 = parseInt(autoclicker1);
-    autoclicker2 = localStorage.getItem("Amount of AutoClicker2's");
-    autoclicker2 = parseInt(autoclicker2);
-    autoclicker3 = localStorage.getItem("Amount of AutoClicker3's");
-    autoclicker3 = parseInt(autoclicker3);
+    jobArray[1][3] = localStorage.getItem("job1qty");
+    jobArray[1][3] = parseInt(jobArray[1][3]);
+    jobArray[2][3] = localStorage.getItem("job2qty");
+    jobArray[2][3] = parseInt(jobArray[2][3]);
+    jobArray[3][3] = localStorage.getItem("job3qty");
+    jobArray[3][3] = parseInt(jobArray[3][3]);
 
     update();
-    changePricesOnLoad();
 }
 
-function changePricesOnLoad() {
-    autoClickers[1][2] = 12 + (autoclicker1 * 2);
-    autoClickers[2][2] = 84 + (autoclicker2 * 10);
-    autoClickers[3][2] = 166 + (autoclicker3 * 40)
+function updatePrices() {
+    jobArray[1][2] = jobArray[1][1] + (jobArray[1][3] * 2);
+    jobArray[2][2] = jobArray[2][1] + (jobArray[2][3] * 10);
+    jobArray[3][2] = jobArray[3][1] + (jobArray[3][3] * 40);
 
-    document.getElementById("debug1").innerHTML = "Current Price of AutoClicker1: " + autoClickers[1][2];
-    document.getElementById("debug2").innerHTML = "Current Price of AutoClicker2: " + autoClickers[2][2];
-    document.getElementById("debug3").innerHTML = "Current Price of AutoClicker3: " + autoClickers[3][2];
+    merchArray[1][2] = merchArray[1][1] + (merchArray[1][3] * 2);
+    merchArray[2][2] = merchArray[2][1] + (merchArray[2][3] * 10);
+    merchArray[3][2] = merchArray[3][1] + (merchArray[3][3] * 40);
+
+    document.getElementById("jobCost1").innerHTML = jobArray[1][2];
+    document.getElementById("jobCost2").innerHTML = jobArray[2][2];
+    document.getElementById("jobCost3").innerHTML = jobArray[3][2];
+
+    document.getElementById("merchCost1").innerHTML = merchArray[1][2];
+    document.getElementById("merchCost2").innerHTML = merchArray[2][2];
+    document.getElementById("merchCost3").innerHTML = merchArray[3][2];
 }
 
-function buyAutoClicker1() {
-    if (amount >= autoClickers[1][2]) {         //if you have more animes than the current price needed, u can buy it
-        amount = amount - autoClickers[1][2];
-        autoClickers[1][3] += 1;                //changes qty of autoclicker1's
-        autoClickers[1][2] += 2;                 //changes currentprice of autoclicker1's
-        autoclicker1 += 1;
-        update();
-        document.getElementById("debug1").innerHTML = "Current Price of AutoClicker1: " + autoClickers[1][2];
-    }
+function buyJob(i) {
+  if (AnimeAmount >= jobArray[i][2]) { //if you have more animes than the current price needed, u can buy it
+      AnimeAmount = AnimeAmount - jobArray[i][2];
+      jobArray[i][3] += 1; //changes qty of jobArray[1][3]'s
+      update();
+  }
 }
 
-function buyAutoClicker2() {
-    if (amount >= autoClickers[2][2]) {
-        amount = amount - autoClickers[2][2];
-        autoClickers[2][3] += 1;
-        autoClickers[2][2] += 10;
-        autoclicker2 += 1;
-        update();
-        document.getElementById("debug2").innerHTML = "Current Price of AutoClicker2: " + autoClickers[2][2];
-    }
+function buyMerch(i) {
+  if (MoneyAmount >= merchArray[i][2]) { //if you have more animes than the current price needed, u can buy it
+      MoneyAmount = MoneyAmount - merchArray[i][2];
+      merchArray[i][3] += 1; //changes qty of jobArray[1][3]'s
+      update();
+  }
 }
 
-function buyAutoClicker3() {
-    if (amount >= autoClickers[3][2]) {
-        amount = amount - autoClickers[3][2];
-        autoClickers[3][3] += 1;
-        autoClickers[3][2] += 40;
-        autoclicker3 += 1;
-        update();
-        document.getElementById("debug3").innerHTML = "Current Price of AutoClicker3: " + autoClickers[3][2];
-    }
+function changeWaifu(Waifu) {
+    //<img id="CurrentWaifuImg" src="media/futaba.PNG">
+    document.getElementById("CurrentWaifuDiv").innerHTML = '<img src="media/' + Waifu + '"> <br/>' + Waifu.split('.')[0];
 }
 
 function welcomeBack() {
-    if (localStorage.getItem("Amount of Animes") === null) {
+    if (localStorage.getItem("AnimeAmount of Animes") === null) {
         window.alert("Welcome to Matt's Waifu Clicker! owo");
-    }
-    else {
+    } else {
         window.alert("Welcome back Onii-Chan! uwu");
     }
 }

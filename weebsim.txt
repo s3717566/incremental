@@ -1,5 +1,8 @@
 weeaboo simulator
 
+Possible concept. You have a waifu always through the game. This waifu provides a passive upgrade (or maybe an active one that can be activated every x minutes).
+
+
 watch anime
 - illegal site
 - legal site
@@ -17,19 +20,19 @@ buying tiers: (not in order)
 - boob mousepad
 
 
-upgrades: 
+upgrades:
 - neckbeard: your facial hair grows at an alarming rate
 - window blinds: keep out the sun for that better contrasting screen
 
 achievements:
 - your first anime
-- 
+-
 
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Main 
+public class Main
 {
 	int currentvalue = 0;
 	Timer timer = new Timer();
@@ -41,12 +44,9 @@ public class Main
 			System.out.println(currentvalue);
 		}
 	};
-	
+
 	public void start()
 	{
 		timer.scheduleAtFixedRate(task, 1000, 1000);
 	}
 }
-
-
-

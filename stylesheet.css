@@ -1,8 +1,38 @@
-main {
-
+body {
+  background-color: #ffd3f1;
 }
 
-.center  {
+.textstyle {
+  font-family: Rubik;
+  text-align: center;
+}
+
+.smalltext {
+  font-size: 40px;
+}
+
+#page_container {
+  display: flex;
+}
+
+.side_containers {
+  display: flex;
+  flex-direction: column;
+}
+
+#jobs {
+  height: 49.1vh;
+  min-width: 25vw;
+  overflow: auto;
+}
+
+#merch {
+  height: 49.1vh;
+  min-width: 25vw;
+  overflow: auto;
+}
+
+.center {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -10,16 +40,146 @@ main {
   text-align: center;
 }
 
+#buttonsDiv {
+  float: right;
+  margin-right: 500px;
+}
+
+.WaifuButtons {
+  height: 130px;
+  width: 130px;
+  border-radius: 30px;
+  border: 3px solid #e20f92;
+  outline-width: 0px;
+  cursor: pointer;
+}
+
+#pricesDiv {
+  float: left;
+  width: 500px;
+}
+
 #filemenu {
   float: right;
-  display: inline;
+  margin-top: -13px;
+  position: absolute;
+  top: 5px;
+  right: 3px;
 }
 
 #incrementor {
-  max-width: 20%;
-  max-height: 15%;
+  max-width: 400px;
+  max-height: 200px;
 }
 
-#enter {
-  width: 100%;
+#left_container {
+  border-right: 5px solid black;
 }
+
+#right_container {
+  border-left: 5px solid black;
+}
+
+#middle_container {
+  width: 50vw;
+}
+
+#CurrentWaifuDiv img {
+  border-radius: 50%;
+  border: 3px solid #e20f92;
+  height: 400px;
+  width: 400px;
+  margin: auto;
+}
+
+#skills {
+  height: 45vh;
+  min-width: 25vw;
+  overflow: auto;
+}
+
+#waifus {
+  height: 45vh;
+  min-width: 25vw;
+  font-size: 20px;
+}
+
+input[type=text] {
+  background-color: transparent;
+  border: 0px solid;
+  font-family: Rubik;
+  font-size: 40px;
+  max-width: 250px;
+  outline-width: 0px;
+  text-align: center;
+  /*  when content-editable is a thing, the width will only be as big as the number, and if it overflows to next line, it looks nicer centered rather than starting on the left. */
+}
+
+input[type=button] {
+  outline-width: 0px;
+  background-color: orange;
+  border: 2px solid black;
+  border-radius: 12px;
+  font-family: Rubik;
+  font-size: 25px;
+}
+
+.innerJobDiv {
+  width: calc(100% - 20px);
+  height: 8vh;
+  background-color: #e0bed5;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+}
+
+.imgJobSmall {
+  height: 100%;
+  float: left;
+}
+
+.divHeading {
+  font-size: 50px;
+}
+
+.jobTitle {
+  float: left;
+  font-size: 70%;
+  margin: 2px;
+  height: 49.99%;
+}
+
+.jobReq {
+  margin: 0px;
+  font-size: 50%;
+  color: #4c9366;
+  height: 49.99%;
+  font-weight: bold;
+  max-width: 200px;
+}
+
+.jobQty {
+  float: right;
+  position: relative;
+  bottom: 70px;
+  right: 8px;
+}
+
+/* #jobQty1 {
+
+}
+
+#jobQty2 {
+  position: relative;
+  bottom: 55px;
+  right: 8px;
+}
+
+#jobQty3 {
+  position: relative;
+  bottom: 55px;
+  right: 8px;
+} */
