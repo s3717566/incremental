@@ -42,7 +42,7 @@ function debug() {
 
 function loadNames() {
   createJobDivsCreateElement();
-
+createMerchDivsCreateElement()
   for (i = 1; i < jobArray.length; i++)
   {
     document.getElementById('job' + i + 'Title').innerHTML = jobArray[i][0];
@@ -94,6 +94,46 @@ function createJobDivsCreateElement() {
   }
 }
 
+function createMerchDivsCreateElement() {
+  for (i = 1; i < merchArray.length; i++)
+  {
+    var jobsDivJS = document.getElementById('merch');
+
+    var innerJobDivJS = document.createElement('div');
+    innerJobDivJS.setAttribute('class','innerJobDiv');
+
+    var jobImgJS = document.createElement('img');
+    jobImgJS.setAttribute('class','imgJobSmall');
+
+    var jobTitleJS = document.createElement('div');
+    jobTitleJS.setAttribute('class','jobTitle');
+
+    var jobReqJS = document.createElement('div');
+    jobReqJS.setAttribute('class','jobReq');
+
+    var jobQtyJS = document.createElement('div');
+    jobQtyJS.setAttribute('class','jobQty');
+
+
+
+    jobTitleJS.setAttribute('id','merch' + i + 'Title');
+
+    jobReqJS.setAttribute('id','merchCost' + i);
+
+    jobQtyJS.setAttribute('id','merchQty' + i);
+
+    innerJobDivJS.setAttribute('onClick','buyMerch(' + i + ')');
+
+    jobImgJS.setAttribute('src','media/ph' + i + '.png');
+
+    innerJobDivJS.appendChild(jobImgJS);
+    innerJobDivJS.appendChild(jobTitleJS);
+    innerJobDivJS.appendChild(jobReqJS);
+    innerJobDivJS.appendChild(jobQtyJS);
+    jobsDivJS.appendChild(innerJobDivJS);
+  }
+}
+
 //Now unnecessary
 // function createjobDivsInnerHTML() {
 //   var jobsDivJS = document.getElementById('jobs');
@@ -112,13 +152,13 @@ function update() {
   // document.title = "Weeaboo Simulator: " + Math.trunc(AnimeAmount) + " Animes"; a bit obsolete since we use both animes and money, might as well keep the page title as just 'Weaboo Simulator'
   for (i = 1; i < jobArray.length; i++)
   {
-  document.getElementById('jobQty'+i).innerHTML = jobArray[i][3];
-}
+    document.getElementById('jobQty'+i).innerHTML = jobArray[i][3];
+  }
 
-for (i = 1; i < jobArray.length; i++)
-{
-document.getElementById('merchQty'+i).innerHTML = merchArray[i][3];
-}
+  for (i = 1; i < jobArray.length; i++)
+  {
+    document.getElementById('merchQty'+i).innerHTML = merchArray[i][3];
+  }
 }
 
 function timer() {
@@ -185,21 +225,18 @@ function load() {
 }
 
 function updatePrices() {
-  jobArray[1][2] = jobArray[1][1] + (jobArray[1][3] * 2);
-  jobArray[2][2] = jobArray[2][1] + (jobArray[2][3] * 10);
-  jobArray[3][2] = jobArray[3][1] + (jobArray[3][3] * 40);
 
-  merchArray[1][2] = merchArray[1][1] + (merchArray[1][3] * 2);
-  merchArray[2][2] = merchArray[2][1] + (merchArray[2][3] * 10);
-  merchArray[3][2] = merchArray[3][1] + (merchArray[3][3] * 40);
+  for (i = 1; i < jobArray.length; i++)
+  {
+    jobArray[i][2] = jobArray[i][1] + (jobArray[i][3] * jobArray[i][1] * 0.2);
+    document.getElementById("jobCost"+i).innerHTML = jobArray[i][2];
+  }
 
-  document.getElementById("jobCost1").innerHTML = jobArray[1][2];
-  document.getElementById("jobCost2").innerHTML = jobArray[2][2];
-  document.getElementById("jobCost3").innerHTML = jobArray[3][2];
-
-  document.getElementById("merchCost1").innerHTML = merchArray[1][2];
-  document.getElementById("merchCost2").innerHTML = merchArray[2][2];
-  document.getElementById("merchCost3").innerHTML = merchArray[3][2];
+  for (i = 1; i < merchArray.length; i++)
+  {
+    merchArray[i][2] = merchArray[i][1] + (merchArray[i][3] * merchArray[i][1] * 0.2);
+    document.getElementById("merchCost"+i).innerHTML = merchArray[i][2];
+  }
 }
 
 function buyJob(i) {
