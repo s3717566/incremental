@@ -164,8 +164,14 @@ input[type=button] {
 .jobQty {
   float: right;
   position: relative;
-  bottom: 70px;
   right: 8px;
+}
+
+.merchQty {
+  float: right;
+  position: relative;
+  right: 8px;
+  bottom: 70px;
 }
 
 /* #jobQty1 {
