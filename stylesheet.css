@@ -14,7 +14,7 @@ body {
 }
 
 .smalltext {
-  font-size: 40px;
+  font-size: 250%;
 }
 
 #page_container {
@@ -68,7 +68,7 @@ body {
 #filemenu {
   float: right;
   margin-top: -13px;
-  position: absolute;
+  position: relative;
   top: 5px;
   right: 3px;
 }
@@ -93,8 +93,8 @@ body {
 #CurrentWaifuDiv img {
   border-radius: 50%;
   border: 3px solid #e20f92;
-  height: 400px;
-  width: 400px;
+  height: 30%;
+  width: 30%;
   margin: auto;
 }
 
@@ -183,18 +183,28 @@ input[type=button] {
   bottom: 70px;
 }
 
-/* #jobQty1 {
-
+#textBox {
+  width: 50vw;
+  height: 20%;
+  background-color: #e0bed5;
+  position: relative;
+  bottom: 10px;
 }
 
-#jobQty2 {
-  position: relative;
-  bottom: 55px;
-  right: 8px;
+/* scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
 }
 
-#jobQty3 {
-  position: relative;
-  bottom: 55px;
-  right: 8px;
-} */
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: #e0bed5;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #d181b7;
+  border-radius: 5px;
+}

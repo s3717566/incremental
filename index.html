@@ -28,6 +28,13 @@
 
       <div id="middle_container">
         <img id="incrementor" src="media/watchanimebutton.png" onclick="Increment()" />
+        <span>
+          <div id="filemenu">
+            <input type="button" id="save" onclick="save()" value="save" />
+            <input type="button" id="load" onclick="load()" value="load" />
+            <input type="button" id="debug" onclick="debug()" value="debug" />
+          </div>
+        </span>
         <div>
           <label>Amount of Animes seen: </label><input type="text" readonly id="AnimeAmountText" />
         </div>
@@ -42,18 +49,16 @@
         <div id="CurrentWaifuDiv">
 
         </div>
+        <br />
+          <div id="textBox">
+            hello
+          </div>
       </div>
 
       <div class="side_containers" id="right_container">
         <div id="skills">
           <span class="divHeading">SKILLS</span>
-          <span>
-            <div id="filemenu">
-              <input type="button" id="save" onclick="save()" value="save" />
-              <input type="button" id="load" onclick="load()" value="load" />
-              <input type="button" id="debug" onclick="debug()" value="debug" />
-            </div>
-          </span>
+
 
           <div class="innerJobDiv" id="Skill1Div" onclick="unlockSkill(1);">
             <img class="imgJobSmall" src="media/ph1.png" />
