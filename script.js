@@ -1,4 +1,7 @@
-var AnimeAmount = 0;
+var ShounenAmount = 0;
+var RomanceAmount = 0;
+var SliceOfLifeAmount = 0;
+var IsekaiAmount = 0;
 var MoneyAmount = 0;
 
 var jobArray = [ //first array accesses which job. [1]=Initial$, [2]=Current$, [3]=Job Qty, [4]=Amount job increments by per tick
@@ -134,20 +137,13 @@ function createMerchDivsCreateElement() {
   }
 }
 
-//Now unnecessary
-// function createjobDivsInnerHTML() {
-//   var jobsDivJS = document.getElementById('jobs');
-//   var jobsDivHTML = "";
-//   for (i = 1; i < 5; i++)
-//   {
-//     jobsDivHTML =+ "<div class='innerJobDiv' onclick='buyJob(1)'>      <img class='imgJobSmall' src='media/ph1.png' />      <div class='jobTitle' id='job1Title'></div><br />      <div class='jobReq'> <span id='jobCost1'>12</span> anime</div>      <div class='jobQty'> <span id='jobQty1'>0</span></div>    </div>"
-//   }
-//   jobsDivJS.innerHTML = jobsDivHTML;
-// }
-
 function update() {
   updatePrices();
-  document.getElementById('AnimeAmountText').value = AnimeAmount.toFixed(0) + " Animes"; //updates the actual number in input box (number next to Amount of Animes seen:)
+  document.getElementById("ShounenAmountText").value = ShounenAmount.toFixed(0); //can't make dynamic with genre.toFixed(0). Need to figure out how to use the argument as a reference to the variable.
+  document.getElementById("RomanceAmountText").value = RomanceAmount.toFixed(0);
+  document.getElementById("SliceOfLifeAmountText").value = SliceOfLifeAmount.toFixed(0);
+  document.getElementById("IsekaiAmountText").value = IsekaiAmount.toFixed(0);
+
   document.getElementById('MoneyAmountText').value = "$" + MoneyAmount.toFixed(2);
   // document.title = "Weeaboo Simulator: " + Math.trunc(AnimeAmount) + " Animes"; a bit obsolete since we use both animes and money, might as well keep the page title as just 'Weaboo Simulator'
   for (i = 1; i < jobArray.length; i++)
@@ -195,8 +191,25 @@ function unlockSkill(i) {
 // } }
 
 
-function Increment() {
-  AnimeAmount++;
+function Increment(genre) {
+  switch(genre)
+  {
+    case ('ShounenAmount'):
+    ShounenAmount++;
+    break;
+
+    case('RomanceAmount'):
+    RomanceAmount++;
+    break;
+
+    case('SliceOfLifeAmount'):
+    SliceOfLifeAmount++;
+    break;
+
+    case('IsekaiAmount'):
+    IsekaiAmount++;
+    break;
+  }
   update();
 }
 
