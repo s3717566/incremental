@@ -37,6 +37,13 @@ var merchArray = [ //first array accesses which job. [1]=Initial, [2]=CurrentPri
   ["1:1 scale shiro", 800, 0, 0, 0.040, "meme5"],
 ]
 
+var storyArray = [ //temporary, just want to test out the story div on the page.
+  ["requirement", "story"],
+  ["1", "You watch your first episode of My Hero Academia. You think that the little green boy sucks."],
+  ["12", "You finish the first season of My Hero Academia and want to go plus ultra."],
+  ["24", "Season 2 of My Hero Academia is finished, and you decide to binge watch the entire season in 1 sitting."],
+]
+
 function debug() {
   AnimeAmount = 99999;
   MoneyAmount = 99999;
@@ -45,7 +52,7 @@ function debug() {
 
 function loadNames() {
   createJobDivsCreateElement();
-  createMerchDivsCreateElement()
+  createMerchDivsCreateElement();
   for (i = 1; i < jobArray.length; i++) {
     document.getElementById('job' + i + 'Title').innerHTML = jobArray[i][0];
   }
@@ -53,7 +60,7 @@ function loadNames() {
   for (i = 1; i < merchArray.length; i++) {
     document.getElementById('merch' + i + 'Title').innerHTML = merchArray[i][0];
   }
-
+  update(); //stops page from "not having the Qty's until a button is pressed" problem.
 }
 
 function createJobDivsCreateElement() {
@@ -74,8 +81,6 @@ function createJobDivsCreateElement() {
 
     var jobQtyJS = document.createElement('div');
     jobQtyJS.setAttribute('class', 'jobQty');
-
-
 
     jobTitleJS.setAttribute('id', 'job' + i + 'Title');
 
@@ -165,17 +170,26 @@ function timer() {
 }
 setInterval(timer, 100);
 
-// function unlockSkill(i) {
-//   if (skillArray[i][1] <= AnimeAmount) {
-//     skillArray[i][2] = true;
-//     // AnimeAmount -= skillArray[i][2]; skills dont cost anime
-//     document.getElementById("Skill" + i + "Req").innerHTML = "UNLOCKED";
-//     document.getElementById("Skill" + i + "Div").style.pointerEvents = 'none';
-//     //          <div class="innerJobDiv" id="Skill1Div" onclick="unlockSkill()">
-//     //document.getElementById('debug1skill').innerHTML = "UNLOCKED"; DEBUG (although it would be a nice feature, TODO in future)
-//   }
+function Increment(genre) {
+  switch (genre) {
+    case ('ShounenAmount'):
+      ShounenAmount++;
+      break;
 
-// }
+    case ('RomanceAmount'):
+      RomanceAmount++;
+      break;
+
+    case ('SliceOfLifeAmount'):
+      SliceOfLifeAmount++;
+      break;
+
+    case ('IsekaiAmount'):
+      IsekaiAmount++;
+      break;
+  }
+  update();
+}
 
 function checkSkillReq() { //Note: Create method called 'loadSkills()' for future.
   for (i = 1; i < skillArray.length; i++) //loops 5 times currently.
@@ -200,7 +214,7 @@ function checkSkillReq() { //Note: Create method called 'loadSkills()' for futur
           break;
 
         case ('Romance'):
-          var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-"))) 
+          var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-")))
           if (RomanceAmount >= numberReq) {
             requiredCounter += 1;
           }
@@ -214,7 +228,7 @@ function checkSkillReq() { //Note: Create method called 'loadSkills()' for futur
           break;
 
         case ('Isekai'):
-          var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-"))) 
+          var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-")))
           if (IsekaiAmount >= numberReq) {
             requiredCounter += 1;
           }
@@ -228,28 +242,6 @@ function checkSkillReq() { //Note: Create method called 'loadSkills()' for futur
       }
     }
   }
-}
-
-
-function Increment(genre) {
-  switch (genre) {
-    case ('ShounenAmount'):
-      ShounenAmount++;
-      break;
-
-    case ('RomanceAmount'):
-      RomanceAmount++;
-      break;
-
-    case ('SliceOfLifeAmount'):
-      SliceOfLifeAmount++;
-      break;
-
-    case ('IsekaiAmount'):
-      IsekaiAmount++;
-      break;
-  }
-  update();
 }
 
 function save() {
