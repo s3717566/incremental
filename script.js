@@ -4,24 +4,24 @@ var SliceOfLifeAmount = 0;
 var IsekaiAmount = 0;
 var MoneyAmount = 0;
 
-var jobArray = [ //first array accesses which job. [1]=Quantity of Job, [2]=Amount it increments by, [3]=Description, [4]=Skill requirements
-  ["name", "qty", "effect", "desc", "1$$2"], //skills use $$ as breaks
-  ["Degenerate", 0, 0.003, "meme", "1$$3"],
-  ["Tendies chef", 0, 0.006, "meme2"],
-  ["Chronic masterbaiter", 0, 0.009, "meme3"],
-  ["Hentai reviewer", 0, 0.015, "meme4"],
-  ["Body pillow stuffer", 0, 0.040, "meme5"],
-  ["Chronic masterbaiter", 0, 0.009, "meme3"],
-  ["Hentai reviewer", 0, 0.015, "meme4"],
-  ["Body pillow stuffer",  0, 0.040, "meme5"],
-  ["Chronic masterbaiter", 0, 0.009, "meme3"],
-  ["Hentai reviewer", 0, 0.015, "meme4"],
-  ["Body pillow stuffer", 0, 0.040, "meme5"],
+var jobArray = [ //first array accesses which job. [1]=boolean if unlocked, [2]=Amount it increments by, [3]=Description, [4]=Skill requirements
+  ["name", "unlocked", "effect", "desc", "1$$2"], //skills use $$ as breaks
+  ["Degenerate", false, 0.003, "meme", "1,3"],
+  ["Tendies chef", false, 0.006, "meme2", "2"],
+  ["Chronic masterbaiter", false, 0.009, "2,3"],
+  ["Hentai reviewer", false, 0.015, "meme4"],
+  ["Body pillow stuffer", false, 0.040, "meme5"],
+  ["Chronic masterbaiter", false, 0.009, "meme3"],
+  ["Hentai reviewer", false, 0.015, "meme4"],
+  ["Body pillow stuffer",  false, 0.040, "meme5"],
+  ["Chronic masterbaiter", false, 0.009, "meme3"],
+  ["Hentai reviewer", false, 0.015, "meme4"],
+  ["Body pillow stuffer", false, 0.040, "meme5"],
 ]
 
 var skillArray = [ //jobs have skill requirements which will be checked per tick. First array accesses which skill. [1]=Requirement, [2]=boolean if unlocked, [3]=description.
   ["name", "animeReq", "unlocked", "desc"],
-  ["Ninja", "10-Shounen,5-Isekai", false, "meme"], //For test purposes! 10 Shounen required.
+  ["Ninja", "1-Shounen,1-Isekai", false, "meme"], //For test purposes! 10 Shounen required.
   ["Japanese literacy", "1-Romance", false, "meme2"],
   ["Chronic masterbaiter", "1-SliceOfLife", false, "meme3"],
   ["Hentai reviewer", 40, false, "meme4"],
@@ -148,25 +148,22 @@ function update() {
   document.getElementById("IsekaiAmountText").value = IsekaiAmount.toFixed(0);
 
   document.getElementById('MoneyAmountText').value = "$" + MoneyAmount.toFixed(2);
-  for (i = 1; i < jobArray.length; i++) {
-    document.getElementById('jobQty' + i).innerHTML = jobArray[i][1];
-  }
-
   for (i = 1; i < merchArray.length; i++) {
     document.getElementById('merchQty' + i).innerHTML = merchArray[i][1];
   }
-  checkSkillReq();
 }
 
 function timer() {
-  MoneyAmount += (jobArray[1][3] * 0.003);
-  MoneyAmount += (jobArray[2][3] * 0.006);
-  MoneyAmount += (jobArray[3][3] * 0.009);
+  // MoneyAmount += (jobArray[1][3] * 0.003);
+  // MoneyAmount += (jobArray[2][3] * 0.006);
+  // MoneyAmount += (jobArray[3][3] * 0.009);
 
-  AnimeAmount += (merchArray[1][3] * 0.009);
-  AnimeAmount += (merchArray[2][3] * 0.030);
-  AnimeAmount += (merchArray[3][3] * 0.100);
+  // AnimeAmount += (merchArray[1][3] * 0.009);
+  // AnimeAmount += (merchArray[2][3] * 0.030);
+  // AnimeAmount += (merchArray[3][3] * 0.100);
   update();
+  checkSkillReq();
+  checkJobReq();
 }
 setInterval(timer, 100);
 
@@ -192,45 +189,47 @@ function Increment(genre) {
 }
 
 function checkSkillReq() { //Note: Create method called 'loadSkills()' for future.
+  var exit = false;
   for (i = 1; i < skillArray.length; i++) //loops 5 times currently.
   {
     var requiredCounter = 0; //used to count if player has the required amount for a skill (look at switch statement for use).
-    if (skillArray[i][2] == true) {
+    if (skillArray[i][2] == true) 
+    {
       continue; //no need to check for skills that are already unlocked
     }
+
     var totalSkillReqs = skillArray[i][1];
-    var genres = totalSkillReqs.split(",");
+    var genres = totalSkillReqs.split(',');
 
     for (x = 0; x < genres.length; x++) //loops through the genres array. E.g. for 10-Shounen,5-Isekai, it will loop twice.
     {
-
       switch (genres[x].substring(genres[x].indexOf("-") + 1)) //E.g. for 10-Shounen, the switch argument is "Shounen".
       {
         case ('Shounen'):
           var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-"))) //E.g. for 10-Shounen, numberReq = 10;
           if (ShounenAmount >= numberReq) {
-            requiredCounter += 1;
+            requiredCounter++;
           }
           break;
 
         case ('Romance'):
           var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-")))
           if (RomanceAmount >= numberReq) {
-            requiredCounter += 1;
+            requiredCounter++;
           }
           break;
 
         case ('SliceOfLife'):
           var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-")))
           if (SliceOfLifeAmount >= numberReq) {
-            requiredCounter += 1;
+            requiredCounter++;
           }
           break;
 
         case ('Isekai'):
           var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-")))
           if (IsekaiAmount >= numberReq) {
-            requiredCounter += 1;
+            requiredCounter++;
           }
           break;
       }
@@ -239,7 +238,48 @@ function checkSkillReq() { //Note: Create method called 'loadSkills()' for futur
       {
         skillArray[i][2] = true;
         document.getElementById("Skill" + i + "Req").innerHTML = skillArray[i][3];
+        exit = true;
       }
+    }
+
+    if (exit == true)
+    {
+      break;
+    }
+  }
+}
+
+function checkJobReq() {
+  var exit = false;
+  for (i = 1; i < jobArray.length; i++)
+  {
+    var requiredCounter = 0; //same use as in the checkSkillReq() function
+    if (jobArray[i][1] == true)
+    {
+      continue;
+    }
+
+    var totalJobReqs = jobArray[i][4];
+    var skillsRequired = totalJobReqs.split(',');
+
+    for (x = 0; x < skillsRequired.length; x++) //Example: For "1,3" will loop twice. skillsRequired[0] = 1 and skillsRequired[1] = 3.
+    {
+      if (skillArray[skillsRequired[x]][2] == true)
+      {
+        requiredCounter++;
+      }
+      
+      if (requiredCounter == skillsRequired.length)
+      {
+        jobArray[i][1] = true;
+        document.getElementById('jobQty' + i).innerHTML = "UNLOCKED!"
+        exit = true;
+      }
+    }
+
+    if (exit == true)
+    {
+      break;
     }
   }
 }
