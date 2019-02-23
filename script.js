@@ -4,26 +4,26 @@ var SliceOfLifeAmount = 0;
 var IsekaiAmount = 0;
 var MoneyAmount = 0;
 
-var jobArray = [ //first array accesses which job. [1]=Initial$, [2]=Current$, [3]=Job Qty, [4]=Amount job increments by per tick
-  ["name", "initialPrice", "currentPrice", "upgrade", "effect", "desc", "1$$2"], //skills use $$ as breaks
-  ["Degenerate", 12, 0, 0, 0.003, "meme", "1$$2$$4"],
-  ["Tendies chef", 84, 0, 0, 0.006, "meme2"],
-  ["Chronic masterbaiter", 166, 0, 0, 0.009, "meme3"],
-  ["Hentai reviewer", 300, 0, 0, 0.015, "meme4"],
-  ["Body pillow stuffer", 600, 0, 0, 0.040, "meme5"],
-  ["Chronic masterbaiter", 1660, 0, 0, 0.009, "meme3"],
-  ["Hentai reviewer", 3000, 0, 0, 0.015, "meme4"],
-  ["Body pillow stuffer", 6000, 0, 0, 0.040, "meme5"],
-  ["Chronic masterbaiter", 1606, 0, 0, 0.009, "meme3"],
-  ["Hentai reviewer", 30000, 0, 0, 0.015, "meme4"],
-  ["Body pillow stuffer", 60000, 0, 0, 0.040, "meme5"],
+var jobArray = [ //first array accesses which job. [1]=Quantity of Job, [2]=Amount it increments by, [3]=Description, [4]=Skill requirements
+  ["name", "qty", "effect", "desc", "1$$2"], //skills use $$ as breaks
+  ["Degenerate", 0, 0.003, "meme", "1$$3"],
+  ["Tendies chef", 0, 0.006, "meme2"],
+  ["Chronic masterbaiter", 0, 0.009, "meme3"],
+  ["Hentai reviewer", 0, 0.015, "meme4"],
+  ["Body pillow stuffer", 0, 0.040, "meme5"],
+  ["Chronic masterbaiter", 0, 0.009, "meme3"],
+  ["Hentai reviewer", 0, 0.015, "meme4"],
+  ["Body pillow stuffer",  0, 0.040, "meme5"],
+  ["Chronic masterbaiter", 0, 0.009, "meme3"],
+  ["Hentai reviewer", 0, 0.015, "meme4"],
+  ["Body pillow stuffer", 0, 0.040, "meme5"],
 ]
 
 var skillArray = [ //jobs have skill requirements which will be checked per tick. First array accesses which skill. [1]=Requirement, [2]=boolean if unlocked, [3]=description.
   ["name", "animeReq", "unlocked", "desc"],
-  ["Ninja", "20-Shounen,5-Isekai", false, "meme"], //For test purposes! 10 Shounen required.
-  ["Japanese literacy", 20, false, "meme2"],
-  ["Chronic masterbaiter", 30, false, "meme3"],
+  ["Ninja", "10-Shounen,5-Isekai", false, "meme"], //For test purposes! 10 Shounen required.
+  ["Japanese literacy", "1-Romance", false, "meme2"],
+  ["Chronic masterbaiter", "1-SliceOfLife", false, "meme3"],
   ["Hentai reviewer", 40, false, "meme4"],
   ["Body pillow stuffer", 50, false, "meme5"],
 ]
@@ -149,11 +149,11 @@ function update() {
 
   document.getElementById('MoneyAmountText').value = "$" + MoneyAmount.toFixed(2);
   for (i = 1; i < jobArray.length; i++) {
-    document.getElementById('jobQty' + i).innerHTML = jobArray[i][3];
+    document.getElementById('jobQty' + i).innerHTML = jobArray[i][1];
   }
 
   for (i = 1; i < merchArray.length; i++) {
-    document.getElementById('merchQty' + i).innerHTML = merchArray[i][3];
+    document.getElementById('merchQty' + i).innerHTML = merchArray[i][1];
   }
   checkSkillReq();
 }
@@ -207,7 +207,7 @@ function checkSkillReq() { //Note: Create method called 'loadSkills()' for futur
       switch (genres[x].substring(genres[x].indexOf("-") + 1)) //E.g. for 10-Shounen, the switch argument is "Shounen".
       {
         case ('Shounen'):
-          var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-"))) //E.g. for 10-Shounen, number = 10;
+          var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-"))) //E.g. for 10-Shounen, numberReq = 10;
           if (ShounenAmount >= numberReq) {
             requiredCounter += 1;
           }
