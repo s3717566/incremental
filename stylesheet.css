@@ -131,6 +131,7 @@ input[type=button] {
 }
 
 .innerJobDiv {
+  position: relative;
   width: calc(100% - 20px);
   height: 8vh;
   background-color: #e0bed5;
@@ -186,6 +187,9 @@ input[type=button] {
   padding-top: 40px;
   padding-right: 40px;
   font-size: 50%;
+  position: absolute;
+  bottom: 5px;
+  left: 77px;
 }
 
 .merchQty {

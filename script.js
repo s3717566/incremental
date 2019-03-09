@@ -47,7 +47,10 @@ var storyArray = [ //temporary, just want to test out the story div on the page.
 ]
 
 function debug() {
-  AnimeAmount = 99999;
+  ShounenAmount = 99999;
+  SliceOfLifeAmount = 99999;
+  RomanceAmount = 99999;
+  IsekaiAmount = 99999;
   MoneyAmount = 99999;
 
 }
