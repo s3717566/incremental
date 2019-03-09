@@ -136,7 +136,6 @@ input[type=button] {
   background-color: #e0bed5;
   margin-left: 10px;
   margin-bottom: 10px;
-  cursor: pointer;
   -webkit-user-select: none;
   /* Chrome/Safari */
   -moz-user-select: none;
@@ -156,7 +155,7 @@ input[type=button] {
 
 .jobTitle {
   float: left;
-  font-size: 70%;
+  font-size: 60%;
   margin: 2px;
   height: 49.99%;
 }
@@ -167,12 +166,26 @@ input[type=button] {
   color: #4c9366;
   height: 49.99%;
   font-weight: bold;
+  float: right;
+  padding-top: 5px;
+  padding-right: 10px;
+}
+
+.skillReq {
+  margin: 0px;
+  font-size: 50%;
+  color: #4c9366;
+  height: 49.99%;
+  font-weight: bold;
+  font-style: italic;
 }
 
 .jobQty {
+  color: #ffe944;
   float: right;
-  position: relative;
-  right: 8px;
+  padding-top: 40px;
+  padding-right: 40px;
+  font-size: 50%;
 }
 
 .merchQty {

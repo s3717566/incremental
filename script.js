@@ -5,27 +5,29 @@ var IsekaiAmount = 0;
 var MoneyAmount = 0;
 
 var jobArray = [ //first array accesses which job. [1]=boolean if unlocked, [2]=Amount it increments by, [3]=Description, [4]=Skill requirements
-  ["name", "unlocked", "effect", "desc", "1$$2"], //skills use $$ as breaks
-  ["Degenerate", false, 0.003, "meme", "1,3"],
-  ["Tendies chef", false, 0.006, "meme2", "2"],
-  ["Chronic masterbaiter", false, 0.009, "2,3"],
-  ["Hentai reviewer", false, 0.015, "meme4"],
-  ["Body pillow stuffer", false, 0.040, "meme5"],
-  ["Chronic masterbaiter", false, 0.009, "meme3"],
-  ["Hentai reviewer", false, 0.015, "meme4"],
-  ["Body pillow stuffer",  false, 0.040, "meme5"],
-  ["Chronic masterbaiter", false, 0.009, "meme3"],
-  ["Hentai reviewer", false, 0.015, "meme4"],
-  ["Body pillow stuffer", false, 0.040, "meme5"],
+  ["name", "unlocked", "effect", "desc", "1,2"], //skills use , as breaks
+  ["Degenerate", false, 0.003, "meme", "1"],
+  ["Avid Fan", false, 0.006, "meme2", "2"],
+  ["Fan Subber", false, 0.009, "meme3", "3"],
+  ["Anime Reviewer", false, 0.015, "meme3", "3"],
+  ["McGronalds Employee", false, 0.040, "meme3", "4"],
+  ["McGronalds Manager", false, 0.009, "meme3", "4"],
+  ["Anime Youtuber", false, 0.015, "meme3", "5"],
+  ["Dub Voice Actor",  false, 0.040, "meme3", "5"],
+  ["Manga Artist", false, 0.009, "meme3", "6"],
+  ["Professional Animator", false, 0.015, "meme3", "6"],
+  ["Nihon Overlord", false, 0.040, "meme3", "7"],
 ]
 
 var skillArray = [ //jobs have skill requirements which will be checked per tick. First array accesses which skill. [1]=Requirement, [2]=boolean if unlocked, [3]=description.
   ["name", "animeReq", "unlocked", "desc"],
-  ["Ninja", "1-Shounen,1-Isekai", false, "meme"], //For test purposes! 10 Shounen required.
-  ["Japanese literacy", "1-Romance", false, "meme2"],
-  ["Chronic masterbaiter", "1-SliceOfLife", false, "meme3"],
-  ["Hentai reviewer", 40, false, "meme4"],
-  ["Body pillow stuffer", 50, false, "meme5"],
+  ["Some Free Time", "1-Shounen,1-Romance,1-SliceOfLife,1-Isekai", false, "The start of the descent into madness..."], //For test purposes! 10 Shounen required.
+  ["Learning Japanese from Subs", "10-Shounen,5-Romance,5-SliceOfLife,10-Isekai", false, "WATASHI GA KITA!"],
+  ["Man of Culture", "20-Shounen,25-Romance,30-SliceOfLife,25-Isekai", false, "Ah, I see you understand this meme too."],
+  ["Tons of Free Time", "55-Shounen,50-Romance,60-SliceOfLife,50-Isekai", false, "You can't go back. 19 years of your life, gone like that."],
+  ["200 IQ", "75-Shounen,75-Romance,75-SliceOfLife,75-Isekai", false, "You can feel your head physically growing in size for your big brain."],
+  ["Weeb Status", "100-Shounen,101-Romance,102-SliceOfLife,103-Isekai", false, "Embrace it; you're one of us now."],
+  ["Political Power", "500-Shounen, 500-Romance, 500-SliceOfLife, 500-Isekai", false, "You don't know anything about politics, but you know enough about anime to become the ruler of Japan."]
 ]
 
 var merchArray = [ //first array accesses which job. [1]=Initial, [2]=CurrentPrice, [3]=Job Qty, [4]=Amount job increments by per tick
@@ -88,8 +90,6 @@ function createJobDivsCreateElement() {
 
     jobQtyJS.setAttribute('id', 'jobQty' + i);
 
-    innerJobDivJS.setAttribute('onClick', 'buyJob(' + i + ')');
-
     jobImgJS.setAttribute('src', 'media/ph' + i + '.png');
 
     innerJobDivJS.appendChild(jobImgJS);
@@ -97,6 +97,7 @@ function createJobDivsCreateElement() {
     innerJobDivJS.appendChild(jobReqJS);
     innerJobDivJS.appendChild(jobQtyJS);
     jobsDivJS.appendChild(innerJobDivJS);
+    
   }
 }
 
@@ -119,8 +120,6 @@ function createMerchDivsCreateElement() {
     var jobQtyJS = document.createElement('div');
     jobQtyJS.setAttribute('class', 'jobQty');
 
-
-
     jobTitleJS.setAttribute('id', 'merch' + i + 'Title');
 
     jobReqJS.setAttribute('id', 'merchCost' + i);
@@ -140,7 +139,6 @@ function createMerchDivsCreateElement() {
 }
 
 function update() {
-  updatePrices();
 
   document.getElementById("ShounenAmountText").value = ShounenAmount.toFixed(0); //can't make dynamic with genre.toFixed(0). Need to figure out how to use the argument as a reference to the variable.
   document.getElementById("RomanceAmountText").value = RomanceAmount.toFixed(0);
@@ -151,16 +149,11 @@ function update() {
   for (i = 1; i < merchArray.length; i++) {
     document.getElementById('merchQty' + i).innerHTML = merchArray[i][1];
   }
+    loadJobReqs();
+    loadSkillReqs();
 }
 
 function timer() {
-  // MoneyAmount += (jobArray[1][3] * 0.003);
-  // MoneyAmount += (jobArray[2][3] * 0.006);
-  // MoneyAmount += (jobArray[3][3] * 0.009);
-
-  // AnimeAmount += (merchArray[1][3] * 0.009);
-  // AnimeAmount += (merchArray[2][3] * 0.030);
-  // AnimeAmount += (merchArray[3][3] * 0.100);
   update();
   checkSkillReq();
   checkJobReq();
@@ -272,7 +265,7 @@ function checkJobReq() {
       if (requiredCounter == skillsRequired.length)
       {
         jobArray[i][1] = true;
-        document.getElementById('jobQty' + i).innerHTML = "UNLOCKED!"
+        document.getElementById('jobQty' + i).innerHTML = "UNLOCKED!";
         exit = true;
       }
     }
@@ -308,16 +301,53 @@ function load() {
   update();
 }
 
-function updatePrices() {
-
+function loadJobReqs() {
   for (i = 1; i < jobArray.length; i++) {
-    jobArray[i][2] = jobArray[i][1] + (jobArray[i][3] * jobArray[i][1] * 0.2);
-    document.getElementById("jobCost" + i).innerHTML = jobArray[i][2];
+    var htmlLine = "";
+    totalSkillReqs = jobArray[i][4].split(",");
+
+    for (x = 0; x < totalSkillReqs.length; x++) //e.g. totalSkillReqs[0] = 1, totalSkillReqs[1] = 3.
+    {
+      htmlLine += "S" + totalSkillReqs[x] + " Req.";
+      if (x != totalSkillReqs.length - 1)
+      {
+        htmlLine += " + ";
+      }
+    }
+
+    document.getElementById("jobCost" + i).innerHTML = htmlLine;
+    if (i == jobArray.length - 1)
+    {
+      break;
+    }
   }
 
   for (i = 1; i < merchArray.length; i++) {
     merchArray[i][2] = merchArray[i][1] + (merchArray[i][3] * merchArray[i][1] * 0.2);
     document.getElementById("merchCost" + i).innerHTML = merchArray[i][2];
+  }
+}
+
+function loadSkillReqs()  {
+  for (i = 1; i < skillArray.length; i++)
+  {
+    var skillsID = document.getElementById("Skill" + i + "Req");
+    var htmlLine = "";
+    var parts = skillArray[1].split(",");  //e.g. [0] = 1-Shounen, [1] = 1-Romance, [2] = 1-SliceOfLife, [3] = 1-Isekai
+    
+    for (x = 0; x < parts.length; x++)
+    {
+      htmlLine += parts[x].substring(0, 1) + " " + parts[x].substring(2);
+      if (x != parts.length - 1)
+      {
+        htmlLine += " + ";
+      }
+    }
+    skillsID.innerHTML = htmlLine;
+    if (exit == skillArray.length - 1)
+    {
+      break;
+    }
   }
 }
 
