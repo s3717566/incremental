@@ -27,7 +27,7 @@ var skillArray = [ //jobs have skill requirements which will be checked per tick
   ["Tons of Free Time", "55-Shounen,50-Romance,60-SliceOfLife,50-Isekai", false, "You can't go back. 19 years of your life, gone like that."],
   ["200 IQ", "75-Shounen,75-Romance,75-SliceOfLife,75-Isekai", false, "You can feel your head physically growing in size for your big brain."],
   ["Weeb Status", "100-Shounen,101-Romance,102-SliceOfLife,103-Isekai", false, "Embrace it; you're one of us now."],
-  ["Political Power", "500-Shounen, 500-Romance, 500-SliceOfLife, 500-Isekai", false, "You don't know anything about politics, but you know enough about anime to become the ruler of Japan."]
+  ["Political Power", "500-Shounen, 500-Romance, 500-SliceOfLife, 500-Isekai", false, "You don't know anything about politics, but you know enough about anime to become the ruler of Japan."],
 ]
 
 var merchArray = [ //first array accesses which job. [1]=Initial, [2]=CurrentPrice, [3]=Job Qty, [4]=Amount job increments by per tick
@@ -55,6 +55,9 @@ function debug() {
 function loadNames() {
   createJobDivsCreateElement();
   createMerchDivsCreateElement();
+  loadJobReqs();
+  loadSkillReqs();
+
   for (i = 1; i < jobArray.length; i++) {
     document.getElementById('job' + i + 'Title').innerHTML = jobArray[i][0];
   }
@@ -149,8 +152,6 @@ function update() {
   for (i = 1; i < merchArray.length; i++) {
     document.getElementById('merchQty' + i).innerHTML = merchArray[i][1];
   }
-    loadJobReqs();
-    loadSkillReqs();
 }
 
 function timer() {
@@ -333,18 +334,18 @@ function loadSkillReqs()  {
   {
     var skillsID = document.getElementById("Skill" + i + "Req");
     var htmlLine = "";
-    var parts = skillArray[1].split(",");  //e.g. [0] = 1-Shounen, [1] = 1-Romance, [2] = 1-SliceOfLife, [3] = 1-Isekai
+    var genres = skillArray[i][1].split(",");  //e.g. [0] = 1-Shounen, [1] = 1-Romance, [2] = 1-SliceOfLife, [3] = 1-Isekai
     
-    for (x = 0; x < parts.length; x++)
+    for (x = 0; x < genres.length; x++)
     {
-      htmlLine += parts[x].substring(0, 1) + " " + parts[x].substring(2);
-      if (x != parts.length - 1)
+      htmlLine += genres[x].substring(0, genres[x].indexOf("-")) + " " + genres[x].substring(genres[x].indexOf("-") + 1);
+      if (x != genres.length - 1)
       {
         htmlLine += " + ";
       }
     }
     skillsID.innerHTML = htmlLine;
-    if (exit == skillArray.length - 1)
+    if (i == skillArray.length - 1)
     {
       break;
     }
