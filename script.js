@@ -9,25 +9,25 @@ var jobArray = [ //first array accesses which job. [1]=boolean if unlocked, [2]=
   ["Degenerate", false, 0.000, "meme", "1", "degenerate.png"],
   ["Avid Fan", false, 0.003, "meme2", "2", "avid_fan.png"],
   ["Fan Subber", false, 0.004, "meme3", "3", "fan_subber.png"],
-  ["Anime Reviewer", false, 0.05, "meme3", "3", "anime_reviewer.png"],
-  ["McGronalds Employee", false, 0.01, "meme3", "4", "mcgronalds_employee.png"],
-  ["McGronalds Manager", false, 0.3, "meme3", "4", "mcgronalds_manager.png"],
-  ["Anime Youtuber", false, 0.5, "meme3", "5", "anime_youtuber.png"],
-  ["Dub Voice Actor",  false, 0.75, "meme3", "5", "dub_voice_actor.png"],
-  ["Manga Artist", false, 1, "meme3", "6", "manga_artist.png"],
-  ["Professional Animator", false, 2, "meme3", "6", "professional_animator.png"],
-  ["Nihon Overlord", false, 4, "meme3", "7", "nihon_overlord.png"],
+  ["Anime Reviewer", false, 0.009, "meme3", "3", "anime_reviewer.png"],
+  ["McGronalds Employee", false, 0.02, "meme3", "4", "mcgronalds_employee.png"],
+  ["McGronalds Manager", false, 0.4, "meme3", "4", "mcgronalds_manager.png"],
+  ["Anime Youtuber", false, 0.65, "meme3", "5", "anime_youtuber.png"],
+  ["Dub Voice Actor",  false, 0.9, "meme3", "5", "dub_voice_actor.png"],
+  ["Manga Artist", false, 1.5, "meme3", "6", "manga_artist.png"],
+  ["Professional Animator", false, 4, "meme3", "6", "professional_animator.png"],
+  ["Nihon Overlord", false, 10, "meme3", "7", "nihon_overlord.png"],
 ]
 
 var skillArray = [ //jobs have skill requirements which will be checked per tick. First array accesses which skill. [1]=Requirement, [2]=boolean if unlocked, [3]=description.
   ["name", "animeReq", "unlocked", "desc", "image"],
   ["Some Free Time", "1-Shounen,1-Romance,1-SliceOfLife,1-Isekai", false, "The start of the descent into madness...", "some_free_time.png"], //For test purposes! 10 Shounen required.
-  ["Learning Japanese from Subs", "10-Shounen,5-Romance,5-SliceOfLife,10-Isekai", false, "WATASHI GA KITA!", "learning_japanese_from_subs.png"],
-  ["Man of Culture", "20-Shounen,25-Romance,30-SliceOfLife,25-Isekai", false, "Ah, I see you understand this meme too.", "man_of_culture.png"],
-  ["Tons of Free Time", "55-Shounen,50-Romance,60-SliceOfLife,50-Isekai", false, "You can't go back. 19 years of your life, gone like that.", "tons_of_free_time.png"],
-  ["200 IQ", "75-Shounen,75-Romance,75-SliceOfLife,75-Isekai", false, "You can feel your head physically growing in size for your big brain.", "200IQ.png"],
-  ["Weeb Status", "100-Shounen,101-Romance,102-SliceOfLife,103-Isekai", false, "Embrace it; you're one of us now.", "weeb_status.png"],
-  ["Political Power", "500-Shounen, 500-Romance, 500-SliceOfLife, 500-Isekai", false, "You don't know anything about politics, but you know enough about anime to become the ruler of Japan.", "political_power.png"],
+  ["Learning Japanese from Subs", "30-Shounen,30-Romance,30-SliceOfLife,30-Isekai", false, "WATASHI GA KITA!", "learning_japanese_from_subs.png"],
+  ["Man of Culture", "100-Shounen,100-Romance,100-SliceOfLife,100-Isekai", false, "Ah, I see you understand this meme too.", "man_of_culture.png"],
+  ["Tons of Free Time", "240-Shounen,200-Romance,250-SliceOfLife,290-Isekai", false, "You can't go back. 19 years of your life, gone like that.", "tons_of_free_time.png"],
+  ["200 IQ", "300-Shounen,325-Romance,300-SliceOfLife,295-Isekai", false, "You can feel your head physically growing in size for your big brain.", "200IQ.png"],
+  ["Weeb Status", "500-Shounen,501-Romance,502-SliceOfLife,503-Isekai", false, "Embrace it; you're one of us now.", "weeb_status.png"],
+  ["Political Power", "1000-Shounen, 1000-Romance, 1000-SliceOfLife, 1000-Isekai", false, "You don't know anything about politics, but you know enough about anime to become the ruler of Japan.", "political_power.png"],
 ]
 
 var merchArray = [ //first array accesses which job. [1]=Initial, [2]=CurrentPrice, [3]=Job Qty, [4]=Amount job increments by per tick
@@ -159,6 +159,7 @@ function update() {
 
 function timer() {
   update();
+  waifuBonus();
   checkSkillReq();
   checkJobReq();
   moneyFromJobs();
@@ -206,7 +207,6 @@ function moneyFromJobs()  {
   }
 
   MoneyAmount += jobArray[x][2]
-  document.getElementById("storyDiv").innerHTML = jobArray[x][2];
 }
 
 function checkSkillReq() { //Note: Create method called 'loadSkills()' for future.
@@ -382,14 +382,6 @@ function loadSkillReqs()  {
   }
 }
 
-function buyJob(i) {
-  if (AnimeAmount >= jobArray[i][2]) { //if you have more animes than the current price needed, u can buy it
-    AnimeAmount = AnimeAmount - jobArray[i][2];
-    jobArray[i][3] += 1; //changes qty of jobArray[1][3]'s
-    update();
-  }
-}
-
 function buyMerch(i) {
   if (MoneyAmount >= merchArray[i][2]) { //if you have more animes than the current price needed, u can buy it
     MoneyAmount = MoneyAmount - merchArray[i][2];
@@ -402,9 +394,30 @@ function changeWaifu(Waifu) {
   document.getElementById("CurrentWaifuDiv").innerHTML = '<img src="media/' + Waifu + '"> <br/>' + Waifu.split('.')[0];
 }
 
+function waifuBonus() {
+  switch(document.getElementById("CurrentWaifuDiv").getElementsByTagName("img")[0].getAttribute("src"))
+  {
+    case ("media/YAOMOMO.png"):
+    ShounenAmount += 0.1;
+    break;
+
+    case ("media/FUTABA.PNG"):
+    RomanceAmount += 0.1;
+    break;
+
+    case ("media/ANNA.png"):
+    SliceOfLifeAmount += 0.1;
+    break;
+
+    case ("media/MILIM.jpg"):
+    IsekaiAmount += 0.1;
+    break;
+  }
+}
+
 function welcomeBack() {
   if (localStorage.getItem("AnimeAmount of Animes") === null) {
-    window.alert("Welcome to Matt's Waifu Clicker! owo");
+    window.alert("Welcome to Matt's Weeb Simulator! owo");
   } else {
     window.alert("Welcome back Onii-Chan! uwu");
   }
