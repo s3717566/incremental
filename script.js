@@ -6,17 +6,17 @@ var MoneyAmount = 0;
 
 var jobArray = [ //first array accesses which job. [1]=boolean if unlocked, [2]=Amount it increments by, [3]=Description, [4]=Skill requirements
   ["name", "unlocked", "effect", "desc", "1,2", "image"], //skills use , as breaks
-  ["Degenerate", false, 0.003, "meme", "1", "degenerate.png"],
-  ["Avid Fan", false, 0.006, "meme2", "2", "avid_fan.png"],
-  ["Fan Subber", false, 0.009, "meme3", "3", "fan_subber.png"],
-  ["Anime Reviewer", false, 0.015, "meme3", "3", "anime_reviewer.png"],
-  ["McGronalds Employee", false, 0.040, "meme3", "4", "mcgronalds_employee.png"],
-  ["McGronalds Manager", false, 0.009, "meme3", "4", "mcgronalds_manager.png"],
-  ["Anime Youtuber", false, 0.015, "meme3", "5", "anime_youtuber.png"],
-  ["Dub Voice Actor",  false, 0.040, "meme3", "5", "dub_voice_actor.png"],
-  ["Manga Artist", false, 0.009, "meme3", "6", "manga_artist.png"],
-  ["Professional Animator", false, 0.015, "meme3", "6", "professional_animator.png"],
-  ["Nihon Overlord", false, 0.040, "meme3", "7", "nihon_overlord.png"],
+  ["Degenerate", false, 0.000, "meme", "1", "degenerate.png"],
+  ["Avid Fan", false, 0.003, "meme2", "2", "avid_fan.png"],
+  ["Fan Subber", false, 0.004, "meme3", "3", "fan_subber.png"],
+  ["Anime Reviewer", false, 0.05, "meme3", "3", "anime_reviewer.png"],
+  ["McGronalds Employee", false, 0.01, "meme3", "4", "mcgronalds_employee.png"],
+  ["McGronalds Manager", false, 0.3, "meme3", "4", "mcgronalds_manager.png"],
+  ["Anime Youtuber", false, 0.5, "meme3", "5", "anime_youtuber.png"],
+  ["Dub Voice Actor",  false, 0.75, "meme3", "5", "dub_voice_actor.png"],
+  ["Manga Artist", false, 1, "meme3", "6", "manga_artist.png"],
+  ["Professional Animator", false, 2, "meme3", "6", "professional_animator.png"],
+  ["Nihon Overlord", false, 4, "meme3", "7", "nihon_overlord.png"],
 ]
 
 var skillArray = [ //jobs have skill requirements which will be checked per tick. First array accesses which skill. [1]=Requirement, [2]=boolean if unlocked, [3]=description.
@@ -60,7 +60,6 @@ function loadNames() {
   createMerchDivsCreateElement();
   loadJobReqs();
   loadSkillReqs();
-  loadSkillImgs();
 
   for (i = 1; i < jobArray.length; i++) {
     document.getElementById('job' + i + 'Title').innerHTML = jobArray[i][0];
@@ -162,6 +161,7 @@ function timer() {
   update();
   checkSkillReq();
   checkJobReq();
+  moneyFromJobs();
 }
 setInterval(timer, 100);
 
@@ -184,6 +184,29 @@ function Increment(genre) {
       break;
   }
   update();
+}
+
+function moneyFromJobs()  {
+  var x;  //this saves the index for which job the player is currently on.
+  for (i = 1; i < jobArray.length; i++)
+  {
+    if (jobArray[i][1] == false)
+    {
+      break;
+    }
+    else
+    {
+      x = i;
+    }
+
+    if (i == jobArray.length - 1)
+    {
+      break;
+    }
+  }
+
+  MoneyAmount += jobArray[x][2]
+  document.getElementById("storyDiv").innerHTML = jobArray[x][2];
 }
 
 function checkSkillReq() { //Note: Create method called 'loadSkills()' for future.
@@ -336,6 +359,9 @@ function loadJobReqs() {
 function loadSkillReqs()  {
   for (i = 1; i < skillArray.length; i++)
   {
+    var img = "media/" + skillArray[i][4];
+    document.getElementById("Skill" + i + "Img").setAttribute("src", img);
+
     var skillsID = document.getElementById("Skill" + i + "Req");
     var htmlLine = "";
     var genres = skillArray[i][1].split(",");  //e.g. [0] = 1-Shounen, [1] = 1-Romance, [2] = 1-SliceOfLife, [3] = 1-Isekai
@@ -349,20 +375,6 @@ function loadSkillReqs()  {
       }
     }
     skillsID.innerHTML = htmlLine;
-    if (i == skillArray.length - 1)
-    {
-      break;
-    }
-  }
-}
-
-function loadSkillImgs()
-{
-  for (i = 1; i < skillArray.length; i++)
-  {
-    var img = "media/" + skillArray[i][4];
-    document.getElementById("Skill" + i + "Img").setAttribute("src", img);
-
     if (i == skillArray.length - 1)
     {
       break;
