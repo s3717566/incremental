@@ -5,29 +5,29 @@ var IsekaiAmount = 0;
 var MoneyAmount = 0;
 
 var jobArray = [ //first array accesses which job. [1]=boolean if unlocked, [2]=Amount it increments by, [3]=Description, [4]=Skill requirements
-  ["name", "unlocked", "effect", "desc", "1,2"], //skills use , as breaks
-  ["Degenerate", false, 0.003, "meme", "1"],
-  ["Avid Fan", false, 0.006, "meme2", "2"],
-  ["Fan Subber", false, 0.009, "meme3", "3"],
-  ["Anime Reviewer", false, 0.015, "meme3", "3"],
-  ["McGronalds Employee", false, 0.040, "meme3", "4"],
-  ["McGronalds Manager", false, 0.009, "meme3", "4"],
-  ["Anime Youtuber", false, 0.015, "meme3", "5"],
-  ["Dub Voice Actor",  false, 0.040, "meme3", "5"],
-  ["Manga Artist", false, 0.009, "meme3", "6"],
-  ["Professional Animator", false, 0.015, "meme3", "6"],
-  ["Nihon Overlord", false, 0.040, "meme3", "7"],
+  ["name", "unlocked", "effect", "desc", "1,2", "image"], //skills use , as breaks
+  ["Degenerate", false, 0.003, "meme", "1", "degenerate.png"],
+  ["Avid Fan", false, 0.006, "meme2", "2", "avid_fan.png"],
+  ["Fan Subber", false, 0.009, "meme3", "3", "fan_subber.png"],
+  ["Anime Reviewer", false, 0.015, "meme3", "3", "anime_reviewer.png"],
+  ["McGronalds Employee", false, 0.040, "meme3", "4", "mcgronalds_employee.png"],
+  ["McGronalds Manager", false, 0.009, "meme3", "4", "mcgronalds_manager.png"],
+  ["Anime Youtuber", false, 0.015, "meme3", "5", "anime_youtuber.png"],
+  ["Dub Voice Actor",  false, 0.040, "meme3", "5", "dub_voice_actor.png"],
+  ["Manga Artist", false, 0.009, "meme3", "6", "manga_artist.png"],
+  ["Professional Animator", false, 0.015, "meme3", "6", "professional_animator.png"],
+  ["Nihon Overlord", false, 0.040, "meme3", "7", "nihon_overlord.png"],
 ]
 
 var skillArray = [ //jobs have skill requirements which will be checked per tick. First array accesses which skill. [1]=Requirement, [2]=boolean if unlocked, [3]=description.
-  ["name", "animeReq", "unlocked", "desc"],
-  ["Some Free Time", "1-Shounen,1-Romance,1-SliceOfLife,1-Isekai", false, "The start of the descent into madness..."], //For test purposes! 10 Shounen required.
-  ["Learning Japanese from Subs", "10-Shounen,5-Romance,5-SliceOfLife,10-Isekai", false, "WATASHI GA KITA!"],
-  ["Man of Culture", "20-Shounen,25-Romance,30-SliceOfLife,25-Isekai", false, "Ah, I see you understand this meme too."],
-  ["Tons of Free Time", "55-Shounen,50-Romance,60-SliceOfLife,50-Isekai", false, "You can't go back. 19 years of your life, gone like that."],
-  ["200 IQ", "75-Shounen,75-Romance,75-SliceOfLife,75-Isekai", false, "You can feel your head physically growing in size for your big brain."],
-  ["Weeb Status", "100-Shounen,101-Romance,102-SliceOfLife,103-Isekai", false, "Embrace it; you're one of us now."],
-  ["Political Power", "500-Shounen, 500-Romance, 500-SliceOfLife, 500-Isekai", false, "You don't know anything about politics, but you know enough about anime to become the ruler of Japan."],
+  ["name", "animeReq", "unlocked", "desc", "image"],
+  ["Some Free Time", "1-Shounen,1-Romance,1-SliceOfLife,1-Isekai", false, "The start of the descent into madness...", "some_free_time.png"], //For test purposes! 10 Shounen required.
+  ["Learning Japanese from Subs", "10-Shounen,5-Romance,5-SliceOfLife,10-Isekai", false, "WATASHI GA KITA!", "learning_japanese_from_subs.png"],
+  ["Man of Culture", "20-Shounen,25-Romance,30-SliceOfLife,25-Isekai", false, "Ah, I see you understand this meme too.", "man_of_culture.png"],
+  ["Tons of Free Time", "55-Shounen,50-Romance,60-SliceOfLife,50-Isekai", false, "You can't go back. 19 years of your life, gone like that.", "tons_of_free_time.png"],
+  ["200 IQ", "75-Shounen,75-Romance,75-SliceOfLife,75-Isekai", false, "You can feel your head physically growing in size for your big brain.", "200IQ.png"],
+  ["Weeb Status", "100-Shounen,101-Romance,102-SliceOfLife,103-Isekai", false, "Embrace it; you're one of us now.", "weeb_status.png"],
+  ["Political Power", "500-Shounen, 500-Romance, 500-SliceOfLife, 500-Isekai", false, "You don't know anything about politics, but you know enough about anime to become the ruler of Japan.", "political_power.png"],
 ]
 
 var merchArray = [ //first array accesses which job. [1]=Initial, [2]=CurrentPrice, [3]=Job Qty, [4]=Amount job increments by per tick
@@ -60,6 +60,7 @@ function loadNames() {
   createMerchDivsCreateElement();
   loadJobReqs();
   loadSkillReqs();
+  loadSkillImgs();
 
   for (i = 1; i < jobArray.length; i++) {
     document.getElementById('job' + i + 'Title').innerHTML = jobArray[i][0];
@@ -96,7 +97,7 @@ function createJobDivsCreateElement() {
 
     jobQtyJS.setAttribute('id', 'jobQty' + i);
 
-    jobImgJS.setAttribute('src', 'media/ph' + i + '.png');
+    jobImgJS.setAttribute('src', 'media/' + jobArray[i][5]);
 
     innerJobDivJS.appendChild(jobImgJS);
     innerJobDivJS.appendChild(jobTitleJS);
@@ -348,6 +349,20 @@ function loadSkillReqs()  {
       }
     }
     skillsID.innerHTML = htmlLine;
+    if (i == skillArray.length - 1)
+    {
+      break;
+    }
+  }
+}
+
+function loadSkillImgs()
+{
+  for (i = 1; i < skillArray.length; i++)
+  {
+    var img = "media/" + skillArray[i][4];
+    document.getElementById("Skill" + i + "Img").setAttribute("src", img);
+
     if (i == skillArray.length - 1)
     {
       break;
