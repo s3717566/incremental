@@ -37,18 +37,14 @@ var skillArray = [ //jobs have skill requirements which will be checked per tick
 
 var merchArray = [ //first array accesses which job. [1]=Initial, [2]=CurrentPrice, [3]=Job Qty, [4]=Amount job increments by per tick
   ["name", "initialPrice", "currentPrice", "qty", "effect", "desc"], //todo: add skill requirements
-  ["Key Chain", .5, 0, 0, 0.3, "meme", "Shounen" ],
-  ["Wall scroll", 25, 0, 0, 0.6, "meme2", "Romance"],
-  ["Megumin figure", 60, 0, 0, 0.9, "meme3", "SliceOfLife"],
+  ["Key Chain", .5, 0, 0, 0.03, "meme", "Shounen" ],
+  ["Body Pillow", .5, 0, 0, 0.03, "meme", "Romance"],
+  ["Taiga Aisaka Figurine", .5, 0, 0, 0.03, "meme", "SliceOfLife"],
+  ["Katana", .5, 0, 0, 0.03, "meme", "Isekai"],
+  ["Wall scroll", 25, 0, 0, 0.2, "meme2", "Romance"],
+  ["Megumin figure", 60, 0, 0, 0.7, "meme3", "SliceOfLife"],
   ["Love live onahole", 200, 0, 0, 1.5, "meme4", "Isekai"],
   ["1:1 scale shiro", 800, 0, 0, 5, "meme5", "Shounen"],
-]
-
-var storyArray = [ //temporary, just want to test out the story div on the page.
-  ["requirement", "story"],
-  ["1", "You watch your first episode of My Hero Academia. You think that the little green boy sucks."],
-  ["12", "You finish the first season of My Hero Academia and want to go plus ultra."],
-  ["24", "Season 2 of My Hero Academia is finished, and you decide to binge watch the entire season in 1 sitting."],
 ]
 
 function debug() {
@@ -465,6 +461,7 @@ function waifuBonus() {
     case ("media/MILIM.jpg"):
     IsekaiAmountIncrement * 3;
     break;
+
     default:
     break;
   }
