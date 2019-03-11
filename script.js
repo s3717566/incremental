@@ -47,15 +47,6 @@ var merchArray = [ //first array accesses which job. [1]=Initial, [2]=CurrentPri
   ["1:1 scale shiro", 800, 0, 0, 5, "meme5", "Shounen"],
 ]
 
-function debug() {
-  ShounenAmount = 99999;
-  SliceOfLifeAmount = 99999;
-  RomanceAmount = 99999;
-  IsekaiAmount = 99999;
-  MoneyAmount = 99999;
-
-}
-
 function loadNames() {
   createJobDivsCreateElement();
   createMerchDivsCreateElement();
