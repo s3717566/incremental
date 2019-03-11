@@ -41,10 +41,10 @@ var merchArray = [ //first array accesses which job. [1]=Initial, [2]=CurrentPri
   ["Body Pillow", .5, 0, 0, 0.03, "meme", "Romance"],
   ["Taiga Aisaka Figurine", .5, 0, 0, 0.03, "meme", "SliceOfLife"],
   ["Katana", .5, 0, 0, 0.03, "meme", "Isekai"],
-  ["Wall scroll", 25, 0, 0, 0.2, "meme2", "Romance"],
-  ["Megumin figure", 60, 0, 0, 0.7, "meme3", "SliceOfLife"],
-  ["Love live onahole", 200, 0, 0, 1.5, "meme4", "Isekai"],
-  ["1:1 scale shiro", 800, 0, 0, 5, "meme5", "Shounen"],
+  ["Wall Scroll", 25, 0, 0, 0.2, "meme2", "Romance"],
+  ["Megumin Figurine", 60, 0, 0, 0.7, "meme3", "SliceOfLife"],
+  ["Love-Live Cardboard Cutout", 200, 0, 0, 1.5, "meme4", "Isekai"],
+  ["1:1 Scale Shiro", 800, 0, 0, 5, "meme5", "Shounen"],
 ]
 
 function loadNames() {
