@@ -4,6 +4,11 @@ var SliceOfLifeAmount = 0;
 var IsekaiAmount = 0;
 var MoneyAmount = 0;
 
+var ShounenAmountIncrement = 0;
+var RomanceAmountIncrement = 0;
+var SliceOfLifeAmountIncrement = 0;
+var IsekaiAmountIncrement = 0;
+
 var jobArray = [ //first array accesses which job. [1]=boolean if unlocked, [2]=Amount it increments by, [3]=Description, [4]=Skill requirements
   ["name", "unlocked", "effect", "desc", "1,2", "image"], //skills use , as breaks
   ["Degenerate", false, 0.000, "meme", "1", "degenerate.png"],
@@ -22,7 +27,7 @@ var jobArray = [ //first array accesses which job. [1]=boolean if unlocked, [2]=
 var skillArray = [ //jobs have skill requirements which will be checked per tick. First array accesses which skill. [1]=Requirement, [2]=boolean if unlocked, [3]=description.
   ["name", "animeReq", "unlocked", "desc", "image"],
   ["Some Free Time", "1-Shounen,1-Romance,1-SliceOfLife,1-Isekai", false, "The start of the descent into madness...", "some_free_time.png"], //For test purposes! 10 Shounen required.
-  ["Learning Japanese from Subs", "30-Shounen,30-Romance,30-SliceOfLife,30-Isekai", false, "WATASHI GA KITA!", "learning_japanese_from_subs.png"],
+  ["Learning Japanese from Subs", "10-Shounen,10-Romance,10-SliceOfLife,10-Isekai", false, "WATASHI GA KITA!", "learning_japanese_from_subs.png"],
   ["Man of Culture", "100-Shounen,100-Romance,100-SliceOfLife,100-Isekai", false, "Ah, I see you understand this meme too.", "man_of_culture.png"],
   ["Tons of Free Time", "240-Shounen,200-Romance,250-SliceOfLife,290-Isekai", false, "You can't go back. 19 years of your life, gone like that.", "tons_of_free_time.png"],
   ["200 IQ", "300-Shounen,325-Romance,300-SliceOfLife,295-Isekai", false, "You can feel your head physically growing in size for your big brain.", "200IQ.png"],
@@ -32,11 +37,11 @@ var skillArray = [ //jobs have skill requirements which will be checked per tick
 
 var merchArray = [ //first array accesses which job. [1]=Initial, [2]=CurrentPrice, [3]=Job Qty, [4]=Amount job increments by per tick
   ["name", "initialPrice", "currentPrice", "qty", "effect", "desc"], //todo: add skill requirements
-  ["Key Chain", 10, 0, 0, 0.003, "meme"],
-  ["Wall scroll", 25, 0, 0, 0.006, "meme2"],
-  ["Megumin figure", 60, 0, 0, 0.009, "meme3"],
-  ["Love live onahole", 200, 0, 0, 0.015, "meme4"],
-  ["1:1 scale shiro", 800, 0, 0, 0.040, "meme5"],
+  ["Key Chain", .5, 0, 0, 0.3, "meme", "Shounen" ],
+  ["Wall scroll", 25, 0, 0, 0.6, "meme2", "Romance"],
+  ["Megumin figure", 60, 0, 0, 0.9, "meme3", "SliceOfLife"],
+  ["Love live onahole", 200, 0, 0, 1.5, "meme4", "Isekai"],
+  ["1:1 scale shiro", 800, 0, 0, 5, "meme5", "Shounen"],
 ]
 
 var storyArray = [ //temporary, just want to test out the story div on the page.
@@ -103,7 +108,7 @@ function createJobDivsCreateElement() {
     innerJobDivJS.appendChild(jobReqJS);
     innerJobDivJS.appendChild(jobQtyJS);
     jobsDivJS.appendChild(innerJobDivJS);
-    
+
   }
 }
 
@@ -153,7 +158,7 @@ function update() {
 
   document.getElementById('MoneyAmountText').value = "$" + MoneyAmount.toFixed(2);
   for (i = 1; i < merchArray.length; i++) {
-    document.getElementById('merchQty' + i).innerHTML = merchArray[i][1];
+    document.getElementById('merchQty' + i).innerHTML = merchArray[i][3];
   }
 }
 
@@ -163,10 +168,11 @@ function timer() {
   checkSkillReq();
   checkJobReq();
   moneyFromJobs();
+  animeFromMerch();
 }
 setInterval(timer, 100);
 
-function Increment(genre) {
+function buttonIncrement(genre) {
   switch (genre) {
     case ('ShounenAmount'):
       ShounenAmount++;
@@ -206,7 +212,54 @@ function moneyFromJobs()  {
     }
   }
 
-  MoneyAmount += jobArray[x][2]
+  MoneyAmount += jobArray[x][2];
+}
+
+function animeFromMerch() {
+  var ShounenAmountIncrementLocal = 0;
+  var RomanceAmountIncrementLocal = 0;
+  var SliceOfLifeAmountIncrementLocal = 0;
+  var IsekaiAmountIncrementLocal = 0;
+
+  for (i = 1; i < merchArray.length; i++)
+  {
+    switch(merchArray[i][6])
+    {
+      case ("Shounen"):
+      ShounenAmountIncrementLocal += merchArray[i][3] * merchArray[i][4];
+      break;
+
+      case ("Romance"):
+      RomanceAmountIncrementLocal += merchArray[i][3] * merchArray[i][4];
+      break;
+
+      case ("SliceOfLife"):
+      SliceOfLifeAmountIncrementLocal += merchArray[i][3] * merchArray[i][4];
+      break;
+
+      case ("Isekai"):
+      IsekaiAmountIncrementLocal += merchArray[i][3] * merchArray[i][4];
+      break;
+
+      default:
+      break;
+    }
+  }
+  ShounenAmountIncrement = ShounenAmountIncrementLocal;
+  RomanceAmountIncrement = RomanceAmountIncrementLocal;
+  SliceOfLifeAmountIncrement = SliceOfLifeAmountIncrementLocal;
+  IsekaiAmountIncrement = IsekaiAmountIncrementLocal;
+
+  increment();
+}
+
+function increment()
+{
+  ShounenAmount += ShounenAmountIncrement;
+  RomanceAmount += RomanceAmountIncrement;
+  SliceOfLifeAmount += SliceOfLifeAmountIncrement;
+  IsekaiAmount += IsekaiAmountIncrement;
+
 }
 
 function checkSkillReq() { //Note: Create method called 'loadSkills()' for future.
@@ -214,7 +267,7 @@ function checkSkillReq() { //Note: Create method called 'loadSkills()' for futur
   for (i = 1; i < skillArray.length; i++) //loops 5 times currently.
   {
     var requiredCounter = 0; //used to count if player has the required amount for a skill (look at switch statement for use).
-    if (skillArray[i][2] == true) 
+    if (skillArray[i][2] == true)
     {
       continue; //no need to check for skills that are already unlocked
     }
@@ -289,7 +342,7 @@ function checkJobReq() {
       {
         requiredCounter++;
       }
-      
+
       if (requiredCounter == skillsRequired.length)
       {
         jobArray[i][1] = true;
@@ -365,7 +418,7 @@ function loadSkillReqs()  {
     var skillsID = document.getElementById("Skill" + i + "Req");
     var htmlLine = "";
     var genres = skillArray[i][1].split(",");  //e.g. [0] = 1-Shounen, [1] = 1-Romance, [2] = 1-SliceOfLife, [3] = 1-Isekai
-    
+
     for (x = 0; x < genres.length; x++)
     {
       htmlLine += genres[x].substring(0, genres[x].indexOf("-")) + " " + genres[x].substring(genres[x].indexOf("-") + 1);
@@ -398,19 +451,21 @@ function waifuBonus() {
   switch(document.getElementById("CurrentWaifuDiv").getElementsByTagName("img")[0].getAttribute("src"))
   {
     case ("media/YAOMOMO.png"):
-    ShounenAmount += 0.1;
+    ShounenAmountIncrement * 3;
     break;
 
     case ("media/FUTABA.PNG"):
-    RomanceAmount += 0.1;
+    RomanceAmountIncrement * 3;
     break;
 
     case ("media/ANNA.png"):
-    SliceOfLifeAmount += 0.1;
+    SliceOfLifeAmountIncrement * 3;
     break;
 
     case ("media/MILIM.jpg"):
-    IsekaiAmount += 0.1;
+    IsekaiAmountIncrement * 3;
+    break;
+    default:
     break;
   }
 }
