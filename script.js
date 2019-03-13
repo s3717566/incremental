@@ -12,12 +12,12 @@ var IsekaiAmountIncrement = 0;
 
 var jobArray = [ //first array accesses which job. [1]=boolean if unlocked, [2]=Amount it increments by, [3]=Description, [4]=Skill requirements
   ["name", "unlocked", "effect", "desc", "1,2", "image"], //skills use , as breaks
-  ["Casual fan", false, 1, "meme", "1,2", "degenerate.png"],
-  ["Avid Fan", false, 0.003, "meme2", "2,5", "avid_fan.png"],
+  ["Casual fan", false, 1, "meme", "1", "degenerate.png"],
+  ["Avid Fan", false, 0.003, "meme2", "2", "avid_fan.png"],
   ["Fan Subber", false, 0.006, "meme3", "3", "fan_subber.png"],
-  ["Anime Reviewer", false, 0.012, "meme3", "3", "anime_reviewer.png"],
-  ["McGronalds Employee", false, 0.02, "meme3", "4", "mcgronalds_employee.png"],
-  ["McGronalds Manager", false, 0.5, "meme3", "4", "mcgronalds_manager.png"],
+  ["Anime Reviewer", false, 0.012, "meme3", "3,4", "anime_reviewer.png"],
+  ["McGronalds Employee", false, 0.02, "meme3", "4,5", "mcgronalds_employee.png"],
+  ["McGronalds Manager", false, 0.5, "meme3", "4,6", "mcgronalds_manager.png"],
   ["Anime Youtuber", false, 1.5, "meme3", "5", "anime_youtuber.png"],
   ["Dub Voice Actor",  false, 4, "meme3", "5", "dub_voice_actor.png"],
   ["Manga Artist", false, 10, "meme3", "6", "manga_artist.png"],
@@ -194,6 +194,7 @@ function moneyFromJobs()  {
     else
     {
       x = i;
+      MoneyAmount += jobArray[x][2];
     }
 
     if (i == jobArray.length - 1)
@@ -202,7 +203,6 @@ function moneyFromJobs()  {
     }
   }
 
-  MoneyAmount += jobArray[x][2];
 }
 
 function animeFromMerch() {
