@@ -14,7 +14,7 @@
       type="text/javascript"
       src="path/to/p5.dom.js"
     ></script>
-    <title>Weaboo Simulator</title>
+    <title>Weeaboo Simulator</title>
   </head>
 
   <body class="textstyle smalltext" onload="loadNames()">
@@ -32,6 +32,7 @@
         </div>
 
         <div id="middle_container">
+          <div id="clickerButtons">
           <!--<img id="incrementor" src="media/watchanimebutton.png" onclick="Increment()" /> -->
           <img
             class="GenreButtons"
@@ -53,34 +54,44 @@
             src="media/isekai_button.png"
             onclick="buttonIncrement('IsekaiAmount')"
           />
+        </div>
           <div>
+            <div id="divSeen">
             <label>Shounen seen: </label
-            ><input
+            ><input class="inputAmountText"
               type="text"
               readonly
               value="0"
               id="ShounenAmountText"
             /><br />
             <label>Romance seen: </label
-            ><input
+            ><input class="inputAmountText"
               type="text"
               readonly
               value="0"
               id="RomanceAmountText"
             /><br />
             <label>Slice Of Life seen: </label
-            ><input
+            ><input class="inputAmountText"
               type="text"
               readonly
               value="0"
               id="SliceOfLifeAmountText"
             /><br />
             <label>Isekai seen: </label
-            ><input type="text" readonly value="0" id="IsekaiAmountText" />
+            ><input class="inputAmountText" type="text" readonly value="0" id="IsekaiAmountText" />
           </div>
-          <br />
+        </div>
+        <br>
+        <label>Total anime seen: </label
+        ><input
+          type="text"
+          readonly
+          value="0"
+          id="TotalAnimeAmountText"
+        /><br />
           <div>
-            <label>Amount of Money owned: </label
+            <label>Current balance: </label
             ><input type="text" readonly value="$0.00" id="MoneyAmountText" />
             <br />
             <br />

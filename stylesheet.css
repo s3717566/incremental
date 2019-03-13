@@ -87,7 +87,7 @@ body {
 }
 
 #middle_container {
-  width: 50vw;
+  width: 49vw;
 }
 
 #CurrentWaifuDiv img {
@@ -160,6 +160,7 @@ input[type=button] {
   font-size: 60%;
   margin: 2px;
   height: 49.99%;
+  width: 80%;
 }
 
 .jobReq {
@@ -224,4 +225,27 @@ input[type=button] {
 ::-webkit-scrollbar-thumb {
   background: #d181b7;
   border-radius: 5px;
+}
+
+#clickerButtons {
+  background-color: #e0bed5;
+  margin-top: 5%;
+  width: 60%;
+  display: inline-block;
+  padding-top: 1%;
+  border-radius: 15px;
+  /* padding-bottom: 1%; */
+}
+
+#divSeen {
+  float: left;
+  display: inline-block;
+  width:100%;
+  text-align: left;
+  font-size: .7em;
+  margin-left: 2%;
+}
+
+.inputAmountText {
+  font-size: .7em;
 }

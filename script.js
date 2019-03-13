@@ -2,6 +2,7 @@ var ShounenAmount = 0;
 var RomanceAmount = 0;
 var SliceOfLifeAmount = 0;
 var IsekaiAmount = 0;
+var TotalAnimeAmount = 0;
 var MoneyAmount = 0;
 
 var ShounenAmountIncrement = 0;
@@ -11,23 +12,23 @@ var IsekaiAmountIncrement = 0;
 
 var jobArray = [ //first array accesses which job. [1]=boolean if unlocked, [2]=Amount it increments by, [3]=Description, [4]=Skill requirements
   ["name", "unlocked", "effect", "desc", "1,2", "image"], //skills use , as breaks
-  ["Degenerate", false, 0.000, "meme", "1", "degenerate.png"],
-  ["Avid Fan", false, 0.003, "meme2", "2", "avid_fan.png"],
-  ["Fan Subber", false, 0.004, "meme3", "3", "fan_subber.png"],
-  ["Anime Reviewer", false, 0.009, "meme3", "3", "anime_reviewer.png"],
+  ["Casual fan", false, 1, "meme", "1,2", "degenerate.png"],
+  ["Avid Fan", false, 0.003, "meme2", "2,5", "avid_fan.png"],
+  ["Fan Subber", false, 0.006, "meme3", "3", "fan_subber.png"],
+  ["Anime Reviewer", false, 0.012, "meme3", "3", "anime_reviewer.png"],
   ["McGronalds Employee", false, 0.02, "meme3", "4", "mcgronalds_employee.png"],
-  ["McGronalds Manager", false, 0.4, "meme3", "4", "mcgronalds_manager.png"],
-  ["Anime Youtuber", false, 0.65, "meme3", "5", "anime_youtuber.png"],
-  ["Dub Voice Actor",  false, 0.9, "meme3", "5", "dub_voice_actor.png"],
-  ["Manga Artist", false, 1.5, "meme3", "6", "manga_artist.png"],
-  ["Professional Animator", false, 4, "meme3", "6", "professional_animator.png"],
-  ["Nihon Overlord", false, 10, "meme3", "7", "nihon_overlord.png"],
+  ["McGronalds Manager", false, 0.5, "meme3", "4", "mcgronalds_manager.png"],
+  ["Anime Youtuber", false, 1.5, "meme3", "5", "anime_youtuber.png"],
+  ["Dub Voice Actor",  false, 4, "meme3", "5", "dub_voice_actor.png"],
+  ["Manga Artist", false, 10, "meme3", "6", "manga_artist.png"],
+  ["Professional Animator", false, 35, "meme3", "6", "professional_animator.png"],
+  ["Nihon Overlord", false, 100, "meme3", "7", "nihon_overlord.png"],
 ]
 
 var skillArray = [ //jobs have skill requirements which will be checked per tick. First array accesses which skill. [1]=Requirement, [2]=boolean if unlocked, [3]=description.
   ["name", "animeReq", "unlocked", "desc", "image"],
-  ["Some Free Time", "1-Shounen,1-Romance,1-SliceOfLife,1-Isekai", false, "The start of the descent into madness...", "some_free_time.png"], //For test purposes! 10 Shounen required.
-  ["Learning Japanese from Subs", "10-Shounen,10-Romance,10-SliceOfLife,10-Isekai", false, "WATASHI GA KITA!", "learning_japanese_from_subs.png"],
+  ["Free Time", "6-Total", false, "The start of the descent into madness...", "some_free_time.png"], //For test purposes! 10 Shounen required.
+  ["Learning Jap", "10-Shounen,10-Romance,10-SliceOfLife,10-Isekai", false, "WATASHI GA KITA!", "learning_japanese_from_subs.png"],
   ["Man of Culture", "100-Shounen,100-Romance,100-SliceOfLife,100-Isekai", false, "Ah, I see you understand this meme too.", "man_of_culture.png"],
   ["Tons of Free Time", "240-Shounen,200-Romance,250-SliceOfLife,290-Isekai", false, "You can't go back. 19 years of your life, gone like that.", "tons_of_free_time.png"],
   ["200 IQ", "300-Shounen,325-Romance,300-SliceOfLife,295-Isekai", false, "You can feel your head physically growing in size for your big brain.", "200IQ.png"],
@@ -83,11 +84,8 @@ function createJobDivsCreateElement() {
     jobQtyJS.setAttribute('class', 'jobQty');
 
     jobTitleJS.setAttribute('id', 'job' + i + 'Title');
-
     jobReqJS.setAttribute('id', 'jobCost' + i);
-
     jobQtyJS.setAttribute('id', 'jobQty' + i);
-
     jobImgJS.setAttribute('src', 'media/' + jobArray[i][5]);
 
     innerJobDivJS.appendChild(jobImgJS);
@@ -119,13 +117,9 @@ function createMerchDivsCreateElement() {
     jobQtyJS.setAttribute('class', 'jobQty');
 
     jobTitleJS.setAttribute('id', 'merch' + i + 'Title');
-
     jobReqJS.setAttribute('id', 'merchCost' + i);
-
     jobQtyJS.setAttribute('id', 'merchQty' + i);
-
     innerJobDivJS.setAttribute('onClick', 'buyMerch(' + i + ')');
-
     jobImgJS.setAttribute('src', 'media/ph' + i + '.png');
 
     innerJobDivJS.appendChild(jobImgJS);
@@ -143,15 +137,24 @@ function update() {
   document.getElementById("SliceOfLifeAmountText").value = SliceOfLifeAmount.toFixed(0);
   document.getElementById("IsekaiAmountText").value = IsekaiAmount.toFixed(0);
 
-  document.getElementById('MoneyAmountText').value = "$" + MoneyAmount.toFixed(2);
+  TotalAnimeAmount = ShounenAmount + RomanceAmount + SliceOfLifeAmount + IsekaiAmount;
+  document.getElementById("TotalAnimeAmountText").value = TotalAnimeAmount.toFixed(0);
+
+  document.getElementById('MoneyAmountText').value = "$" + parseInt(MoneyAmount).toFixed(2);
+
   for (i = 1; i < merchArray.length; i++) {
     document.getElementById('merchQty' + i).innerHTML = merchArray[i][3];
+  }
+
+  for (i = 1; i < merchArray.length; i++) {
+    merchArray[i][2] = merchArray[i][1] + (merchArray[i][3] * merchArray[i][1] * 0.2);
+    document.getElementById("merchCost" + i).innerHTML = "$" + merchArray[i][2].toFixed(2);
   }
 }
 
 function timer() {
   update();
-  waifuBonus();
+  // waifuBonus();
   checkSkillReq();
   checkJobReq();
   moneyFromJobs();
@@ -181,7 +184,7 @@ function buttonIncrement(genre) {
 }
 
 function moneyFromJobs()  {
-  var x;  //this saves the index for which job the player is currently on.
+  var x = 0;  //this saves the index for which job the player is currently on.
   for (i = 1; i < jobArray.length; i++)
   {
     if (jobArray[i][1] == false)
@@ -293,12 +296,20 @@ function checkSkillReq() { //Note: Create method called 'loadSkills()' for futur
             requiredCounter++;
           }
           break;
+
+          case ('Total'):
+            var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-"))) //E.g. for 10-Shounen, numberReq = 10;
+            if (TotalAnimeAmount >= numberReq) {
+              requiredCounter++;
+            }
+            break;
       }
 
       if (requiredCounter == genres.length) //If the counter = genres.length, it means all genres have met their requirement and thus, the skill is unlocked.
       {
         skillArray[i][2] = true;
         document.getElementById("Skill" + i + "Req").innerHTML = skillArray[i][3];
+        document.getElementById("Skill" + i + "Req").style.color = "red";
         exit = true;
       }
     }
@@ -371,12 +382,12 @@ function load() {
 
 function loadJobReqs() {
   for (i = 1; i < jobArray.length; i++) {
-    var htmlLine = "";
+    var htmlLine = "Requires: ";
     totalSkillReqs = jobArray[i][4].split(",");
 
     for (x = 0; x < totalSkillReqs.length; x++) //e.g. totalSkillReqs[0] = 1, totalSkillReqs[1] = 3.
     {
-      htmlLine += "S" + totalSkillReqs[x] + " Req.";
+      htmlLine += skillArray[totalSkillReqs[x]][0];
       if (x != totalSkillReqs.length - 1)
       {
         htmlLine += " + ";
@@ -388,11 +399,6 @@ function loadJobReqs() {
     {
       break;
     }
-  }
-
-  for (i = 1; i < merchArray.length; i++) {
-    merchArray[i][2] = merchArray[i][1] + (merchArray[i][3] * merchArray[i][1] * 0.2);
-    document.getElementById("merchCost" + i).innerHTML = merchArray[i][2];
   }
 }
 
@@ -426,6 +432,7 @@ function buyMerch(i) {
   if (MoneyAmount >= merchArray[i][2]) { //if you have more animes than the current price needed, u can buy it
     MoneyAmount = MoneyAmount - merchArray[i][2];
     merchArray[i][3] += 1; //changes qty of jobArray[1][3]'s
+    merchArray[i][2] += (merchArray[i][1] * 0.2);
     update();
   }
 }
@@ -434,29 +441,31 @@ function changeWaifu(Waifu) {
   document.getElementById("CurrentWaifuDiv").innerHTML = '<img src="media/' + Waifu + '"> <br/>' + Waifu.split('.')[0];
 }
 
-function waifuBonus() {
-  switch(document.getElementById("CurrentWaifuDiv").getElementsByTagName("img")[0].getAttribute("src"))
-  {
-    case ("media/YAOMOMO.png"):
-    ShounenAmountIncrement * 3;
-    break;
-
-    case ("media/FUTABA.PNG"):
-    RomanceAmountIncrement * 3;
-    break;
-
-    case ("media/ANNA.png"):
-    SliceOfLifeAmountIncrement * 3;
-    break;
-
-    case ("media/MILIM.jpg"):
-    IsekaiAmountIncrement * 3;
-    break;
-
-    default:
-    break;
-  }
-}
+// function waifuBonus() {
+//
+//   var currentWaifu = document.getElementById("CurrentWaifuDiv").getElementsByTagName("img")[0].getAttribute("src");
+//   switch(currentWaifu)
+//   {
+//     case ("media/YAOMOMO.png"):
+//     ShounenAmountIncrement * 3;
+//     break;
+//
+//     case ("media/FUTABA.PNG"):
+//     RomanceAmountIncrement * 3;
+//     break;
+//
+//     case ("media/ANNA.png"):
+//     SliceOfLifeAmountIncrement * 3;
+//     break;
+//
+//     case ("media/MILIM.jpg"):
+//     IsekaiAmountIncrement * 3;
+//     break;
+//
+//     default:
+//     break;
+//   }
+// }
 
 function welcomeBack() {
   if (localStorage.getItem("AnimeAmount of Animes") === null) {
