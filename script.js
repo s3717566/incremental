@@ -12,10 +12,10 @@ var IsekaiAmountIncrement = 0;
 
 var jobArray = [ //first array accesses which job. [1]=boolean if unlocked, [2]=Amount it increments by, [3]=Description, [4]=Skill requirements
   ["name", "unlocked", "effect", "desc", "1,2", "image"], //skills use , as breaks
-  ["Casual fan", false, 1, "meme", "1", "degenerate.png"],
-  ["Avid Fan", false, 0.003, "meme2", "2", "avid_fan.png"],
-  ["Fan Subber", false, 0.006, "meme3", "3", "fan_subber.png"],
-  ["Anime Reviewer", false, 0.012, "meme3", "3,4", "anime_reviewer.png"],
+  ["Casual fan", false, 0.01, "Man, these chinese cartoons really are something. I hope my friends dont find out what I watch.", "1", "degenerate.png"],
+  ["Avid Fan", false, 0.003, "6 episodes of anime before breakfast? Maybe my priorities are a bit wonky.", "2", "avid_fan.png"],
+  ["Fan Subber", false, 0.006, "I wonder if I can put this on my resume?", "3", "fan_subber.png"],
+  ["Anime Reviewer", false, 0.012, "Your taste is objectively trash, the counsil has decided.", "3,4", "anime_reviewer.png"],
   ["McGronalds Employee", false, 0.02, "meme3", "4,5", "mcgronalds_employee.png"],
   ["McGronalds Manager", false, 0.5, "meme3", "4,6", "mcgronalds_manager.png"],
   ["Anime Youtuber", false, 1.5, "meme3", "5", "anime_youtuber.png"],
@@ -29,9 +29,9 @@ var skillArray = [ //jobs have skill requirements which will be checked per tick
   ["name", "animeReq", "unlocked", "desc", "image"],
   ["Free Time", "6-Total", false, "The start of the descent into madness...", "some_free_time.png"], //For test purposes! 10 Shounen required.
   ["Learning Jap", "10-Shounen,10-Romance,10-SliceOfLife,10-Isekai", false, "WATASHI GA KITA!", "learning_japanese_from_subs.png"],
-  ["Man of Culture", "100-Shounen,100-Romance,100-SliceOfLife,100-Isekai", false, "Ah, I see you understand this meme too.", "man_of_culture.png"],
-  ["Tons of Free Time", "240-Shounen,200-Romance,250-SliceOfLife,290-Isekai", false, "You can't go back. 19 years of your life, gone like that.", "tons_of_free_time.png"],
-  ["200 IQ", "300-Shounen,325-Romance,300-SliceOfLife,295-Isekai", false, "You can feel your head physically growing in size for your big brain.", "200IQ.png"],
+  ["Man of Culture", "0-Shounen,20-Romance,20-SliceOfLife,0-Isekai", false, "Ah, I see you understand this meme too.", "man_of_culture.png"],
+  ["Tons of Free Time", "50-Shounen,0-Romance,50-SliceOfLife,0-Isekai", false, "You can't go back. 19 years of your life, gone like that.", "tons_of_free_time.png"],
+  ["200 IQ", "100-Shounen,255-Romance,300-SliceOfLife,295-Isekai", false, "You can feel your head physically growing in size for your big brain.", "200IQ.png"],
   ["Weeb Status", "500-Shounen,501-Romance,502-SliceOfLife,503-Isekai", false, "Embrace it; you're one of us now.", "weeb_status.png"],
   ["Political Power", "1000-Shounen, 1000-Romance, 1000-SliceOfLife, 1000-Isekai", false, "You don't know anything about politics, but you know enough about anime to become the ruler of Japan.", "political_power.png"],
 ]
@@ -310,7 +310,7 @@ function checkSkillReq() { //Note: Create method called 'loadSkills()' for futur
         skillArray[i][2] = true;
         document.getElementById("Skill" + i + "Req").innerHTML = skillArray[i][3];
         document.getElementById("Skill" + i + "Req").style.color = "red";
-        document.getElementById('textAreaId').innerHTML += skillArray[i][3] + '\n\n';
+        document.getElementById('textAreaId').innerHTML = "Unlocked " + skillArray[i][0] + "\n" + skillArray[i][3] + '\n\n' + document.getElementById('textAreaId').innerHTML;
         exit = true;
       }
     }
@@ -346,7 +346,7 @@ function checkJobReq() {
       {
         jobArray[i][1] = true;
         document.getElementById('jobQty' + i).innerHTML = "UNLOCKED!";
-        document.getElementById('textAreaId').innerHTML += jobArray[i][3] + '\n\n';
+        document.getElementById('textAreaId').innerHTML = "Unlocked " + jobArray[i][0] + "\n" + jobArray[i][3] + '\n\n' + document.getElementById('textAreaId').innerHTML;
         exit = true;
       }
     }
