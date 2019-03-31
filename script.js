@@ -310,6 +310,7 @@ function checkSkillReq() { //Note: Create method called 'loadSkills()' for futur
         skillArray[i][2] = true;
         document.getElementById("Skill" + i + "Req").innerHTML = skillArray[i][3];
         document.getElementById("Skill" + i + "Req").style.color = "red";
+        document.getElementById('textAreaId').innerHTML += skillArray[i][3] + '\n\n';
         exit = true;
       }
     }
@@ -345,6 +346,7 @@ function checkJobReq() {
       {
         jobArray[i][1] = true;
         document.getElementById('jobQty' + i).innerHTML = "UNLOCKED!";
+        document.getElementById('textAreaId').innerHTML += jobArray[i][3] + '\n\n';
         exit = true;
       }
     }
