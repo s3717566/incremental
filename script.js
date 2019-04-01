@@ -140,7 +140,7 @@ function update() {
   TotalAnimeAmount = ShounenAmount + RomanceAmount + SliceOfLifeAmount + IsekaiAmount;
   document.getElementById("TotalAnimeAmountText").value = TotalAnimeAmount.toFixed(0);
 
-  document.getElementById('MoneyAmountText').value = "$" + parseInt(MoneyAmount).toFixed(2);
+  document.getElementById('MoneyAmountText').value = "$" + parseFloat(MoneyAmount).toFixed(2);
 
   for (i = 1; i < merchArray.length; i++) {
     document.getElementById('merchQty' + i).innerHTML = merchArray[i][3];
@@ -470,11 +470,22 @@ function changeWaifu(Waifu) {
 // }
 
 function welcomeBack() {
-  if (localStorage.getItem("AnimeAmount of Animes") === null) {
-    window.alert("Welcome to Matt's Weeb Simulator! owo");
-  } else {
-    window.alert("Welcome back Onii-Chan! uwu");
-  }
+  // if (localStorage.getItem("AnimeAmount of Animes") === null) {
+    // window.alert("Welcome to Matt's Weeb Simulator! owo");
+//     document.getElementById('textAreaId').innerHTML = "Youve just graduated college. You come home, exhausted, wanting to relax. Opening your laptop, you see your netflix subscription is still running \n" +
+// "You open it up through instinct, however you've watched all there is to be watched. Howevver, something in the bottom left sticks out of your recommended. \n" +
+// "My Hero Acadamia. Curious, you click it, telling yourself that its just a cartoon and youll probably lose interest soon. You were wrong. Your journey begins. \n" +
+// "Welcome to Weeb simulator, fellow degenerate.";
+ // + document.getElementById('textAreaId').innerHTML;
+//   } else {
+//     // window.alert("Welcome back Onii-Chan! uwu");
+//     document.getElementById('textAreaId').innerHTML =
+// "Youve just graduated college. You come home, exhausted, wanting to relax. Opening your laptop, you see your netflix subscription is still running \n" +
+// "You open it up through instinct, however you've watched all there is to be watched. Howevver, something in the bottom left sticks out of your recommended. \n" +
+// "My Hero Acadamia. Curious, you click it, telling yourself that its just a cartoon and youll probably lose interest soon. You were wrong. Your journey begins. \n" +
+// "Welcome to Weeb simulator, fellow degenerate."
+//  + document.getElementById('textAreaId').innerHTML;
+//   }
 }
 
-window.onload = welcomeBack();
+// window.onload = welcomeBack();
