@@ -10,49 +10,72 @@ var RomanceAmountIncrement = 0;
 var SliceOfLifeAmountIncrement = 0;
 var IsekaiAmountIncrement = 0;
 
+var intro1 = true;
+var intro2 = true;
+var intro3 = true;
+var intro4 = true;
+var intro5 = true;
+
+
+
 var jobArray = [ //first array accesses which job. [1]=boolean if unlocked, [2]=Amount it increments by, [3]=Description, [4]=Skill requirements
-  ["name", "unlocked", "effect", "desc", "1,2", "image"], //skills use , as breaks
-  ["Casual fan", false, 0.01, "Man, these chinese cartoons really are something. I hope my friends dont find out what I watch.", "1", "degenerate.png"],
-  ["Avid Fan", false, 0.003, "6 episodes of anime before breakfast? Maybe my priorities are a bit wonky.", "2", "avid_fan.png"],
-  ["Fan Subber", false, 0.006, "I wonder if I can put this on my resume?", "3", "fan_subber.png"],
-  ["Anime Reviewer", false, 0.012, "Your taste is objectively trash, the counsil has decided.", "3,4", "anime_reviewer.png"],
-  ["McGronalds Employee", false, 0.02, "meme3", "4,5", "mcgronalds_employee.png"],
-  ["McGronalds Manager", false, 0.5, "meme3", "4,6", "mcgronalds_manager.png"],
-  ["Anime Youtuber", false, 1.5, "meme3", "5", "anime_youtuber.png"],
-  ["Dub Voice Actor",  false, 4, "meme3", "5", "dub_voice_actor.png"],
-  ["Manga Artist", false, 10, "meme3", "6", "manga_artist.png"],
-  ["Professional Animator", false, 35, "meme3", "6", "professional_animator.png"],
-  ["Nihon Overlord", false, 100, "meme3", "7", "nihon_overlord.png"],
+["name", "unlocked", "effect", "desc", "1,2", "image"], //skills use , as breaks
+["Casual fan", false, 0.001, "Man, these chinese cartoons really are something. I hope my friends dont find out what I watch.", "1", "degenerate.png"],
+["Avid Fan", false, 0.003, "6 episodes of anime before breakfast? Maybe my priorities are a bit wonky.", "2", "avid_fan.png"],
+["Fan Subber", false, 0.006, "I wonder if I can put this on my resume?", "3", "fan_subber.png"],
+["Anime Reviewer", false, 0.012, "Your taste is objectively trash, the counsil has decided.", "3,4", "anime_reviewer.png"],
+["McGronalds Employee", false, 0.02, "meme3", "4,5", "mcgronalds_employee.png"],
+["McGronalds Manager", false, 0.5, "meme3", "4,6", "mcgronalds_manager.png"],
+["Anime Youtuber", false, 1.5, "meme3", "5", "anime_youtuber.png"],
+["Dub Voice Actor",  false, 4, "meme3", "5", "dub_voice_actor.png"],
+["Manga Artist", false, 10, "meme3", "6", "manga_artist.png"],
+["Professional Animator", false, 35, "meme3", "6", "professional_animator.png"],
+["Nihon Overlord", false, 100, "meme3", "7", "nihon_overlord.png"],
 ]
 
 var skillArray = [ //jobs have skill requirements which will be checked per tick. First array accesses which skill. [1]=Requirement, [2]=boolean if unlocked, [3]=description.
-  ["name", "animeReq", "unlocked", "desc", "image"],
-  ["Free Time", "6-Total", false, "The start of the descent into madness...", "some_free_time.png"], //For test purposes! 10 Shounen required.
-  ["Learning Jap", "10-Shounen,10-Romance,10-SliceOfLife,10-Isekai", false, "WATASHI GA KITA!", "learning_japanese_from_subs.png"],
-  ["Man of Culture", "0-Shounen,20-Romance,20-SliceOfLife,0-Isekai", false, "Ah, I see you understand this meme too.", "man_of_culture.png"],
-  ["Tons of Free Time", "50-Shounen,0-Romance,50-SliceOfLife,0-Isekai", false, "You can't go back. 19 years of your life, gone like that.", "tons_of_free_time.png"],
-  ["200 IQ", "100-Shounen,255-Romance,300-SliceOfLife,295-Isekai", false, "You can feel your head physically growing in size for your big brain.", "200IQ.png"],
-  ["Weeb Status", "500-Shounen,501-Romance,502-SliceOfLife,503-Isekai", false, "Embrace it; you're one of us now.", "weeb_status.png"],
-  ["Political Power", "1000-Shounen, 1000-Romance, 1000-SliceOfLife, 1000-Isekai", false, "You don't know anything about politics, but you know enough about anime to become the ruler of Japan.", "political_power.png"],
+["name", "animeReq", "unlocked", "desc", "image"],
+["Free Time", "10-Total", false, "The start of the descent into madness...", "some_free_time.png"], //For test purposes! 10 Shounen required.
+["Learning Jap", "10-Shounen,10-Romance,10-SliceOfLife,10-Isekai", false, "WATASHI GA KITA!", "learning_japanese_from_subs.png"],
+["Man of Culture", "0-Shounen,20-Romance,20-SliceOfLife,0-Isekai", false, "Ah, I see you understand this meme too.", "man_of_culture.png"],
+["Tons of Free Time", "50-Shounen,0-Romance,50-SliceOfLife,0-Isekai", false, "You can't go back. 19 years of your life, gone like that.", "tons_of_free_time.png"],
+["200 IQ", "100-Shounen,255-Romance,300-SliceOfLife,295-Isekai", false, "You can feel your head physically growing in size for your big brain.", "200IQ.png"],
+["Weeb Status", "500-Shounen,501-Romance,502-SliceOfLife,503-Isekai", false, "Embrace it; you're one of us now.", "weeb_status.png"],
+["Political Power", "1000-Shounen, 1000-Romance, 1000-SliceOfLife, 1000-Isekai", false, "You don't know anything about politics, but you know enough about anime to become the ruler of Japan.", "political_power.png"],
 ]
 
 var merchArray = [ //first array accesses which job. [1]=Initial, [2]=CurrentPrice, [3]=Job Qty, [4]=Amount job increments by per tick
-  ["name", "initialPrice", "currentPrice", "qty", "effect", "desc"], //todo: add skill requirements
-  ["Key Chain", .5, 0, 0, 0.03, "meme", "Shounen" ],
-  ["Body Pillow", .5, 0, 0, 0.03, "meme", "Romance"],
-  ["Taiga Aisaka Figurine", .5, 0, 0, 0.03, "meme", "SliceOfLife"],
-  ["Katana", .5, 0, 0, 0.03, "meme", "Isekai"],
-  ["Wall Scroll", 25, 0, 0, 0.2, "meme2", "Romance"],
-  ["Megumin Figurine", 60, 0, 0, 0.7, "meme3", "SliceOfLife"],
-  ["Love-Live Cardboard Cutout", 200, 0, 0, 1.5, "meme4", "Isekai"],
-  ["1:1 Scale Shiro", 800, 0, 0, 5, "meme5", "Shounen"],
+["name", "initialPrice", "currentPrice", "qty", "effect", "desc"], //todo: add skill requirements
+["Key Chain", .5, 0, 0, 0.03, "meme", "Shounen" ],
+["Body Pillow", .5, 0, 0, 0.03, "meme", "Romance"],
+["Taiga Aisaka Figurine", .5, 0, 0, 0.03, "meme", "SliceOfLife"],
+["Katana", .5, 0, 0, 0.03, "meme", "Isekai"],
+["Wall Scroll", 25, 0, 0, 0.2, "meme2", "Romance"],
+["Megumin Figurine", 60, 0, 0, 0.7, "meme3", "SliceOfLife"],
+["Love-Live Cardboard Cutout", 200, 0, 0, 1.5, "meme4", "Isekai"],
+["1:1 Scale Shiro", 800, 0, 0, 5, "meme5", "Shounen"],
 ]
 
+function introduction() {
+  document.getElementById('jobs').style.visibility = "hidden";
+  document.getElementById('merch').style.visibility = "hidden";
+  document.getElementById('skills').style.visibility = "hidden";
+  document.getElementById('waifus').style.visibility = "hidden";
+  // while (intro == true)
+  // {
+  //   if (TotalAnimeAmount = 1)
+  //   {
+  //     document.getElementById('textAreaId').innerHTML = "Hello";
+  //   }
+  // }
+
+}
+
 function loadNames() {
+  introduction();
   createJobDivsCreateElement();
   createMerchDivsCreateElement();
-  loadJobReqs();
-  loadSkillReqs();
+  createSkillsDivsCreateElement();
 
   for (i = 1; i < jobArray.length; i++) {
     document.getElementById('job' + i + 'Title').innerHTML = jobArray[i][0];
@@ -61,6 +84,15 @@ function loadNames() {
   for (i = 1; i < merchArray.length; i++) {
     document.getElementById('merch' + i + 'Title').innerHTML = merchArray[i][0];
   }
+
+  for (i = 1; i < skillArray.length; i++) {
+    document.getElementById('skill' + i + 'Title').innerHTML = skillArray[i][0];
+  }
+
+  loadJobReqs();
+  loadSkillReqs();
+
+
   update(); //stops page from "not having the Qty's until a button is pressed" problem.
 }
 
@@ -130,6 +162,40 @@ function createMerchDivsCreateElement() {
   }
 }
 
+function createSkillsDivsCreateElement() {
+  for (i = 1; i < skillArray.length; i++) {
+    var jobsDivJS = document.getElementById('skills');
+
+    var innerJobDivJS = document.createElement('div');
+    innerJobDivJS.setAttribute('class', 'innerJobDiv');
+
+    var jobImgJS = document.createElement('img');
+    jobImgJS.setAttribute('class', 'imgJobSmall');
+
+    var jobTitleJS = document.createElement('div');
+    jobTitleJS.setAttribute('class', 'jobTitle');
+
+    var jobReqJS = document.createElement('div');
+    jobReqJS.setAttribute('class', 'jobReq');
+
+    var jobQtyJS = document.createElement('div');
+    jobQtyJS.setAttribute('class', 'jobQty');
+
+    jobTitleJS.setAttribute('id', 'skill' + i + 'Title');
+    jobReqJS.setAttribute('id', 'skill' + i + 'Req');
+    jobQtyJS.setAttribute('id', 'skillQty' + i);
+    // innerJobDivJS.setAttribute('onClick', 'buyMerch(' + i + ')');
+    // jobImgJS.setAttribute('src', 'media/' + skillArray[i][4]);
+    jobImgJS.setAttribute('id', 'skill' + i + 'Img');
+
+    innerJobDivJS.appendChild(jobImgJS);
+    innerJobDivJS.appendChild(jobTitleJS);
+    innerJobDivJS.appendChild(jobReqJS);
+    innerJobDivJS.appendChild(jobQtyJS);
+    jobsDivJS.appendChild(innerJobDivJS);
+  }
+}
+
 function update() {
 
   document.getElementById("ShounenAmountText").value = ShounenAmount.toFixed(0); //can't make dynamic with genre.toFixed(0). Need to figure out how to use the argument as a reference to the variable.
@@ -150,6 +216,59 @@ function update() {
     merchArray[i][2] = merchArray[i][1] + (merchArray[i][3] * merchArray[i][1] * 0.2);
     document.getElementById("merchCost" + i).innerHTML = "$" + merchArray[i][2].toFixed(2);
   }
+
+  if (intro1 == true)
+  {
+    // document.getElementById('textAreaId').innerHTML = "Click the buttons up top to watch anime!";
+      if (TotalAnimeAmount == 1)
+      {
+        document.getElementById('textAreaId').innerHTML = "That didn't seem so bad. Maybe I'll watch a few more. For science. \n" +  document.getElementById('textAreaId').innerHTML;
+        // document.getElementById('jobs').style.visibility = "visible";
+        intro1 = false;
+      }
+}
+if (intro2 == true)
+{
+  // document.getElementById('textAreaId').innerHTML = "Click the buttons up top to watch anime!";
+    if (TotalAnimeAmount == 10)
+    {
+      document.getElementById('textAreaId').innerHTML = "I think I'm actually learning from watching anime... wtf? I need to keep watching... \n" + document.getElementById('textAreaId').innerHTML;
+      document.getElementById('skills').style.visibility = "visible";
+      intro2 = false;
+    }
+}
+if (intro3 == true)
+{
+  // document.getElementById('textAreaId').innerHTML = "Click the buttons up top to watch anime!";
+    if (TotalAnimeAmount == 20)
+    {
+      document.getElementById('textAreaId').innerHTML = "Maybe I can find a job with these skills I've acquired... Yeah, that makes sense to me. Pretty obvious, actually. \n\n" + document.getElementById('textAreaId').innerHTML;
+      document.getElementById('jobs').style.visibility = "visible";
+      intro3 = false;
+    }
+}
+
+if (intro4 == true)
+{
+  // document.getElementById('textAreaId').innerHTML = "Click the buttons up top to watch anime!";
+    if (TotalAnimeAmount == 40)
+    {
+      document.getElementById('textAreaId').innerHTML = "Holy... Look at these fat stacks, I'm making bank. Maybe it wouldn't hurt to buy a keychain of my favourite show. \n\n" + document.getElementById('textAreaId').innerHTML;
+      document.getElementById('merch').style.visibility = "visible";
+      intro4 = false;
+    }
+}
+
+if (intro5 == true)
+{
+  // document.getElementById('textAreaId').innerHTML = "Click the buttons up top to watch anime!";
+    if (TotalAnimeAmount == 100)
+    {
+      document.getElementById('textAreaId').innerHTML = "Anyone that comes between me and my waifu will have to taste my nippon steel. \n\n" + document.getElementById('textAreaId').innerHTML;
+      document.getElementById('waifus').style.visibility = "visible";
+      intro5 = false;
+    }
+}
 }
 
 function timer() {
@@ -165,20 +284,20 @@ setInterval(timer, 100);
 function buttonIncrement(genre) {
   switch (genre) {
     case ('ShounenAmount'):
-      ShounenAmount++;
-      break;
+    ShounenAmount++;
+    break;
 
     case ('RomanceAmount'):
-      RomanceAmount++;
-      break;
+    RomanceAmount++;
+    break;
 
     case ('SliceOfLifeAmount'):
-      SliceOfLifeAmount++;
-      break;
+    SliceOfLifeAmount++;
+    break;
 
     case ('IsekaiAmount'):
-      IsekaiAmount++;
-      break;
+    IsekaiAmount++;
+    break;
   }
   update();
 }
@@ -270,46 +389,46 @@ function checkSkillReq() { //Note: Create method called 'loadSkills()' for futur
       switch (genres[x].substring(genres[x].indexOf("-") + 1)) //E.g. for 10-Shounen, the switch argument is "Shounen".
       {
         case ('Shounen'):
-          var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-"))) //E.g. for 10-Shounen, numberReq = 10;
-          if (ShounenAmount >= numberReq) {
-            requiredCounter++;
-          }
-          break;
+        var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-"))) //E.g. for 10-Shounen, numberReq = 10;
+        if (ShounenAmount >= numberReq) {
+          requiredCounter++;
+        }
+        break;
 
         case ('Romance'):
-          var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-")))
-          if (RomanceAmount >= numberReq) {
-            requiredCounter++;
-          }
-          break;
+        var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-")))
+        if (RomanceAmount >= numberReq) {
+          requiredCounter++;
+        }
+        break;
 
         case ('SliceOfLife'):
-          var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-")))
-          if (SliceOfLifeAmount >= numberReq) {
-            requiredCounter++;
-          }
-          break;
+        var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-")))
+        if (SliceOfLifeAmount >= numberReq) {
+          requiredCounter++;
+        }
+        break;
 
         case ('Isekai'):
-          var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-")))
-          if (IsekaiAmount >= numberReq) {
-            requiredCounter++;
-          }
-          break;
+        var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-")))
+        if (IsekaiAmount >= numberReq) {
+          requiredCounter++;
+        }
+        break;
 
-          case ('Total'):
-            var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-"))) //E.g. for 10-Shounen, numberReq = 10;
-            if (TotalAnimeAmount >= numberReq) {
-              requiredCounter++;
-            }
-            break;
+        case ('Total'):
+        var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-"))) //E.g. for 10-Shounen, numberReq = 10;
+        if (TotalAnimeAmount >= numberReq) {
+          requiredCounter++;
+        }
+        break;
       }
 
       if (requiredCounter == genres.length) //If the counter = genres.length, it means all genres have met their requirement and thus, the skill is unlocked.
       {
         skillArray[i][2] = true;
-        document.getElementById("Skill" + i + "Req").innerHTML = skillArray[i][3];
-        document.getElementById("Skill" + i + "Req").style.color = "red";
+        document.getElementById("skill" + i + "Req").innerHTML = skillArray[i][3];
+        document.getElementById("skill" + i + "Req").style.color = "red";
         document.getElementById('textAreaId').innerHTML = "Unlocked " + skillArray[i][0] + "\n" + skillArray[i][3] + '\n\n' + document.getElementById('textAreaId').innerHTML;
         exit = true;
       }
@@ -408,9 +527,9 @@ function loadSkillReqs()  {
   for (i = 1; i < skillArray.length; i++)
   {
     var img = "media/" + skillArray[i][4];
-    document.getElementById("Skill" + i + "Img").setAttribute("src", img);
+    document.getElementById("skill" + i + "Img").setAttribute("src", img);
 
-    var skillsID = document.getElementById("Skill" + i + "Req");
+    var skillsID = document.getElementById("skill" + i + "Req");
     var htmlLine = "";
     var genres = skillArray[i][1].split(",");  //e.g. [0] = 1-Shounen, [1] = 1-Romance, [2] = 1-SliceOfLife, [3] = 1-Isekai
 
@@ -471,21 +590,21 @@ function changeWaifu(Waifu) {
 
 function welcomeBack() {
   // if (localStorage.getItem("AnimeAmount of Animes") === null) {
-    // window.alert("Welcome to Matt's Weeb Simulator! owo");
-//     document.getElementById('textAreaId').innerHTML = "Youve just graduated college. You come home, exhausted, wanting to relax. Opening your laptop, you see your netflix subscription is still running \n" +
-// "You open it up through instinct, however you've watched all there is to be watched. Howevver, something in the bottom left sticks out of your recommended. \n" +
-// "My Hero Acadamia. Curious, you click it, telling yourself that its just a cartoon and youll probably lose interest soon. You were wrong. Your journey begins. \n" +
-// "Welcome to Weeb simulator, fellow degenerate.";
- // + document.getElementById('textAreaId').innerHTML;
-//   } else {
-//     // window.alert("Welcome back Onii-Chan! uwu");
-//     document.getElementById('textAreaId').innerHTML =
-// "Youve just graduated college. You come home, exhausted, wanting to relax. Opening your laptop, you see your netflix subscription is still running \n" +
-// "You open it up through instinct, however you've watched all there is to be watched. Howevver, something in the bottom left sticks out of your recommended. \n" +
-// "My Hero Acadamia. Curious, you click it, telling yourself that its just a cartoon and youll probably lose interest soon. You were wrong. Your journey begins. \n" +
-// "Welcome to Weeb simulator, fellow degenerate."
-//  + document.getElementById('textAreaId').innerHTML;
-//   }
+  // window.alert("Welcome to Matt's Weeb Simulator! owo");
+  //     document.getElementById('textAreaId').innerHTML = "Youve just graduated college. You come home, exhausted, wanting to relax. Opening your laptop, you see your netflix subscription is still running \n" +
+  // "You open it up through instinct, however you've watched all there is to be watched. Howevver, something in the bottom left sticks out of your recommended. \n" +
+  // "My Hero Acadamia. Curious, you click it, telling yourself that its just a cartoon and youll probably lose interest soon. You were wrong. Your journey begins. \n" +
+  // "Welcome to Weeb simulator, fellow degenerate.";
+  // + document.getElementById('textAreaId').innerHTML;
+  //   } else {
+  //     // window.alert("Welcome back Onii-Chan! uwu");
+  //     document.getElementById('textAreaId').innerHTML =
+  // "Youve just graduated college. You come home, exhausted, wanting to relax. Opening your laptop, you see your netflix subscription is still running \n" +
+  // "You open it up through instinct, however you've watched all there is to be watched. Howevver, something in the bottom left sticks out of your recommended. \n" +
+  // "My Hero Acadamia. Curious, you click it, telling yourself that its just a cartoon and youll probably lose interest soon. You were wrong. Your journey begins. \n" +
+  // "Welcome to Weeb simulator, fellow degenerate."
+  //  + document.getElementById('textAreaId').innerHTML;
+  //   }
 }
 
 // window.onload = welcomeBack();
