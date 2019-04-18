@@ -27,7 +27,7 @@ var animeArray = [
 
 var jobArray = [ //first array accesses which job. [1]=boolean if unlocked, [2]=Amount it increments by, [3]=Description, [4]=Skill requirements
 ["name", "unlocked", "effect", "desc", "1,2", "image"], //skills use , as breaks
-["Government Allowance", false, 1, "Why even bother getting a job when the government gives out free money?", "1,2", "degenerate.png"],
+["Government Allowance", false, 0.001, "Why even bother getting a job when the government gives out free money?", "1,2", "degenerate.png"],
 ["Avid Fan", false, 0.002, "6 episodes of anime before breakfast? Maybe my priorities are a bit wonky.", "2", "avid_fan.png"],
 ["Fan Subber", false, 0.006, "I wonder if I can put this on my resume?", "3", "fan_subber.png"],
 ["Anime Reviewer", false, 0.012, "Your taste is objectively trash, the counsil has decided.", "3,4", "anime_reviewer.png"],
