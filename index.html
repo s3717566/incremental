@@ -1,77 +1,102 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-  <link rel="stylesheet" href="stylesheet.css" />
-  <link
-  href="https://fonts.googleapis.com/css?family=Rubik"
-  rel="stylesheet"
-  />
-  <script src="script.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script
-  language="javascript"
-  type="text/javascript"
-  ></script>
-  <title>Weeaboo Simulator</title>
-</head>
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link rel="stylesheet" href="stylesheet.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Rubik"
+      rel="stylesheet"
+    />
+    <script src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript"></script>
+    <title>Weeaboo Simulator</title>
+  </head>
 
-<body class="textstyle smalltext" onload="loadNames()">
-  <main>
-    <div id="page_container">
-      <!-- purpose is to be flex (left to right) and hold left container, middle container, and right container. -->
-      <div class="side_containers" id="left_container">
-        <div id="jobs">
-          <span class="divHeading">JOBS</span>
+  <body class="textstyle smalltext" onload="loadNames()">
+    <main>
+      <div id="page_container">
+        <!-- purpose is to be flex (left to right) and hold left container, middle container, and right container. -->
+        <div class="side_containers" id="left_container">
+          <div id="jobs">
+            <span class="divHeading">JOBS</span>
+          </div>
+
+          <div id="merch">
+            <span class="divHeading">MERCH</span>
+          </div>
         </div>
 
-        <div id="merch">
-          <span class="divHeading">MERCH</span>
-        </div>
-      </div>
-
-      <div id="middle_container">
-        <div id="clickerButtons">
-          <span>Watch anime!</span><br />
-          <!--<img id="incrementor" src="media/watchanimebutton.png" onclick="Increment()" /> -->
-          <img
-          class="GenreButtons"
-          src="media/shounen_button.png"
-          onclick="buttonIncrement('ShounenAmount')"
-          />
-          <img
-          class="GenreButtons"
-          src="media/romance_button.png"
-          onclick="buttonIncrement('RomanceAmount')"
-          />
-          <img
-          class="GenreButtons"
-          src="media/sliceoflife_button.png"
-          onclick="buttonIncrement('SliceOfLifeAmount')"
-          />
-          <img
-          class="GenreButtons"
-          src="media/isekai_button.png"
-          onclick="buttonIncrement('IsekaiAmount')"
-          />
-        </div>
-        <div>
-          <div id="divSeen">
-            <label>Shounen seen: </label>
-            <input class="inputAmountText" type="text" readonly value="0" id="ShounenAmountText"/>
-            <br />
-            <label>Romance seen: </label>
-            <input class="inputAmountText" type="text" readonly value="0" id="RomanceAmountText" />
-            <br />
-            <label>Slice Of Life seen: </label >
-              <input class="inputAmountText" type="text" readonly value="0" id="SliceOfLifeAmountText" />
+        <div id="middle_container">
+          <div id="clickerButtons">
+            <span>Watch anime!</span><br />
+            <!--<img id="incrementor" src="media/watchanimebutton.png" onclick="Increment()" /> -->
+            <img
+              class="GenreButtons"
+              src="media/shounen_button.png"
+              onclick="buttonIncrement('ShounenAmount')"
+            />
+            <img
+              class="GenreButtons"
+              src="media/romance_button.png"
+              onclick="buttonIncrement('RomanceAmount')"
+            />
+            <img
+              class="GenreButtons"
+              src="media/sliceoflife_button.png"
+              onclick="buttonIncrement('SliceOfLifeAmount')"
+            />
+            <img
+              class="GenreButtons"
+              src="media/isekai_button.png"
+              onclick="buttonIncrement('IsekaiAmount')"
+            />
+          </div>
+          <div>
+            <div id="divSeen">
+              <label>Shounen seen: </label>
+              <input
+                class="inputAmountText"
+                type="text"
+                readonly
+                value="0"
+                id="ShounenAmountText"
+              />
+              <br />
+              <label>Romance seen: </label>
+              <input
+                class="inputAmountText"
+                type="text"
+                readonly
+                value="0"
+                id="RomanceAmountText"
+              />
+              <br />
+              <label>Slice Of Life seen: </label>
+              <input
+                class="inputAmountText"
+                type="text"
+                readonly
+                value="0"
+                id="SliceOfLifeAmountText"
+              />
               <br />
               <label>Isekai seen: </label>
-              <input class="inputAmountText" type="text" readonly value="0" id="IsekaiAmountText" />
+              <input
+                class="inputAmountText"
+                type="text"
+                readonly
+                value="0"
+                id="IsekaiAmountText"
+              />
             </div>
           </div>
-          <br>
-          <label>Total anime seen: </label><input type="text" readonly value="0" id="TotalAnimeAmountText" />
+          <br />
+          <label>Total anime seen: </label
+          ><input type="text" readonly value="0" id="TotalAnimeAmountText" />
           <br />
           <div>
             <label>Current balance: </label>
@@ -81,20 +106,15 @@
           </div>
 
           <div>
-            <textarea id="textAreaId" onLoad="welcomeBack()" readonly>
+            <textarea id="textAreaId" onLoad="welcomeBack()" readonly>Youve just graduated college. You come home, exhausted, wanting to relax. Opening your laptop, you see your netflix subscription is still running.
 
-              Youve just graduated college. You come home, exhausted, wanting to relax. Opening your laptop, you see your netflix subscription is still running.
-
-              You open it up through instinct, however you've watched all there is to be watched. Howevver, something in the bottom left sticks out of your recommended.
-
-              My Hero Acadamia. Curious, you click it, telling yourself that its just a cartoon and youll probably lose interest soon. You were wrong. Your journey begins.
-
-              Welcome to Weeb simulator, fellow degenerate.
+You open it up through instinct, however you've watched all there is to be watched. Howevver, something in the bottom left sticks out of your recommended.
+            
+My Hero Acadamia. Curious, you click it, telling yourself that its just a cartoon and youll probably lose interest soon. You were wrong. Your journey begins.
+            
+Welcome to Weeb simulator, fellow degenerate.
             </textarea>
-
           </div>
-
-
 
           CURRENT WAIFU
           <div id="CurrentWaifuDiv"></div>
@@ -104,35 +124,34 @@
         <div class="side_containers" id="right_container">
           <div id="skills">
             <span class="divHeading">SKILLS</span>
-
           </div>
 
           <div id="waifus">
             <span class="divHeading">WAIFUS</span>
             <br />
             <img
-            class="WaifuButtons"
-            src="media/YAOMOMO.png"
-            onclick="changeWaifu('YAOMOMO.png')"
+              class="WaifuButtons"
+              src="media/YAOMOMO.png"
+              onclick="changeWaifu('YAOMOMO.png')"
             />
             <img
-            class="WaifuButtons"
-            src="media/FUTABA.PNG"
-            onclick="changeWaifu('FUTABA.PNG')"
+              class="WaifuButtons"
+              src="media/FUTABA.PNG"
+              onclick="changeWaifu('FUTABA.PNG')"
             />
             <img
-            class="WaifuButtons"
-            src="media/ANNA.png"
-            onclick="changeWaifu('ANNA.png')"
+              class="WaifuButtons"
+              src="media/ANNA.png"
+              onclick="changeWaifu('ANNA.png')"
             />
             <img
-            class="WaifuButtons"
-            src="media/MILIM.jpg"
-            onclick="changeWaifu('MILIM.jpg')"
+              class="WaifuButtons"
+              src="media/MILIM.jpg"
+              onclick="changeWaifu('MILIM.jpg')"
             />
           </div>
         </div>
       </div>
     </main>
   </body>
-  </html>
+</html>

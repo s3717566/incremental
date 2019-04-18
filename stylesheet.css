@@ -131,7 +131,6 @@ input[type=button] {
 }
 
 .innerJobDiv {
-  position: relative;
   width: calc(100% - 20px);
   height: 10vh;
   border-radius: 15px;
@@ -157,20 +156,19 @@ input[type=button] {
 }
 
 .jobTitle {
-  float: left;
-  font-size: 1em;
+  font-size: 0.8em;
   margin: 2px;
   height: 49.99%;
   width: 80%;
+  padding-left: 75px;
 }
 
 .jobReq {
   margin: 0px;
-  font-size: .6em;
+  font-size: .5em;
   color: #4c9366;
   height: 49.99%;
   font-weight: bold;
-  float: right;
   padding-top: 5px;
   padding-right: 10px;
 }
@@ -262,6 +260,7 @@ textarea {
   padding: 0;
   border: none;
   border-radius: 2%;
+  resize: none;
 }
 
 #jobs, #skills, #merch {
