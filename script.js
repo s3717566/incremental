@@ -16,18 +16,25 @@ var intro3 = true;
 var intro4 = true;
 var intro5 = true;
 
+var animeArray = [
+["name", "amount", "increment"],
+["Shounen", 0, 0],
+["Romance", 0, 0],
+["SliceOfLife", 0, 0],
+["Isekai", 0, 0]
 
+]
 
 var jobArray = [ //first array accesses which job. [1]=boolean if unlocked, [2]=Amount it increments by, [3]=Description, [4]=Skill requirements
 ["name", "unlocked", "effect", "desc", "1,2", "image"], //skills use , as breaks
-["Casual fan", false, 0.001, "Man, these chinese cartoons really are something. I hope my friends dont find out what I watch.", "1", "degenerate.png"],
-["Avid Fan", false, 0.003, "6 episodes of anime before breakfast? Maybe my priorities are a bit wonky.", "2", "avid_fan.png"],
+["Government Allowance", false, 1, "Why even bother getting a job when the government gives out free money?", "1,2", "degenerate.png"],
+["Avid Fan", false, 0.002, "6 episodes of anime before breakfast? Maybe my priorities are a bit wonky.", "2", "avid_fan.png"],
 ["Fan Subber", false, 0.006, "I wonder if I can put this on my resume?", "3", "fan_subber.png"],
 ["Anime Reviewer", false, 0.012, "Your taste is objectively trash, the counsil has decided.", "3,4", "anime_reviewer.png"],
-["McGronalds Employee", false, 0.02, "meme3", "4,5", "mcgronalds_employee.png"],
-["McGronalds Manager", false, 0.5, "meme3", "4,6", "mcgronalds_manager.png"],
-["Anime Youtuber", false, 1.5, "meme3", "5", "anime_youtuber.png"],
-["Dub Voice Actor",  false, 4, "meme3", "5", "dub_voice_actor.png"],
+["McGronalds Employee", false, 0.02, "The first step into taking over the world.", "4,5", "mcgronalds_employee.png"],
+["McGronalds Manager", false, 0.5, '"haha, this doesnt mean im going to work the rest of my life in fastfood, right?"', "4,6", "mcgronalds_manager.png"],
+["Anime Youtuber", false, 1.5, "My literal entire income comes from patreon as youtube keeps demonotising me.", "5", "anime_youtuber.png"],
+["Dub Voice Actor",  false, 4, "Dubs not subs.", "5", "dub_voice_actor.png"],
 ["Manga Artist", false, 10, "meme3", "6", "manga_artist.png"],
 ["Professional Animator", false, 35, "meme3", "6", "professional_animator.png"],
 ["Nihon Overlord", false, 100, "meme3", "7", "nihon_overlord.png"],
@@ -61,14 +68,6 @@ function introduction() {
   document.getElementById('merch').style.visibility = "hidden";
   document.getElementById('skills').style.visibility = "hidden";
   document.getElementById('waifus').style.visibility = "hidden";
-  // while (intro == true)
-  // {
-  //   if (TotalAnimeAmount = 1)
-  //   {
-  //     document.getElementById('textAreaId').innerHTML = "Hello";
-  //   }
-  // }
-
 }
 
 function loadNames() {
@@ -89,11 +88,20 @@ function loadNames() {
     document.getElementById('skill' + i + 'Title').innerHTML = skillArray[i][0];
   }
 
+  for (i = 1; i < merchArray.length; i++) {
+    document.getElementById('merchQty' + i).innerHTML = merchArray[i][3];
+  }
+
+  for (i = 1; i < merchArray.length; i++) {
+    merchArray[i][2] = merchArray[i][1] + (merchArray[i][3] * merchArray[i][1] * 0.2);
+    document.getElementById("merchCost" + i).innerHTML = "$" + merchArray[i][2].toFixed(2);
+  }
+
   loadJobReqs();
   loadSkillReqs();
 
 
-  update(); //stops page from "not having the Qty's until a button is pressed" problem.
+  updateGUI(); //stops page from "not having the Qty's until a button is pressed" problem.
 }
 
 function createJobDivsCreateElement() {
@@ -196,7 +204,7 @@ function createSkillsDivsCreateElement() {
   }
 }
 
-function update() {
+function updateGUI() {
 
   document.getElementById("ShounenAmountText").value = ShounenAmount.toFixed(0); //can't make dynamic with genre.toFixed(0). Need to figure out how to use the argument as a reference to the variable.
   document.getElementById("RomanceAmountText").value = RomanceAmount.toFixed(0);
@@ -208,15 +216,13 @@ function update() {
 
   document.getElementById('MoneyAmountText').value = "$" + parseFloat(MoneyAmount).toFixed(2);
 
-  for (i = 1; i < merchArray.length; i++) {
-    document.getElementById('merchQty' + i).innerHTML = merchArray[i][3];
+  if (intro5 == true)
+  {
+    initialText();
   }
+}
 
-  for (i = 1; i < merchArray.length; i++) {
-    merchArray[i][2] = merchArray[i][1] + (merchArray[i][3] * merchArray[i][1] * 0.2);
-    document.getElementById("merchCost" + i).innerHTML = "$" + merchArray[i][2].toFixed(2);
-  }
-
+function initialText() {
   if (intro1 == true)
   {
     // document.getElementById('textAreaId').innerHTML = "Click the buttons up top to watch anime!";
@@ -272,7 +278,7 @@ if (intro5 == true)
 }
 
 function timer() {
-  update();
+  updateGUI();
   // waifuBonus();
   checkSkillReq();
   checkJobReq();
@@ -299,7 +305,7 @@ function buttonIncrement(genre) {
     IsekaiAmount++;
     break;
   }
-  update();
+  updateGUI();
 }
 
 function moneyFromJobs()  {
@@ -498,7 +504,7 @@ function load() {
   jobArray[3][3] = localStorage.getItem("job3qty");
   jobArray[3][3] = parseInt(jobArray[3][3]);
 
-  update();
+  updateGUI();
 }
 
 function loadJobReqs() {
@@ -553,8 +559,10 @@ function buyMerch(i) {
   if (MoneyAmount >= merchArray[i][2]) { //if you have more animes than the current price needed, u can buy it
     MoneyAmount = MoneyAmount - merchArray[i][2];
     merchArray[i][3] += 1; //changes qty of jobArray[1][3]'s
-    merchArray[i][2] += (merchArray[i][1] * 0.2);
-    update();
+    merchArray[i][2] = merchArray[i][1] + (merchArray[i][3] * merchArray[i][1] * 0.2);
+    document.getElementById("merchCost" + i).innerHTML = "$" + merchArray[i][2].toFixed(2);
+    document.getElementById('merchQty' + i).innerHTML = merchArray[i][3];
+    updateGUI();
   }
 }
 
