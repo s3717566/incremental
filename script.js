@@ -25,6 +25,8 @@ var animeArray = [
 
 ]
 
+var dark = 0;
+
 var jobArray = [ //first array accesses which job. [1]=boolean if unlocked, [2]=Amount it increments by, [3]=Description, [4]=Skill requirements
 ["name", "unlocked", "effect", "desc", "1,2", "image"], //skills use , as breaks
 ["Government Allowance", false, 0.001, "Why even bother getting a job when the government gives out free money?", "1,2", "degenerate.png"],
@@ -595,6 +597,20 @@ function changeWaifu(Waifu) {
 //     break;
 //   }
 // }
+
+function darkmode() {
+  if (dark == 0) {
+    document.documentElement.style.setProperty('--main-bg-color', "#353C51");
+    document.documentElement.style.setProperty('--second-bg-color', "#152642");
+    document.documentElement.style.setProperty('--main-font-color', '#767D92');
+    dark = 1;
+  } else {
+    document.documentElement.style.setProperty('--main-bg-color', "#ffd3f1");
+    document.documentElement.style.setProperty('--second-bg-color', "#e0bed5");
+    document.documentElement.style.setProperty('--main-font-color', '#000000');
+    dark = 0;
+  }
+}
 
 function welcomeBack() {
   // if (localStorage.getItem("AnimeAmount of Animes") === null) {

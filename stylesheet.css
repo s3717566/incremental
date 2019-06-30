@@ -1,11 +1,18 @@
+:root {
+  --main-bg-color: #ffd3f1;
+  --second-bg-color: #e0bed5;
+  --main-font-color: #000000;
+}
+
 body {
-  background-color: #ffd3f1;
+  background-color: var(--main-bg-color);
   -webkit-user-select: none;
   /* Chrome/Safari */
   -moz-user-select: none;
   /* Firefox */
   -ms-user-select: none;
   /* IE10+ */
+  color: var(--main-font-color);
 }
 
 .textstyle {
@@ -131,10 +138,11 @@ input[type=button] {
 }
 
 .innerJobDiv {
+  position: relative;
   width: calc(100% - 20px);
   height: 10vh;
   border-radius: 15px;
-  background-color: #e0bed5;
+  background-color: var(--second-bg-color);
   margin-left: 10px;
   margin-bottom: 10px;
   /* min-height: 20%; */
@@ -156,6 +164,7 @@ input[type=button] {
 }
 
 .jobTitle {
+  float: left;
   font-size: 0.8em;
   margin: 2px;
   height: 49.99%;
@@ -169,6 +178,7 @@ input[type=button] {
   color: #4c9366;
   height: 49.99%;
   font-weight: bold;
+  float: right;
   padding-top: 5px;
   padding-right: 10px;
 }
@@ -203,7 +213,7 @@ input[type=button] {
 #storyDiv {
   width: 50vw;
   height: 20%;
-  background-color: #e0bed5;
+  background-color: var(--second-bg-color);
   position: relative;
   bottom: 10px;
 }
@@ -216,7 +226,7 @@ input[type=button] {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background-color: #e0bed5;
+  background-color: var(--second-bg-color);
   border-radius: 5px;
 }
 
@@ -227,7 +237,7 @@ input[type=button] {
 }
 
 #clickerButtons {
-  background-color: #e0bed5;
+  background-color: var(--second-bg-color);
   margin-top: 5%;
   width: 60%;
   display: inline-block;
@@ -247,12 +257,14 @@ input[type=button] {
 
 .inputAmountText {
   font-size: .7em;
+  color: var(--main-font-color);
 }
 
 textarea {
   width: 94.95%;
   display: block;
-  background-color: #e0bed5;
+  background-color: var(--second-bg-color);
+  color: var(--main-font-color);
   min-height: 30vh;
   font-size: 1em;
   margin-left: 2.5%;
