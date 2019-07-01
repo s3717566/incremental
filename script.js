@@ -43,14 +43,14 @@ var jobArray = [ //first array accesses which job. [1]=boolean if unlocked, [2]=
 ]
 
 var skillArray = [ //jobs have skill requirements which will be checked per tick. First array accesses which skill. [1]=Requirement, [2]=boolean if unlocked, [3]=description.
-["name", "animeReq", "unlocked", "desc", "image"],
-["Free Time", "10-Total", false, "The start of the descent into madness...", "some_free_time.png"], //For test purposes! 10 Shounen required.
-["Learning Jap", "10-Shounen,10-Romance,10-SliceOfLife,10-Isekai", false, "WATASHI GA KITA!", "learning_japanese_from_subs.png"],
-["Man of Culture", "0-Shounen,20-Romance,20-SliceOfLife,0-Isekai", false, "Ah, I see you understand this meme too.", "man_of_culture.png"],
-["Tons of Free Time", "50-Shounen,0-Romance,50-SliceOfLife,0-Isekai", false, "You can't go back. 19 years of your life, gone like that.", "tons_of_free_time.png"],
-["200 IQ", "100-Shounen,255-Romance,300-SliceOfLife,295-Isekai", false, "You can feel your head physically growing in size for your big brain.", "200IQ.png"],
-["Weeb Status", "500-Shounen,501-Romance,502-SliceOfLife,503-Isekai", false, "Embrace it; you're one of us now.", "weeb_status.png"],
-["Political Power", "1000-Shounen, 1000-Romance, 1000-SliceOfLife, 1000-Isekai", false, "You don't know anything about politics, but you know enough about anime to become the ruler of Japan.", "political_power.png"],
+["name", "animeReq", "unlocked", "desc", "image", "unlocked"],
+["Free Time", "10-Total", false, "The start of the descent into madness...", "some_free_time.png", false], //For test purposes! 10 Shounen required.
+["Learning Jap", "10-Shounen,10-Romance,10-SliceOfLife,10-Isekai", false, "WATASHI GA KITA!", "learning_japanese_from_subs.png", false],
+["Man of Culture", "0-Shounen,20-Romance,20-SliceOfLife,0-Isekai", false, "Ah, I see you understand this meme too.", "man_of_culture.png", false],
+["Tons of Free Time", "50-Shounen,0-Romance,50-SliceOfLife,0-Isekai", false, "You can't go back. 19 years of your life, gone like that.", "tons_of_free_time.png", false],
+["200 IQ", "100-Shounen,255-Romance,300-SliceOfLife,295-Isekai", false, "You can feel your head physically growing in size for your big brain.", "200IQ.png", false],
+["Weeb Status", "500-Shounen,501-Romance,502-SliceOfLife,503-Isekai", false, "Embrace it; you're one of us now.", "weeb_status.png", false],
+["Political Power", "1000-Shounen, 1000-Romance, 1000-SliceOfLife, 1000-Isekai", false, "You don't know anything about politics, but you know enough about anime to become the ruler of Japan.", "political_power.png", false],
 ]
 
 var merchArray = [ //first array accesses which job. [1]=Initial, [2]=CurrentPrice, [3]=Job Qty, [4]=Amount job increments by per tick
@@ -599,15 +599,18 @@ function changeWaifu(Waifu) {
 // }
 
 function darkmode() {
-  if (dark == 0) {
+  if (document.getElementById("darkmode").innerHTML == "dark mode") {
     document.documentElement.style.setProperty('--main-bg-color', "#353C51");
     document.documentElement.style.setProperty('--second-bg-color', "#152642");
     document.documentElement.style.setProperty('--main-font-color', '#767D92');
+    document.getElementById('darkmode').innerHTML = "light mode";
     dark = 1;
   } else {
     document.documentElement.style.setProperty('--main-bg-color', "#ffd3f1");
     document.documentElement.style.setProperty('--second-bg-color', "#e0bed5");
     document.documentElement.style.setProperty('--main-font-color', '#000000');
+    document.getElementById("darkmode").innerHTML = "dark mode";
+
     dark = 0;
   }
 }
