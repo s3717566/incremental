@@ -1,70 +1,3 @@
-var ShounenAmount = 0;
-var RomanceAmount = 0;
-var SliceOfLifeAmount = 0;
-var IsekaiAmount = 0;
-var TotalAnimeAmount = 0;
-var MoneyAmount = 0;
-
-var ShounenAmountIncrement = 0;
-var RomanceAmountIncrement = 0;
-var SliceOfLifeAmountIncrement = 0;
-var IsekaiAmountIncrement = 0;
-
-var intro1 = true;
-var intro2 = true;
-var intro3 = true;
-var intro4 = true;
-var intro5 = true;
-
-var animeArray = [
-["name", "amount", "increment"],
-["Shounen", 0, 0],
-["Romance", 0, 0],
-["SliceOfLife", 0, 0],
-["Isekai", 0, 0]
-
-]
-
-var dark = 0;
-
-var jobArray = [ //first array accesses which job. [1]=boolean if unlocked, [2]=Amount it increments by, [3]=Description, [4]=Skill requirements
-["name", "unlocked", "effect", "desc", "1,2", "image"], //skills use , as breaks
-["Government Allowance", false, 0.001, "Why even bother getting a job when the government gives out free money?", "1,2", "degenerate.png"],
-["Avid Fan", false, 0.002, "6 episodes of anime before breakfast? Maybe my priorities are a bit wonky.", "2", "avid_fan.png"],
-["Fan Subber", false, 0.006, "I wonder if I can put this on my resume?", "3", "fan_subber.png"],
-["Anime Reviewer", false, 0.012, "Your taste is objectively trash, the counsil has decided.", "3,4", "anime_reviewer.png"],
-["McGronalds Employee", false, 0.02, "The first step into taking over the world.", "4,5", "mcgronalds_employee.png"],
-["McGronalds Manager", false, 0.5, '"haha, this doesnt mean im going to work the rest of my life in fastfood, right?"', "4,6", "mcgronalds_manager.png"],
-["Anime Youtuber", false, 1.5, "My literal entire income comes from patreon as youtube keeps demonotising me.", "5", "anime_youtuber.png"],
-["Dub Voice Actor",  false, 4, "Dubs not subs.", "5", "dub_voice_actor.png"],
-["Manga Artist", false, 10, "meme3", "6", "manga_artist.png"],
-["Professional Animator", false, 35, "meme3", "6", "professional_animator.png"],
-["Nihon Overlord", false, 100, "meme3", "7", "nihon_overlord.png"],
-]
-
-var skillArray = [ //jobs have skill requirements which will be checked per tick. First array accesses which skill. [1]=Requirement, [2]=boolean if unlocked, [3]=description.
-["name", "animeReq", "unlocked", "desc", "image", "unlocked"],
-["Free Time", "10-Total", false, "The start of the descent into madness...", "some_free_time.png", false], //For test purposes! 10 Shounen required.
-["Learning Jap", "10-Shounen,10-Romance,10-SliceOfLife,10-Isekai", false, "WATASHI GA KITA!", "learning_japanese_from_subs.png", false],
-["Man of Culture", "0-Shounen,20-Romance,20-SliceOfLife,0-Isekai", false, "Ah, I see you understand this meme too.", "man_of_culture.png", false],
-["Tons of Free Time", "50-Shounen,0-Romance,50-SliceOfLife,0-Isekai", false, "You can't go back. 19 years of your life, gone like that.", "tons_of_free_time.png", false],
-["200 IQ", "100-Shounen,255-Romance,300-SliceOfLife,295-Isekai", false, "You can feel your head physically growing in size for your big brain.", "200IQ.png", false],
-["Weeb Status", "500-Shounen,501-Romance,502-SliceOfLife,503-Isekai", false, "Embrace it; you're one of us now.", "weeb_status.png", false],
-["Political Power", "1000-Shounen, 1000-Romance, 1000-SliceOfLife, 1000-Isekai", false, "You don't know anything about politics, but you know enough about anime to become the ruler of Japan.", "political_power.png", false],
-]
-
-var merchArray = [ //first array accesses which job. [1]=Initial, [2]=CurrentPrice, [3]=Job Qty, [4]=Amount job increments by per tick
-["name", "initialPrice", "currentPrice", "qty", "effect", "desc"], //todo: add skill requirements
-["Key Chain", .5, 0, 0, 0.03, "meme", "Shounen" ],
-["Body Pillow", .5, 0, 0, 0.03, "meme", "Romance"],
-["Taiga Aisaka Figurine", .5, 0, 0, 0.03, "meme", "SliceOfLife"],
-["Katana", .5, 0, 0, 0.03, "meme", "Isekai"],
-["Wall Scroll", 25, 0, 0, 0.2, "meme2", "Romance"],
-["Megumin Figurine", 60, 0, 0, 0.7, "meme3", "SliceOfLife"],
-["Love-Live Cardboard Cutout", 200, 0, 0, 1.5, "meme4", "Isekai"],
-["1:1 Scale Shiro", 800, 0, 0, 5, "meme5", "Shounen"],
-]
-
 function introduction() {
   document.getElementById('jobs').style.visibility = "hidden";
   document.getElementById('merch').style.visibility = "hidden";
@@ -72,8 +5,21 @@ function introduction() {
   document.getElementById('waifus').style.visibility = "hidden";
 }
 
+function populateButtons() {
+  for (i = 0; i < animeArray.length; i++) {
+    var animeImgJS = document.createElement('img');
+        animeImgJS.setAttribute('id', animeArray[i][0] + 'ID');
+        animeImgJS.setAttribute('class', 'GenreButtons');
+        animeImgJS.setAttribute('src', 'media/' + animeArray[i][0] + '_button.png');
+        animeImgJS.setAttribute('onclick', "buttonIncrement('" +  animeArray[i][0] + "Amount')");
+        animeImgJS.style.visibility = "visible";
+        document.getElementById('clickerButtons').appendChild(animeImgJS);
+  }
+}
+
 function loadNames() {
   introduction();
+  populateButtons();
   createJobDivsCreateElement();
   createMerchDivsCreateElement();
   createSkillsDivsCreateElement();
@@ -376,137 +322,6 @@ function increment()
   RomanceAmount += RomanceAmountIncrement;
   SliceOfLifeAmount += SliceOfLifeAmountIncrement;
   IsekaiAmount += IsekaiAmountIncrement;
-
-}
-
-function checkSkillReq() { //Note: Create method called 'loadSkills()' for future.
-  var exit = false;
-  for (i = 1; i < skillArray.length; i++) //loops 5 times currently.
-  {
-    var requiredCounter = 0; //used to count if player has the required amount for a skill (look at switch statement for use).
-    if (skillArray[i][2] == true)
-    {
-      continue; //no need to check for skills that are already unlocked
-    }
-
-    var totalSkillReqs = skillArray[i][1];
-    var genres = totalSkillReqs.split(',');
-
-    for (x = 0; x < genres.length; x++) //loops through the genres array. E.g. for 10-Shounen,5-Isekai, it will loop twice.
-    {
-      switch (genres[x].substring(genres[x].indexOf("-") + 1)) //E.g. for 10-Shounen, the switch argument is "Shounen".
-      {
-        case ('Shounen'):
-        var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-"))) //E.g. for 10-Shounen, numberReq = 10;
-        if (ShounenAmount >= numberReq) {
-          requiredCounter++;
-        }
-        break;
-
-        case ('Romance'):
-        var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-")))
-        if (RomanceAmount >= numberReq) {
-          requiredCounter++;
-        }
-        break;
-
-        case ('SliceOfLife'):
-        var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-")))
-        if (SliceOfLifeAmount >= numberReq) {
-          requiredCounter++;
-        }
-        break;
-
-        case ('Isekai'):
-        var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-")))
-        if (IsekaiAmount >= numberReq) {
-          requiredCounter++;
-        }
-        break;
-
-        case ('Total'):
-        var numberReq = parseInt(genres[x].substring(0, genres[x].indexOf("-"))) //E.g. for 10-Shounen, numberReq = 10;
-        if (TotalAnimeAmount >= numberReq) {
-          requiredCounter++;
-        }
-        break;
-      }
-
-      if (requiredCounter == genres.length) //If the counter = genres.length, it means all genres have met their requirement and thus, the skill is unlocked.
-      {
-        skillArray[i][2] = true;
-        document.getElementById("skill" + i + "Req").innerHTML = skillArray[i][3];
-        document.getElementById("skill" + i + "Req").style.color = "red";
-        document.getElementById('textAreaId').innerHTML = "Unlocked " + skillArray[i][0] + "\n" + skillArray[i][3] + '\n\n' + document.getElementById('textAreaId').innerHTML;
-        exit = true;
-      }
-    }
-
-    if (exit == true)
-    {
-      break;
-    }
-  }
-}
-
-function checkJobReq() {
-  var exit = false;
-  for (i = 1; i < jobArray.length; i++)
-  {
-    var requiredCounter = 0; //same use as in the checkSkillReq() function
-    if (jobArray[i][1] == true)
-    {
-      continue;
-    }
-
-    var totalJobReqs = jobArray[i][4];
-    var skillsRequired = totalJobReqs.split(',');
-
-    for (x = 0; x < skillsRequired.length; x++) //Example: For "1,3" will loop twice. skillsRequired[0] = 1 and skillsRequired[1] = 3.
-    {
-      if (skillArray[skillsRequired[x]][2] == true)
-      {
-        requiredCounter++;
-      }
-
-      if (requiredCounter == skillsRequired.length)
-      {
-        jobArray[i][1] = true;
-        document.getElementById('jobQty' + i).innerHTML = "UNLOCKED!";
-        document.getElementById('textAreaId').innerHTML = "Unlocked " + jobArray[i][0] + "\n" + jobArray[i][3] + '\n\n' + document.getElementById('textAreaId').innerHTML;
-        exit = true;
-      }
-    }
-
-    if (exit == true)
-    {
-      break;
-    }
-  }
-}
-
-function save() {
-  localStorage.setItem("AnimeAmount of Animes", AnimeAmount);
-  localStorage.setItem("job1qty", jobArray[1][3]);
-  localStorage.setItem("job2qty", jobArray[2][3]);
-  localStorage.setItem("job3qty", jobArray[3][3]);
-
-
-  // localStorage.setItem("jobQtyStorage", ) TO BE DONE
-}
-
-function load() {
-  AnimeAmount = localStorage.getItem("AnimeAmount of Animes");
-  AnimeAmount = parseInt(AnimeAmount);
-
-  jobArray[1][3] = localStorage.getItem("job1qty");
-  jobArray[1][3] = parseInt(jobArray[1][3]);
-  jobArray[2][3] = localStorage.getItem("job2qty");
-  jobArray[2][3] = parseInt(jobArray[2][3]);
-  jobArray[3][3] = localStorage.getItem("job3qty");
-  jobArray[3][3] = parseInt(jobArray[3][3]);
-
-  updateGUI();
 }
 
 function loadJobReqs() {
@@ -543,11 +358,16 @@ function loadSkillReqs()  {
 
     for (x = 0; x < genres.length; x++)
     {
-      htmlLine += genres[x].substring(0, genres[x].indexOf("-")) + " " + genres[x].substring(genres[x].indexOf("-") + 1);
-      if (x != genres.length - 1)
+      if (parseInt(genres[x].substring(0, genres[x].indexOf("-"))) > 0) //dont print reqs with 0
       {
-        htmlLine += " + ";
+        if (x != 0 && htmlLine != "")
+        {
+          htmlLine += " + ";
+        }
+        htmlLine += genres[x].substring(0, genres[x].indexOf("-")) + " " + genres[x].substring(genres[x].indexOf("-") + 1);
+
       }
+
     }
     skillsID.innerHTML = htmlLine;
     if (i == skillArray.length - 1)
@@ -604,14 +424,11 @@ function darkmode() {
     document.documentElement.style.setProperty('--second-bg-color', "#152642");
     document.documentElement.style.setProperty('--main-font-color', '#767D92');
     document.getElementById('darkmode').innerHTML = "light mode";
-    dark = 1;
   } else {
     document.documentElement.style.setProperty('--main-bg-color', "#ffd3f1");
     document.documentElement.style.setProperty('--second-bg-color', "#e0bed5");
     document.documentElement.style.setProperty('--main-font-color', '#000000');
     document.getElementById("darkmode").innerHTML = "dark mode";
-
-    dark = 0;
   }
 }
 
