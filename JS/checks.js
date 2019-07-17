@@ -103,3 +103,11 @@ function checkJobReq() {
     }
   }
 }
+
+function checkAnimeButtonReq() {
+  for (i = 1; i < animeArray.length; i++) {
+    if (animeArray[i][3] <= TotalAnimeAmount) {
+      document.getElementById(animeArray[i][0] + 'ID').style.visibility = "visible";
+    }
+  }
+}

@@ -12,7 +12,7 @@ function populateButtons() {
         animeImgJS.setAttribute('class', 'GenreButtons');
         animeImgJS.setAttribute('src', 'media/' + animeArray[i][0] + '_button.png');
         animeImgJS.setAttribute('onclick', "buttonIncrement('" +  animeArray[i][0] + "Amount')");
-        animeImgJS.style.visibility = "visible";
+        animeImgJS.style.visibility = "hidden";
         document.getElementById('clickerButtons').appendChild(animeImgJS);
   }
 }
@@ -228,8 +228,9 @@ if (intro5 == true)
 function timer() {
   updateGUI();
   // waifuBonus();
-  checkSkillReq();
+  // checkSkillReq();
   checkJobReq();
+  checkAnimeButtonReq();
   moneyFromJobs();
   animeFromMerch();
 }
