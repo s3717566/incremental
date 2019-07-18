@@ -68,18 +68,13 @@ function createJobDivsCreateElement() {
     var jobReqJS = document.createElement('div');
     jobReqJS.setAttribute('class', 'jobReq');
 
-    var jobQtyJS = document.createElement('div');
-    jobQtyJS.setAttribute('class', 'jobQty');
-
     jobTitleJS.setAttribute('id', 'job' + i + 'Title');
     jobReqJS.setAttribute('id', 'jobCost' + i);
-    jobQtyJS.setAttribute('id', 'jobQty' + i);
     jobImgJS.setAttribute('src', 'media/' + jobArray[i][5]);
 
     innerJobDivJS.appendChild(jobImgJS);
     innerJobDivJS.appendChild(jobTitleJS);
     innerJobDivJS.appendChild(jobReqJS);
-    innerJobDivJS.appendChild(jobQtyJS);
     jobsDivJS.appendChild(innerJobDivJS);
 
   }
@@ -139,15 +134,11 @@ function createSkillsDivsCreateElement() {
 
     jobTitleJS.setAttribute('id', 'skill' + i + 'Title');
     jobReqJS.setAttribute('id', 'skill' + i + 'Req');
-    jobQtyJS.setAttribute('id', 'skillQty' + i);
-    // innerJobDivJS.setAttribute('onClick', 'buyMerch(' + i + ')');
-    // jobImgJS.setAttribute('src', 'media/' + skillArray[i][4]);
     jobImgJS.setAttribute('id', 'skill' + i + 'Img');
 
     innerJobDivJS.appendChild(jobImgJS);
     innerJobDivJS.appendChild(jobTitleJS);
     innerJobDivJS.appendChild(jobReqJS);
-    innerJobDivJS.appendChild(jobQtyJS);
     jobsDivJS.appendChild(innerJobDivJS);
   }
 }
