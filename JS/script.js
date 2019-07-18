@@ -6,7 +6,7 @@ function introduction() {
 }
 
 function populateButtons() {
-  for (i = 0; i < animeArray.length; i++) {
+  for (i = 1; i < animeArray.length; i++) {
     var animeImgJS = document.createElement('img');
         animeImgJS.setAttribute('id', animeArray[i][0] + 'ID');
         animeImgJS.setAttribute('class', 'GenreButtons');
@@ -228,7 +228,7 @@ if (intro5 == true)
 function timer() {
   updateGUI();
   // waifuBonus();
-  // checkSkillReq();
+  checkSkillReq();
   checkJobReq();
   checkAnimeButtonReq();
   moneyFromJobs();
@@ -451,5 +451,6 @@ function welcomeBack() {
   //  + document.getElementById('textAreaId').innerHTML;
   //   }
 }
+
 
 // window.onload = welcomeBack();
