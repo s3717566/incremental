@@ -13,6 +13,7 @@ function populateButtons() {
         animeImgJS.setAttribute('src', 'media/' + animeArray[i][0] + '_button.png');
         animeImgJS.setAttribute('onclick', "buttonIncrement('" +  animeArray[i][0] + "Amount')");
         animeImgJS.style.visibility = "hidden";
+
         document.getElementById('clickerButtons').appendChild(animeImgJS);
   }
 }
@@ -52,95 +53,22 @@ function loadNames() {
   updateGUI(); //stops page from "not having the Qty's until a button is pressed" problem.
 }
 
-function createJobDivsCreateElement() {
-  for (i = 1; i < jobArray.length; i++) {
-    var jobsDivJS = document.getElementById('jobs');
+function rudrSwitchTab(rudr_tab_id, rudr_tab_content) {
+	// first of all we get all tab content blocks (I think the best way to get them by class names)
+	var x = document.getElementsByClassName("tabcontent");
+	var i;
+	for (i = 0; i < x.length; i++) {
+		x[i].style.display = 'none'; // hide all tab content
+	}
+	document.getElementById(rudr_tab_content).style.display = 'block'; // display the content of the tab we need
 
-    var innerJobDivJS = document.createElement('div');
-    innerJobDivJS.setAttribute('class', 'innerJobDiv');
-
-    var jobImgJS = document.createElement('img');
-    jobImgJS.setAttribute('class', 'imgJobSmall');
-
-    var jobTitleJS = document.createElement('div');
-    jobTitleJS.setAttribute('class', 'jobTitle');
-
-    var jobReqJS = document.createElement('div');
-    jobReqJS.setAttribute('class', 'jobReq');
-
-    jobTitleJS.setAttribute('id', 'job' + i + 'Title');
-    jobReqJS.setAttribute('id', 'jobCost' + i);
-    jobImgJS.setAttribute('src', 'media/' + jobArray[i][5]);
-
-    innerJobDivJS.appendChild(jobImgJS);
-    innerJobDivJS.appendChild(jobTitleJS);
-    innerJobDivJS.appendChild(jobReqJS);
-    jobsDivJS.appendChild(innerJobDivJS);
-
-  }
-}
-
-function createMerchDivsCreateElement() {
-  for (i = 1; i < merchArray.length; i++) {
-    var jobsDivJS = document.getElementById('merch');
-
-    var innerJobDivJS = document.createElement('div');
-    innerJobDivJS.setAttribute('class', 'innerJobDiv');
-
-    var jobImgJS = document.createElement('img');
-    jobImgJS.setAttribute('class', 'imgJobSmall');
-
-    var jobTitleJS = document.createElement('div');
-    jobTitleJS.setAttribute('class', 'jobTitle');
-
-    var jobReqJS = document.createElement('div');
-    jobReqJS.setAttribute('class', 'jobReq');
-
-    var jobQtyJS = document.createElement('div');
-    jobQtyJS.setAttribute('class', 'jobQty');
-
-    jobTitleJS.setAttribute('id', 'merch' + i + 'Title');
-    jobReqJS.setAttribute('id', 'merchCost' + i);
-    jobQtyJS.setAttribute('id', 'merchQty' + i);
-    innerJobDivJS.setAttribute('onClick', 'buyMerch(' + i + ')');
-    jobImgJS.setAttribute('src', 'media/ph' + i + '.png');
-
-    innerJobDivJS.appendChild(jobImgJS);
-    innerJobDivJS.appendChild(jobTitleJS);
-    innerJobDivJS.appendChild(jobReqJS);
-    innerJobDivJS.appendChild(jobQtyJS);
-    jobsDivJS.appendChild(innerJobDivJS);
-  }
-}
-
-function createSkillsDivsCreateElement() {
-  for (i = 1; i < skillArray.length; i++) {
-    var jobsDivJS = document.getElementById('skills');
-
-    var innerJobDivJS = document.createElement('div');
-    innerJobDivJS.setAttribute('class', 'innerJobDiv');
-
-    var jobImgJS = document.createElement('img');
-    jobImgJS.setAttribute('class', 'imgJobSmall');
-
-    var jobTitleJS = document.createElement('div');
-    jobTitleJS.setAttribute('class', 'jobTitle');
-
-    var jobReqJS = document.createElement('div');
-    jobReqJS.setAttribute('class', 'jobReq');
-
-    var jobQtyJS = document.createElement('div');
-    jobQtyJS.setAttribute('class', 'jobQty');
-
-    jobTitleJS.setAttribute('id', 'skill' + i + 'Title');
-    jobReqJS.setAttribute('id', 'skill' + i + 'Req');
-    jobImgJS.setAttribute('id', 'skill' + i + 'Img');
-
-    innerJobDivJS.appendChild(jobImgJS);
-    innerJobDivJS.appendChild(jobTitleJS);
-    innerJobDivJS.appendChild(jobReqJS);
-    jobsDivJS.appendChild(innerJobDivJS);
-  }
+	// now we get all tab menu items by class names (use the next code only if you need to highlight current tab)
+	var x = document.getElementsByClassName("tabmenu");
+	var i;
+	for (i = 0; i < x.length; i++) {
+		x[i].className = 'tabmenu';
+	}
+	document.getElementById(rudr_tab_id).className = 'tabmenu active';
 }
 
 function updateGUI() {
@@ -441,6 +369,20 @@ function welcomeBack() {
   // "Welcome to Weeb simulator, fellow degenerate."
   //  + document.getElementById('textAreaId').innerHTML;
   //   }
+}
+
+function move() {
+  var elem = document.getElementById("myBar");
+  var width = 1;
+  var id = setInterval(frame, 10);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+    } else {
+      width++;
+      elem.style.width = width + '%';
+    }
+  }
 }
 
 

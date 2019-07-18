@@ -34,15 +34,17 @@ body {
 }
 
 #jobs {
-  height: 49.1vh;
+  /* height: 49.1vh; */
   min-width: 25vw;
   overflow: auto;
+  max-height: 95vh;
 }
 
 #merch {
-  height: 49.1vh;
+  /* height: 49.1vh; */
   min-width: 25vw;
   overflow: auto;
+  max-height: 95vh;
 }
 
 .center {
@@ -281,4 +283,30 @@ textarea {
 #jobs, #skills, #merch {
   display: flex;
   flex-direction: column;
+}
+
+.tabmenu {
+  float: left;
+}
+
+#darkmode {
+  padding: 0;
+  margin: 0;
+  float: left;
+  display: inline;
+}
+
+#myProgress {
+  width: 90%;
+  background-color: grey;
+  border-radius: 2px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: green;
+  border-radius: 2px;
 }

@@ -11,8 +11,9 @@
       rel="stylesheet"
     />
     <script src="JS/globalVar.js"></script>
-    <script src="JS/script.js"></script>
     <script src="JS/checks.js"></script>
+    <script src="JS/creation.js"></script>
+    <script src="JS/script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script language="javascript" type="text/javascript"></script>
 
@@ -24,42 +25,29 @@
       <div id="page_container">
         <!-- purpose is to be flex (left to right) and hold left container, middle container, and right container. -->
         <div class="side_containers" id="left_container">
-          <div id="jobs">
-            <span class="divHeading">JOBS</span>
+
+          <div id="jobs" class="tabcontent">
+          	Jobs
+          </div>
+          <div id="merch" class="tabcontent" style="display:none;">
+          	Merch
           </div>
 
-          <div id="merch">
+          <!-- <div id="merch">
             <span class="divHeading">MERCH</span>
-          </div>
+          </div> -->
         </div>
 
         <div id="middle_container">
           <button id='darkmode' onclick="darkmode()">dark mode</button>
           <script>document.getElementById("darkmode").click();</script>
-          <div id="clickerButtons">
-            <span>Watch anime!</span><br />
-            <!--<img id="incrementor" src="media/watchanimebutton.png" onclick="Increment()" /> -->
-            <!-- <img
-              class="GenreButtons"
-              src="media/shounen_button.png"
-              onclick="buttonIncrement('ShounenAmount')"
-            />
-            <img
-              class="GenreButtons"
-              src="media/romance_button.png"
-              onclick="buttonIncrement('RomanceAmount')"
-            />
-            <img
-              class="GenreButtons"
-              src="media/sliceoflife_button.png"
-              onclick="buttonIncrement('SliceOfLifeAmount')"
-            />
-            <img
-              class="GenreButtons"
-              src="media/isekai_button.png"
-              onclick="buttonIncrement('IsekaiAmount')"
-            /> -->
-          </div>
+            <a href="javascript:rudrSwitchTab('tb_1', 'jobs');" id="tb_1" class="tabmenu active">Open jobs</a></li>
+            <a href="javascript:rudrSwitchTab('tb_2', 'merch');" id="tb_2" class="tabmenu">Open merch</a></li>
+            <div id="clickerButtons">
+                        <div id="myProgress">
+                          <div id="myBar"></div>
+                        </div>
+                      </div>
           <div>
             <div id="divSeen">
               <label>Shounen seen: </label>

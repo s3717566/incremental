@@ -17,11 +17,11 @@ var intro4 = true;
 var intro5 = true;
 
 var animeArray = [
-["name", "amount", "increment", "total req for unlock"],
-["Shounen", 0, 0, 0],
-["Romance", 0, 0, 10],
-["SliceOfLife", 0, 0, 20],
-["Isekai", 0, 0, 30]
+["name", "amount", "increment", "total req for unlock", "active"],
+["Shounen", 0, 0, 0, false],
+["Romance", 0, 0, 10, false],
+["SliceOfLife", 0, 0, 20, false],
+["Isekai", 0, 0, 30, false]
 ]
 
 var jobArray = [ //first array accesses which job. [1]=boolean if unlocked, [2]=Amount it increments by, [3]=Description, [4]=Skill requirements
