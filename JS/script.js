@@ -173,6 +173,15 @@ function buttonIncrement(genre) {
     IsekaiAmount++;
     break;
   }
+
+  for (i = 0; i < animeArray.length; i++) {
+    //turn current anime active, and the rest become unactivated.
+    if (animeArray[i][0] == genre.substring(0, genre.indexOf('Amount'))) {
+      animeArray[i][4] = true;
+    } else {
+      animeArray[i][4] = false;
+    }
+  }
   updateGUI();
 }
 
@@ -376,8 +385,17 @@ function move() {
   var width = 1;
   var id = setInterval(frame, 10);
   function frame() {
+    //if full bar, clear the interval (progress bar), and increment active genre.
     if (width >= 100) {
       clearInterval(id);
+
+      //check active genre, and increment it when bar is full.
+      for (i = 0; i < animeArray.length; i++) {
+        if (animeArray[i][4]) {
+          buttonIncrement(animeArray[i][0] + 'Amount');
+        } 
+      }
+
     } else {
       width++;
       elem.style.width = width + '%';
