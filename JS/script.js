@@ -11,7 +11,7 @@ function populateButtons() {
         animeImgJS.setAttribute('id', animeArray[i][0] + 'ID');
         animeImgJS.setAttribute('class', 'GenreButtons');
         animeImgJS.setAttribute('src', 'media/' + animeArray[i][0] + '_button.png');
-        animeImgJS.setAttribute('onclick', "buttonIncrement('" +  animeArray[i][0] + "Amount')");
+        animeImgJS.setAttribute('onclick', "buttonPressed('" +  animeArray[i][0] + "Amount')");
         animeImgJS.style.visibility = "hidden";
 
         document.getElementById('clickerButtons').appendChild(animeImgJS);
@@ -24,6 +24,8 @@ function loadNames() {
   createJobDivsCreateElement();
   createMerchDivsCreateElement();
   createSkillsDivsCreateElement();
+  move();
+  buttonPressed("ShounenAmount");
 
   for (i = 1; i < jobArray.length; i++) {
     document.getElementById('job' + i + 'Title').innerHTML = jobArray[i][0];
@@ -155,31 +157,19 @@ function timer() {
 }
 setInterval(timer, 100);
 
-function buttonIncrement(genre) {
-  switch (genre) {
-    case ('ShounenAmount'):
-    ShounenAmount++;
-    break;
+function buttonPressed(genre) {
 
-    case ('RomanceAmount'):
-    RomanceAmount++;
-    break;
-
-    case ('SliceOfLifeAmount'):
-    SliceOfLifeAmount++;
-    break;
-
-    case ('IsekaiAmount'):
-    IsekaiAmount++;
-    break;
-  }
-
-  for (i = 0; i < animeArray.length; i++) {
+  for (i = 1; i < animeArray.length; i++) {
     //turn current anime active, and the rest become unactivated.
     if (animeArray[i][0] == genre.substring(0, genre.indexOf('Amount'))) {
       animeArray[i][4] = true;
+      document.getElementById(animeArray[i][0] + "ID").style.border = "thick solid #03fc35";
+      document.getElementById(animeArray[i][0] + "ID").style.borderRadius = "30px";
+
+
     } else {
       animeArray[i][4] = false;
+      document.getElementById(animeArray[i][0] + "ID").style.border = "";
     }
   }
   updateGUI();
@@ -386,22 +376,56 @@ function move() {
   var id = setInterval(frame, 10);
   function frame() {
     //if full bar, clear the interval (progress bar), and increment active genre.
-    if (width >= 100) {
+    if (width >= 200) {
       clearInterval(id);
 
       //check active genre, and increment it when bar is full.
-      for (i = 0; i < animeArray.length; i++) {
-        if (animeArray[i][4]) {
-          buttonIncrement(animeArray[i][0] + 'Amount');
-        } 
-      }
+      barIncrement();
 
+      //recursive
+      move();
     } else {
       width++;
-      elem.style.width = width + '%';
+      elem.style.width = (width / 2) + '%';
     }
   }
 }
+
+function barIncrement() {
+  for (i = 1; i < animeArray.length; i++) {
+    if (animeArray[i][4]) {
+      animeIncrement(animeArray[i][0] + 'Amount');
+    }
+  }
+}
+
+function animeIncrement(genre) {
+  switch (genre) {
+    case ('ShounenAmount'):
+    ShounenAmount++;
+    break;
+
+    case ('RomanceAmount'):
+    RomanceAmount++;
+    break;
+
+    case ('SliceOfLifeAmount'):
+    SliceOfLifeAmount++;
+    break;
+
+    case ('IsekaiAmount'):
+    IsekaiAmount++;
+    break;
+  }
+}
+
+// function buttonSelected() {
+//   for (i = 1; i < animeArray.length; i++) {
+//     if (animeArray[i][4]) {
+//       document.getElementById(animeArray[i][0] + "ID").style.border = "thick #0000ff";
+//     }
+//   }
+// }
 
 
 // window.onload = welcomeBack();

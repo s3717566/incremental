@@ -18,7 +18,7 @@ var intro5 = true;
 
 var animeArray = [
 ["name", "amount", "increment", "total req for unlock", "active"],
-["Shounen", 0, 0, 0, false],
+["Shounen", 0, 0, 0, true],
 ["Romance", 0, 0, 10, false],
 ["SliceOfLife", 0, 0, 20, false],
 ["Isekai", 0, 0, 30, false]
