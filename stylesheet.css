@@ -67,6 +67,8 @@ body {
   border: 3px solid #e20f92;
   outline-width: 0px;
   cursor: pointer;
+  margin: 2%;
+
 }
 
 #pricesDiv {

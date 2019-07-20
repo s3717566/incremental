@@ -61,3 +61,14 @@ var merchArray = [ //first array accesses which job. [1]=Initial, [2]=CurrentPri
 ["Love-Live Cardboard Cutout", 200, 0, 0, 1.5, "meme4", "Isekai"],
 ["1:1 Scale Shiro", 800, 0, 0, 5, "meme5", "Shounen"],
 ]
+
+var waifuArray = [
+  ["waifuName", "fileName"],
+  ["YaoMomo", "YAOMOMO.png"],
+  ["Futaba", "FUTABA.PNG"],
+  ["Anna", "ANNA.png"],
+  ["Milim", "MILIM.jpg"],
+  ["Raphtalia", "RAPHTALIA.gif"],
+  ["Chika", "CHIKA.gif"],
+  ["Asuna", "ASUNA.gif"]
+]

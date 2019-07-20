@@ -18,9 +18,21 @@ function populateButtons() {
   }
 }
 
+function populateWaifus() {
+  for (i = 1; i < waifuArray.length; i++) {
+    var waifuImgJS = document.createElement('img');
+        waifuImgJS.setAttribute('class', 'WaifuButtons');
+        waifuImgJS.setAttribute('src', 'media/' + waifuArray[i][1]);
+        waifuImgJS.setAttribute('onclick', "changeWaifu('" + waifuArray[i][1] + "')");
+
+        document.getElementById('waifus').appendChild(waifuImgJS);
+  }
+}
+
 function loadNames() {
   introduction();
   populateButtons();
+  populateWaifus();
   createJobDivsCreateElement();
   createMerchDivsCreateElement();
   createSkillsDivsCreateElement();
