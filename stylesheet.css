@@ -251,6 +251,10 @@ input[type=button] {
   /* padding-bottom: 1%; */
 }
 
+.GenreButtons {
+  margin: 5px;
+}
+
 #divSeen {
   float: left;
   display: inline-block;
@@ -285,8 +289,22 @@ textarea {
   flex-direction: column;
 }
 
+.tabcontent {
+  margin-top: 5px;
+}
+
 .tabmenu {
-  float: left;
+  padding: 3px;
+  color: green;
+  margin-left: 15px;
+  margin-right: 15px;
+  text-decoration: none;
+  border: 5px green solid;
+  border-radius: 10px;
+}
+
+.tabmenu.active {
+  background-color: #81c6d6;
 }
 
 #darkmode {
