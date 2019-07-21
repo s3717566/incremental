@@ -20,7 +20,7 @@
     <title>Weeaboo Simulator</title>
   </head>
 
-  <body class="textstyle smalltext" onload="loadNames()">
+  <body class="textstyle smalltext" onload="startUp()">
     <main>
       <div id="page_container">
         <!-- purpose is to be flex (left to right) and hold left container, middle container, and right container. -->
@@ -41,8 +41,8 @@
         <div id="middle_container">
           <button id='darkmode' onclick="darkmode()">dark mode</button>
           <script>document.getElementById("darkmode").click();</script>
-            <a href="javascript:rudrSwitchTab('tb_1', 'jobs');" id="tb_1" class="tabmenu active">Open jobs</a></li>
-            <a href="javascript:rudrSwitchTab('tb_2', 'merch');" id="tb_2" class="tabmenu">Open merch</a></li>
+            <a href="javascript:switchTab('tb_1', 'jobs');" id="tb_1" class="tabmenu active">Open jobs</a></li>
+            <a href="javascript:switchTab('tb_2', 'merch');" id="tb_2" class="tabmenu">Open merch</a></li>
             <div id="clickerButtons">
               <!-- <button onclick="move()"> Watch Anime!</button> -->
                         <div id="myProgress">
