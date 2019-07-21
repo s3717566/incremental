@@ -75,13 +75,14 @@ function buttonPressed(genre) {
     //turn current anime active, and the rest become unactivated.
     if (animeArray[i][0] == genre.substring(0, genre.indexOf('Amount'))) {
       animeArray[i][4] = true;
-      document.getElementById(animeArray[i][0] + "ID").style.border = "thick solid #03fc35";
-      document.getElementById(animeArray[i][0] + "ID").style.borderRadius = "30px";
-
+      // document.getElementById(animeArray[i][0] + "ID").style.border = "thick solid #03fc35";
+      // document.getElementById(animeArray[i][0] + "ID").style.borderRadius = "30px";
+document.getElementById(animeArray[i][0] + "ID").style.outline = "solid #03fc6b 5px";
 
     } else {
       animeArray[i][4] = false;
-      document.getElementById(animeArray[i][0] + "ID").style.border = "";
+      // document.getElementById(animeArray[i][0] + "ID").style.border = "";
+      document.getElementById(animeArray[i][0] + "ID").style.outline = "";
     }
   }
   updateGUI();
@@ -243,7 +244,7 @@ function move() {
       //recursive
       move();
     } else {
-      width++;
+      width += 30;
       elem.style.width = (width / 2) + '%';
     }
   }
