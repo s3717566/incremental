@@ -16,6 +16,24 @@ function switchTab(tab_id, tab_content) { //thanks rudr!
 	document.getElementById(tab_id).className = 'tabmenu active';
 }
 
+function switchTab2(tab_id, tab_content) { //thanks rudr!
+	// first of all we get all tab content blocks (I think the best way to get them by class names)
+	var x = document.getElementsByClassName("tabcontent2");
+	var i;
+	for (i = 0; i < x.length; i++) {
+		x[i].style.display = 'none'; // hide all tab content
+	}
+	document.getElementById(tab_content).style.display = 'block'; // display the content of the tab we need
+
+	// now we get all tab menu items by class names (use the next code only if you need to highlight current tab)
+	var x = document.getElementsByClassName("tabmenu2");
+	var i;
+	for (i = 0; i < x.length; i++) {
+		x[i].className = 'tabmenu2';
+	}
+	document.getElementById(tab_id).className = 'tabmenu2 active';
+}
+
 function updateGUI() {
 
   document.getElementById("ShounenAmountText").value = ShounenAmount.toFixed(0); //can't make dynamic with genre.toFixed(0). Need to figure out how to use the argument as a reference to the variable.
