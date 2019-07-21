@@ -14,20 +14,22 @@
     <script src="JS/checks.js"></script>
     <script src="JS/creation.js"></script>
     <script src="JS/script.js"></script>
+    <script src="JS/onStart.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script language="javascript" type="text/javascript"></script>
 
     <title>Weeaboo Simulator</title>
   </head>
 
-  <body class="textstyle smalltext" onload="loadNames()">
+  <body class="textstyle smalltext" onload="startUp()">
     <main>
       <div id="page_container">
         <!-- purpose is to be flex (left to right) and hold left container, middle container, and right container. -->
         <div class="side_containers" id="left_container">
           <span>
-            <a href="javascript:rudrSwitchTab('tb_1', 'jobs');" id="tb_1" class="tabmenu active">Jobs</a></li>
-            <a href="javascript:rudrSwitchTab('tb_2', 'merch');" id="tb_2" class="tabmenu">Merch</a></li>
+            <a href="javascript:switchTab('tb_1', 'jobs');" id="tb_1" class="tabmenu active">Jobs</a></li>
+            <a href="javascript:switchTab('tb_2', 'merch');" id="tb_2" class="tabmenu">Merch</a></li>
           </span>
           <div id="jobs" class="tabcontent">
           	Jobs
