@@ -7,6 +7,7 @@ function startUp() {
   move();
   buttonPressed("ShounenAmount");
   populateNames();
+  populateWaifus();
   loadJobReqs();
   loadSkillReqs();
   updateGUI(); //stops page from "not having the Qty's until a button is pressed" problem.
@@ -133,7 +134,7 @@ function initialText() {
 if (intro2 == true)
 {
   // document.getElementById('textAreaId').innerHTML = "Click the buttons up top to watch anime!";
-    if (TotalAnimeAmount == 10)
+    if (TotalAnimeAmount >= 10)
     {
       document.getElementById('textAreaId').innerHTML = "I think I'm actually learning from watching anime... wtf? I need to keep watching... \n" + document.getElementById('textAreaId').innerHTML;
       document.getElementById('skills').style.visibility = "visible";
@@ -143,7 +144,7 @@ if (intro2 == true)
 if (intro3 == true)
 {
   // document.getElementById('textAreaId').innerHTML = "Click the buttons up top to watch anime!";
-    if (TotalAnimeAmount == 20)
+    if (TotalAnimeAmount >= 20)
     {
       document.getElementById('textAreaId').innerHTML = "Maybe I can find a job with these skills I've acquired... Yeah, that makes sense to me. Pretty obvious, actually. \n\n" + document.getElementById('textAreaId').innerHTML;
       document.getElementById('jobs').style.visibility = "visible";
@@ -154,7 +155,7 @@ if (intro3 == true)
 if (intro4 == true)
 {
   // document.getElementById('textAreaId').innerHTML = "Click the buttons up top to watch anime!";
-    if (TotalAnimeAmount == 40)
+    if (TotalAnimeAmount >= 40)
     {
       document.getElementById('textAreaId').innerHTML = "Holy... Look at these fat stacks, I'm making bank. Maybe it wouldn't hurt to buy a keychain of my favourite show. \n\n" + document.getElementById('textAreaId').innerHTML;
       document.getElementById('merch').style.visibility = "visible";
@@ -165,7 +166,7 @@ if (intro4 == true)
 if (intro5 == true)
 {
   // document.getElementById('textAreaId').innerHTML = "Click the buttons up top to watch anime!";
-    if (TotalAnimeAmount == 100)
+    if (TotalAnimeAmount >= 100)
     {
       document.getElementById('textAreaId').innerHTML = "Anyone that comes between me and my waifu will have to taste my nippon steel. \n\n" + document.getElementById('textAreaId').innerHTML;
       document.getElementById('waifus').style.visibility = "visible";

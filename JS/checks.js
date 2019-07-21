@@ -91,7 +91,8 @@ function checkJobReq() {
       if (requiredCounter == skillsRequired.length)
       {
         jobArray[i][1] = true;
-        document.getElementById('jobQty' + i).innerHTML = "UNLOCKED!";
+        document.getElementById('jobCost' + i).innerHTML = "UNLOCKED!";
+        document.getElementById('jobCost' + i).style.color = "red";
         document.getElementById('textAreaId').innerHTML = "Unlocked " + jobArray[i][0] + "\n" + jobArray[i][3] + '\n\n' + document.getElementById('textAreaId').innerHTML;
         exit = true;
       }
