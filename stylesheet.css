@@ -33,20 +33,6 @@ body {
   flex-direction: column;
 }
 
-#jobs {
-  /* height: 49.1vh; */
-  min-width: 25vw;
-  overflow: auto;
-  max-height: 95vh;
-}
-
-#merch {
-  /* height: 49.1vh; */
-  min-width: 25vw;
-  overflow: auto;
-  max-height: 95vh;
-}
-
 .center {
   display: block;
   margin-left: auto;
@@ -107,18 +93,6 @@ body {
   height: 30%;
   width: 30%;
   margin: auto;
-}
-
-#skills {
-  height: 45vh;
-  min-width: 25vw;
-  overflow: auto;
-}
-
-#waifus {
-  height: 45vh;
-  min-width: 25vw;
-  font-size: 20px;
 }
 
 input[type=text] {
@@ -291,11 +265,20 @@ textarea {
   flex-direction: column;
 }
 
-.tabcontent {
+#jobs, #skills, #merch, #waifus {
+  min-width: 25vw;
+  max-width: 25vw;
+  overflow: auto;
+  max-height: 90vh;
+  margin-top: 20px;
+}
+
+
+.tabcontent, .tabcontent2 {
   margin-top: 5px;
 }
 
-.tabmenu {
+.tabmenu, .tabmenu2 {
   padding: 3px;
   color: green;
   margin-left: 15px;
@@ -305,7 +288,7 @@ textarea {
   border-radius: 10px;
 }
 
-.tabmenu.active {
+.tabmenu.active, .tabmenu2.active {
   background-color: #81c6d6;
 }
 
