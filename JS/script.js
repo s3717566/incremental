@@ -230,7 +230,7 @@ function move() {
   var id = setInterval(frame, 10);
   function frame() {
     //if full bar, clear the interval (progress bar), and increment active genre.
-    if (width >= 1) {
+    if (width >= 200) {
       clearInterval(id);
 
       //check active genre, and increment it when bar is full.
@@ -239,7 +239,7 @@ function move() {
       //recursive
       move();
     } else {
-      width += 30;
+      width += 1;
       elem.style.width = (width / 2) + '%';
     }
   }
